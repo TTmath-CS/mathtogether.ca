@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Math Together Canada — a student-led community making math fun, accessible and exciting from coast to coast.">
+<title>Math Together Canada</title>
+<link rel="icon" href="assets/img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,500;0,600;1,500&family=Public+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script src="app.js" defer></script>
+</head>
+<body>
+
+<nav>
+  <div class="links">
+    <a href="#about">About</a>
+    <a href="#programs">Programs</a>
+    <a href="#livestream">Livestream</a>
+    <a href="#news">News</a>
+    <a href="#team">Team</a>
+    <a href="#involved">Get involved</a>
+    <a href="#faq">FAQ</a>
+    <a class="join" href="https://forms.gle/XjoktJdHGPGnzJs17">Join us</a>
+  </div>
+</nav>
+
+<header id="top">
+  <div class="hero-shell">
+    <div class="hero-in">
+      <div class="hero-brand">
+        <img src="assets/img/logo-badge.png" alt="Math Together Canada logo">
+        <p><strong>Math Together Canada</strong><small>mathtogether.ca</small></p>
+      </div>
+      <p class="eyebrow formula-badge" aria-label="Integral from coast to coast of curiosity plus friends equals MathTogether dot ca.">
+        <span class="badge-dot"></span>
+        <span class="formula-core">
+          <span class="calc-integral">∫</span><span class="limit-stack"><sup>coast</sup><sub>coast</sub></span>
+          <span class="formula-sum">(curiosity + friends)</span><span class="formula-dx">dx</span>
+          <span class="formula-eq">=</span><span class="formula-domain">mathtogether.ca</span>
+        </span>
+        <span class="formula-joke">homework panic becomes aha moments</span>
+      </p>
+      <h1>United by <em>Numbers</em>,<br> Inspired by <em>Learning</em>!</h1>
+      <p class="lede">We are a student-led community making contest math feel collaborative, generous,
+      and alive. Explore lessons, livestreams, camps, charity contests, and peer support built by
+      students who love solving hard problems together.</p>
+      <p class="cta-row">
+        <a class="btn" href="https://forms.gle/XjoktJdHGPGnzJs17">Sign up now</a>
+        <a class="btn ghost" href="https://www.youtube.com/@MathTogetherCanada">Watch on YouTube</a>
+      </p>
+    </div>
+
+    <div class="sky-stage" role="button" tabindex="0"
+      aria-label="Interactive night Cartesian plane. Click to discover a theorem, legend, conjecture, or math topic.">
+      <svg class="plane" viewBox="0 0 1200 640" preserveAspectRatio="none" aria-hidden="true">
+        <defs>
+          <linearGradient id="fall1" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#8f84ff" stop-opacity=".45"/>
+            <stop offset="1" stop-color="#8f84ff" stop-opacity="0"/>
+          </linearGradient>
+          <linearGradient id="fall2" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#ff8a73" stop-opacity=".38"/>
+            <stop offset="1" stop-color="#ff8a73" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
+        <g class="axis">
+          <line x1="40" y1="580" x2="1170" y2="580"/>
+          <line x1="110" y1="30" x2="110" y2="615"/>
+          <polygon points="1170,580 1154,573 1154,587"/>
+          <polygon points="110,30 103,46 117,46"/>
+        </g>
+        <path class="area" fill="url(#fall1)" d="M110 560 C 280 560, 300 330, 470 330 S 660 470, 830 380 S 1080 120, 1170 100 L1170 580 L110 580 Z"/>
+        <path class="area" fill="url(#fall2)" d="M110 580 C 420 540, 760 470, 900 300 S 1080 60, 1170 40 L1170 580 Z"/>
+        <path class="cdepth d1" d="M110 560 C 280 560, 300 330, 470 330 S 660 470, 830 380 S 1080 120, 1170 100" transform="translate(7,12)"/>
+        <path class="cdepth d2" d="M110 580 C 420 540, 760 470, 900 300 S 1080 60, 1170 40" transform="translate(7,12)"/>
+        <path class="curve c1" d="M110 560 C 280 560, 300 330, 470 330 S 660 470, 830 380 S 1080 120, 1170 100"/>
+        <path class="curve c2" d="M110 580 C 420 540, 760 470, 900 300 S 1080 60, 1170 40"/>
+      </svg>
+      <p class="coords">(x, y) = (0.0, 0.0)</p>
+      <p class="sky-invite" aria-hidden="true">
+        <span></span><b>Click the coordinate sky</b>
+        <small>unlock conjectures, legends, and topics</small>
+      </p>
+      <p class="sky-caption">plot a point · spark an idea · meet a legend</p>
+    </div>
+  </div>
+
+  <div class="hero-foot">
+    <ul class="stats">
+      <li><b>500+</b> happy students</li>
+      <li><b>6</b> programs &amp; activities</li>
+      <li><b>6</b> community partners</li>
+      <li><b>$7,110</b> raised for SickKids</li>
+    </ul>
+    <nav class="plotmap" aria-label="Explore the site">
+      <a class="stop" href="#about"><i></i><span>(1, who we are)</span></a>
+      <a class="stop" href="#programs"><i></i><span>(2, programs)</span></a>
+      <a class="stop" href="#livestream"><i></i><span>(3, livestream)</span></a>
+      <a class="stop" href="#news"><i></i><span>(4, news)</span></a>
+      <a class="stop" href="#team"><i></i><span>(5, team)</span></a>
+      <a class="stop" href="#involved"><i></i><span>(6, join us)</span></a>
+    </nav>
+  </div>
+</header>
+
+<div class="ruler-strip" aria-hidden="true"><div><span>Gauss</span><span>Pascal</span><span>Cayley</span><span>Fermat</span><span>Euclid</span><span>CIMC</span><span>COMC</span><span>CMO</span><span>AMC 8</span><span>AMC 10</span><span>AMC 12</span><span>AIME</span><span>Math Kangaroo</span><span>CTMC</span><span>HMMT</span><span>EGMO</span><span>IMO</span><span>MPFG</span><span>Gauss</span><span>Pascal</span><span>Cayley</span><span>Fermat</span><span>Euclid</span><span>CIMC</span><span>COMC</span><span>CMO</span><span>AMC 8</span><span>AMC 10</span><span>AMC 12</span><span>AIME</span><span>Math Kangaroo</span><span>CTMC</span><span>HMMT</span><span>EGMO</span><span>IMO</span><span>MPFG</span></div></div>
+
+<div class="yaxis" aria-hidden="true"><span class="marker">0</span></div>
+
+<main>
+
+<section id="about">
+  <h2>Who we are</h2>
+  <p>Founded by math enthusiasts, our club aims to make math fun and accessible for everyone.
+  We believe that numbers can be exciting and engaging, and we're here to prove it!</p>
+  <p>Our leadership team is a mix of seasoned advisors and enthusiastic students, all dedicated to
+  fostering a love for mathematics. Check out our bios to see who's behind the magic!</p>
+  <p>With a mission to inspire and help, we host events that challenge the norm and bring people
+  together. Join us and be part of something extraordinary!</p>
+  <blockquote>Math Together Canada is where numbers meet fun and friendship. <span class="note">— math enthusiasts united</span></blockquote>
+</section>
+
+<section id="programs">
+  <h2>Programs &amp; activities</h2>
+  <p class="section-lede">Programs that make math meaningful, fun, and community-driven!</p>
+  <div class="cards">
+    <article><h3>Peer Tutoring Support</h3>
+      <p>We help students succeed in regular school math through free tutoring!</p>
+      <a href="https://forms.gle/XjoktJdHGPGnzJs17">Get started →</a></article>
+    <article><h3>Contest Prep &amp; Hosting</h3>
+      <p>Challenging competitions that test your skills and boost your confidence.</p>
+      <a href="https://www.youtube.com/@MathTogetherCanada">Learn more →</a></article>
+    <article><h3>Math-Themed Charity Events</h3>
+      <p>We host fun, creative math events that give back to the community!</p>
+      <a href="#news-charity-2025">Learn more →</a></article>
+    <article><h3>Summer Camps</h3>
+      <p>Join our exciting summer camp filled with puzzles, games, and learning!</p>
+      <a href="#news-camp-2025">Learn more →</a></article>
+    <article><h3>Webinars &amp; Guest Speakers</h3>
+      <p>Learn from professional and passionate speakers through our math webinars!</p>
+      <a href="https://youtu.be/Bkamz7QCS7I">Learn more →</a></article>
+    <article><h3>Volunteer Opportunities</h3>
+      <p>We offer meaningful volunteer roles for students who want to make a difference!</p>
+      <a href="https://forms.gle/XjoktJdHGPGnzJs17">Get started →</a></article>
+  </div>
+  <p class="note center" aria-hidden="true">join the fun, grow your skills, and fall in love with math!</p>
+</section>
+
+<section id="livestream">
+  <h2>Math Challenge livestream</h2>
+  <p class="section-lede">Are you passionate about math? Want to test your problem-solving skills in
+  real-time? Math Together Canada invites you to our Math Challenge — learning problem-solving
+  strategies through interactive discussions. Big math energy on our
+  <a href="https://www.youtube.com/@MathTogetherCanada">YouTube channel</a>!</p>
+  <ol class="live-points">
+    <li><b>Problem-solving.</b> Tackle challenges from prestigious competitions like AMC and AIME.</li>
+    <li><b>Interactive fun.</b> Engage with peers and experts in real-time problem-solving.</li>
+    <li><b>Skill levels.</b> Choose from various difficulty levels to match your expertise.</li>
+  </ol>
+  <h3 class="sub">Think deep. Solve smart.</h3>
+  <ul class="sessions">
+    <li><span>May 2025</span> Complete breakdown of the 2025 Fermat Contest — <a href="https://youtu.be/TA2mtv_Prxc">watch</a></li>
+    <li><span>Nov 2025</span> Complete breakdown of the 2025 COMC Contest — <a href="https://youtu.be/GCJ6smMF7io">watch</a></li>
+    <li><span>Nov 2025</span> Complete breakdown of the 2025 AMC10 Contest — <a href="https://youtu.be/MeyLmhwl-FA">watch</a></li>
+    <li><span>Nov 2025</span> Complete breakdown of the 2025 AMC12 Contest — <a href="https://www.youtube.com/@MathTogetherCanada">watch</a></li>
+    <li><span>2025-03-23</span> Community discussion after the Math Kangaroo Contest, with CMO/CJMO qualifiers — <a href="https://www.youtube.com/@MathTogetherCanada">watch</a></li>
+    <li><span>2025-04-28</span> Interactive Q&amp;A session: your burning questions, answered by math experts — <a href="https://youtu.be/hiDEBL1ieIk">watch</a></li>
+    <li><span>2025-06-18</span> Complete breakdown of the 2024 AMC10A Contest — <a href="https://www.youtube.com/@MathTogetherCanada">watch</a></li>
+    <li><span>2025</span> Waterloo Pascal &amp; Fermat solutions, before official answers are out — <a href="https://youtu.be/a3Yr2WHDnII">watch</a></li>
+  </ul>
+</section>
+
+<section id="news">
+  <h2>News &amp; stories</h2>
+
+  <div class="news-grid">
+
+    <article class="story">
+      <img src="assets/img/news-winter-camp.jpg" alt="Winter AMC 8 training camp" loading="lazy">
+      <h3>Math Winter Camp</h3><p class="date">December 2025 · Oakville</p>
+      <details><summary>Read the story</summary>
+        <p>During the winter break in December 2025, four MTC members hosted an AMC 8 Training Camp in
+        the Oakville community. The camp aimed to introduce contest-style math and help students build
+        confidence and speed in solving challenging problems.</p>
+        <p>The participants, most having limited contest experience, showed clear improvement in all four
+        subjects (combinatorics, algebra, geometry, and number theory). Through our carefully-created
+        practice problems, the students learned problem-solving approaches not taught at school. The
+        classroom had become a collaborative and energetic learning space, with each student participating
+        in ample discussion. The MTC organizers again showed their teaching and leadership skills and
+        reinforced our mission to bring accessible and fun math to our communities.</p>
+        <p><a href="https://youtu.be/kObBbe_cfIE">Watch the video →</a></p>
+      </details>
+    </article>
+
+    <article class="story" id="news-charity-2025">
+      <img src="assets/img/news-charity-2025.png" alt="Charity Math Competition 2025 poster" loading="lazy">
+      <h3>Charity Math Competition 2025 — Spreading Knowledge and Kindness</h3><p class="date">September 6, 2025</p>
+      <details><summary>Read the story</summary>
+        <p>Get ready to celebrate another year of brain-teasing challenges and meaningful giving! On
+        September 6th, 2025, we hosted our Charity Math Competition, and once again, the event was filled
+        with excitement, learning, and community spirit — all in support of SickKids Hospital.</p>
+        <p>This year, we were thrilled to welcome 102 participants who took on a series of fun yet
+        challenging math problems. From beginners to seasoned math lovers, everyone had the chance to put
+        their problem-solving skills to the test while contributing to a wonderful cause.</p>
+        <p>Most importantly, thanks to the generosity of our participants, supporters, and sponsoring
+        organizations, we successfully raised an incredible $3,350 for SickKids. These funds will directly
+        support the hospital's vital programs and services, helping improve the health and well-being of
+        children in need.</p>
+        <p>We extend our heartfelt gratitude to everyone who joined, donated, and supported this meaningful
+        initiative. Every contribution — big or small — makes a real difference, and this achievement would
+        not have been possible without your kindness and commitment.</p>
+        <p>Let's carry this momentum forward! With your continued support, we hope to make next year's
+        Charity Math Competition even bigger, even better, and even more impactful. See you in 2026!</p>
+      </details>
+    </article>
+
+    <article class="story">
+      <img src="assets/img/news-wepi.jpg" alt="We Pioneer charity math contest" loading="lazy">
+      <h3>We Pi(π)oneer Charity Math Contest</h3><p class="date">Three contests and counting</p>
+      <details><summary>Read the story</summary>
+        <p>We're excited to create an event to celebrate the beauty of math and meet math champions to
+        share their learning experience. We secured sponsorships from Smile Dentist, Angle Financial
+        Groups, TTmath, Pizza Pizza, and Batner Bookstore, who generously provided lunch and prizes.</p>
+        <p>This is also a fundraising event to support SickKids Hospital with continuous breakthrough
+        research. Over the past three contests, the peers have raised a total of $7,110 in donations.
+        Thank you for the support of all participants!</p>
+      </details>
+    </article>
+
+    <article class="story" id="news-camp-2025">
+      <img src="assets/img/news-summer-camp-2025.jpg" alt="2025 math summer camp classroom" loading="lazy">
+      <h3>2025 Math Summer Camp</h3><p class="date">August 19–22, 2025 · North York</p>
+      <details><summary>Read the story</summary>
+        <p>This past week, from Tuesday, Aug 19 to Friday, Aug 22, 3 of our Math Together Canada members
+        and 2 amazing volunteers ran a summer camp to help promote contest math across the North York
+        community. Even though most of the participants had little to no contest experience and have only
+        been exposed to the school curriculum, we saw how much they improved over the span of our three
+        lesson days.</p>
+        <p>Every day, we compiled 25 problems from contests of varying difficulties, ranging from Gauss to
+        AIME. Students not only explored new topics but also learned how to approach contest problems step
+        by step. On the last day of camp, they were given a 15-problem "exam" to showcase how much they
+        learned throughout the week.</p>
+        <p>Collaboration between students and their contributions to class discussions were heavily
+        encouraged. Some students were shy and hesitant to speak on the first day, but by the end, the
+        classroom was filled with energy and excitement.</p>
+        <p>For the three of us, organizing this camp was an incredibly meaningful experience. We gained
+        many valuable insights into lesson prepping, time management, and teaching, while also developing
+        our leadership and communication skills. As a result, our team is excited to organize another camp
+        next summer, with many more activities planned to bring math to various communities.</p>
+        <p>Thank you to the York Mills Chinese community and Techblazers Robotics North York Learning
+        Center for helping us make camp possible!</p>
+      </details>
+    </article>
+
+    <article class="story">
+      <img src="assets/img/news-summer-camps-video.png" alt="Summer camp students' voices video series" loading="lazy">
+      <h3>Inside the Most Selective and Celebrated Math Summer Camps</h3><p class="date">Summer 2025 · video series</p>
+      <details><summary>Read the story</summary>
+        <p>This summer, six Math Together Canada students took part in some of the most selective and
+        celebrated math programs around the world, including the Ross Mathematics Program, Stanford SUMaC,
+        Canada's IMO Summer Training Camp, Yau Mathcamp, G2 Research Camp, Canada Math Camp, Canada/USA
+        Mathcamp, and the International Math Summer Camp.</p>
+        <p>In these videos, they share what the classes felt like, the peers and mentors who shaped the
+        experience, and the standout moments that made each camp unforgettable. Whether you're a math
+        enthusiast or charting your own summer adventure, this is your insider's guide to the world of
+        elite math camps.</p>
+        <p><a href="https://youtu.be/U1bpogh_TXU">Watch the Summer Camp Students' Voices series →</a></p>
+      </details>
+    </article>
+
+    <article class="story">
+      <img src="assets/img/news-ctmc.jpg" alt="Canadian Team Mathematics Contest day" loading="lazy">
+      <h3>Canadian Team Mathematics Contest (CTMC)</h3><p class="date">April 10, 2025</p>
+      <details><summary>Read the story</summary>
+        <p>Thanks to the help of MTC volunteers, CTMC online was a great success! With 20 students and 3
+        teams, each person collaborated to make the day meaningful. Throughout the rounds, team friendships
+        were made while everyone discussed and helped each other with difficult math problems. Thank you to
+        everyone who made the day so memorable and fun!</p>
+      </details>
+    </article>
+
+    <article class="story">
+      <img src="assets/img/news-charity-2024.jpg" alt="Charity math contest 2024" loading="lazy">
+      <h3>Fun &amp; Challenging Math Contest — Supporting SickKids</h3><p class="date">September 7, 2024</p>
+      <details><summary>Read the story</summary>
+        <p>Get ready for a day filled with brain-teasing challenges and meaningful giving! On September
+        7th, 2024, we hosted a Fun &amp; Challenging Math Contest — a day of excitement, learning, and
+        community spirit, all in support of SickKids!</p>
+        <p>Registration for the contest was absolutely free, but we encouraged participants to donate to
+        SickKids, a leading hospital that provides life-saving care to children. Thanks to your support, we
+        raised an incredible $2,390 for SickKids! Every donation, big or small, makes a difference, and
+        this amount goes directly to supporting the hospital's vital services and programs.</p>
+        <p>The contest itself was designed to challenge problem-solving skills with a mix of fun and
+        difficult math problems. Whether a beginner or a seasoned math lover, everyone had the chance to
+        compete, learn, and, most importantly, contribute to a great cause.</p>
+      </details>
+    </article>
+
+    <article class="story">
+      <img src="assets/img/live-kangaroo.jpg" alt="Math for Everyone camp activities" loading="lazy">
+      <h3>Math For Everyone Camp</h3><p class="date">June 17, 2024</p>
+      <details><summary>Read the story</summary>
+        <p>Math isn't just for classrooms or textbooks — it's a language that shapes the world around us,
+        and it can be fun for everyone! That's exactly what the Math for Everyone Camp on June 17th, 2024,
+        was all about. From young children to seasoned adults, the event brought together people of all
+        ages for a day packed with exciting and interactive math activities.</p>
+        <p>The event kicked off with a warm welcome from Annie Cai, an enthusiastic math educator who made
+        it clear from the start that math is more than just numbers and formulas — it's everywhere! With
+        engaging activities designed to spark curiosity and creativity, participants of all ages quickly
+        found themselves immersed in the world of math. Kids worked on fun hands-on activities, while
+        adults tackled challenges like decoding secret messages and racing to solve riddles.</p>
+        <p>What made the workshop so special was its inclusivity. Whether you were a parent introducing
+        your child to math in a fun and engaging way, a teenager exploring new challenges, or a senior
+        reminiscing about math from years past, there was a place for everyone to dive in and enjoy the
+        day. By the end of the event, the workshop proved one important thing: math is not just for a
+        select few — it's for everyone.</p>
+      </details>
+    </article>
+
+    <article class="story">
+      <img src="assets/img/news-ctmc.jpg" alt="Students collaborating at CTMC" loading="lazy">
+      <h3>What to Expect</h3><p class="date">by Kaylyn Zhang</p>
+      <details><summary>Read the story</summary>
+        <p>Two years ago, I participated in the Canadian Team Mathematics Contest (CTMC), a fun and
+        challenging math competition hosted by the University of Waterloo. I still remember how exciting it
+        was to work together with the other five of my teammates. It was one of the first times I realized
+        how enjoyable math could be, not just as a subject, but as something that unites people.</p>
+        <p>This year, I was able to return to CTMC as a volunteer. Watching the 20 participants from the
+        sidelines enjoy their time together helped me almost relive that day, seeing everyone collaborate
+        and make new friends within the normally competitive environment. My volunteering experience felt
+        very meaningful, as I wasn't solving problems myself, rather helping others experience the same
+        excitement and joy that I remember. In the future, I hope we are able to create more opportunities
+        like this, where kids can come together to make friends and explore math in a fun and supportive
+        way.</p>
+        <p>The happiness that comes from getting the right answer to a difficult problem does not nearly
+        constitute a small fraction of the mathematical experience. It's really about working as a team,
+        being able to support each other, and growing together.</p>
+      </details>
+    </article>
+
+    <article class="story">
+      <img src="assets/img/news-picnic.jpg" alt="TTmath picnic" loading="lazy">
+      <h3>Connecting Beyond Mathematics at the TTmath Picnic</h3><p class="date">June 18, 2025</p>
+      <details><summary>Read the story</summary>
+        <p>Math Together Canada was proud to join TT Math's annual picnic — a day of games, food and new
+        friendships beyond the classroom.</p>
+      </details>
+    </article>
+
+    <article class="story">
+      <img src="assets/img/news-kangaroo.png" alt="Math Kangaroo 2025 winners" loading="lazy">
+      <h3>Math Kangaroo 2025</h3><p class="date">June 13, 2025</p>
+      <details><summary>Read the story</summary>
+        <p>Congratulations to all the National and Regional Math Kangaroo 2025 winners, and thank you to
+        everyone who participated!</p>
+      </details>
+    </article>
+
+    <article class="story">
+      <img src="assets/img/news-quant.png" alt="From math to quant interview" loading="lazy">
+      <h3>From Math To Quant: Houting's Inspiring Journey</h3><p class="date">Video</p>
+      <p>Whether you're a high school student curious about math careers, or just wondering how numbers
+      turn into real-world finance, this video is for you! <a href="https://youtu.be/U1bpogh_TXU?si=UpPfYlJ6ZrDvGlpA">Watch →</a></p>
+    </article>
+
+    <article class="story">
+      <img src="assets/img/news-ai.png" alt="From math to AI interview" loading="lazy">
+      <h3>From Math To AI: High Schoolers Interview Industry Experts</h3><p class="date">Video</p>
+      <p>What happens when passionate high school math enthusiasts sit down with real AI professionals?
+      <a href="https://youtu.be/AX8SASSnGyE">Watch →</a></p>
+    </article>
+
+    <article class="story">
+      <img src="assets/img/news-yingshan.jpg" alt="Interview with EGMO medalist Yingshan Xiao" loading="lazy">
+      <h3>Exclusive Interview with Canada EGMO Medalist Yingshan Xiao</h3><p class="date">May 19, 2025 · Video</p>
+      <p>An exclusive conversation with a Canada EGMO medalist.
+      <a href="https://www.youtube.com/@MathTogetherCanada">Watch →</a></p>
+    </article>
+
+  </div>
+</section>
+
+<section id="team">
+  <h2>Meet our team</h2>
+    <div class="tier">
+    <h3 class="tier-label">Leadership</h3>
+    <div class="team-grid">
+    <article class="member"><img src="assets/img/team-michael.jpg" alt="Michael Sun">
+      <h3>Michael Sun</h3><p class="role">President · Appleby College 2027</p>
+      <details><summary>Bio</summary>
+        <p>Michael is a passionate math enthusiast who excels in problem-solving as a CIMC Champion, IMMC
+        Meritorious Award, COMC Bronze, USAJMO, CMO and APMO qualifier, with team successes in ARML, HMMT,
+        BMT, and SMT.</p>
+        <p>Beyond math, he explores urban transportation — designing city maps with ML models — driven by
+        curiosity and a love for deep learning. Committed to education and philanthropy, Michael tutors
+        students and co-organizes charity math competitions, raising funds for SickKids and making a
+        community impact.</p>
+      </details></article>
+    <article class="member"><img src="assets/img/team-perry.jpg" alt="Perry Dai">
+      <h3>Perry Dai</h3><p class="role">Co-president · UTS 2027</p>
+      <details><summary>Bio</summary>
+        <p>Perry is a dedicated math enthusiast and avid competitor — highlights include CJMO Champion,
+        APMO Silver, USAMO Bronze, and perfect scores on the CS/IMC.</p>
+        <p>Beyond contests, he excels in science, linguistics, and business competitions, driven by
+        curiosity and a love for learning. At Math Together Canada, Perry hopes to share insights, inspire
+        deeper engagement in math, and help create an inclusive, collaborative community.</p>
+      </details></article>
+    </div>
+  </div>
+
+  <div class="tier">
+    <h3 class="tier-label">Executives</h3>
+    <div class="team-grid">
+    <article class="member"><img src="assets/img/team-kaylyn.jpg" alt="Kaylyn Zhang">
+      <h3>Kaylyn Zhang</h3><p class="role">UTS 2028</p>
+      <details><summary>Bio</summary>
+        <p>Kaylyn is a passionate math student who has participated and won prizes in many contests,
+        including the AMCs (2x Maryam Mirzakhani AMC10 certificate), CMWMC (2x 2nd place), CEMC contests
+        (multiple plaques), MPFG, and HMMT. She has led multiple workshops and runs a math "pod" at
+        school.</p>
+        <p>Outside of math, she is an ARCT piano player and has a third degree black belt in ITF Taekwondo.
+        She hopes that through Math Together Canada, everyone feels included and empowered to pursue their
+        interests.</p>
+      </details></article>
+    <article class="member"><img src="assets/img/team-prince.png" alt="Prince Zhang">
+      <h3>Prince Zhang</h3><p class="role">UCC 2028</p>
+      <details><summary>Bio</summary>
+        <p>A motivated math competitor, Prince has made the ARML tiebreakers and performed well in contests
+        like the Euclid, COMC, AMC 10, and AIME. He also enjoys music, science, and DECA, all driven by an
+        interest in learning and a willingness to explore new ideas.</p>
+        <p>At Math Together Canada, Prince aims to share his enthusiasm for math by sparking interest in
+        others and laying a strong foundation for their future learning and growth.</p>
+      </details></article>
+    </div>
+  </div>
+
+  <div class="tier">
+    <h3 class="tier-label">Content Contributors</h3>
+    <div class="team-grid">
+    <article class="member"><img src="assets/img/team-max.jpg" alt="Maximilian Lin">
+      <h3>Maximilian Lin</h3><p class="role">WTCS 2028</p>
+      <details><summary>Bio</summary>
+        <p>Maximilian is a curious student with a deep love for mathematics. He is a CJMO Gold Medalist and
+        has qualified for the CMO, APMO, and AIME. He has also achieved team success at HMMT, ARML, IMMC,
+        and SMO.</p>
+        <p>Beyond mathematics, Maximilian enjoys bouldering, boxing, swimming, and playing the guitar. He
+        has organized charity concerts and performed in concerts, senior homes, and international
+        competitions. Through Math Together, he hopes to inspire more students to discover the beauty of
+        mathematics by making problem solving approachable, engaging, and rewarding.</p>
+      </details></article>
+    <article class="member"><img src="assets/img/team-han.png" alt="Han Wu">
+      <h3>Han Wu</h3><p class="role">Harvard 2030</p>
+      <details><summary>Bio</summary>
+        <p>Han is a student from Vancouver, BC, with a strong passion for math. He has qualified for the
+        CMO and APMO, and earned top scores in the COMC, AMC 12, AIME, and various CEMC contests.</p>
+        <p>Outside of math, Han plays varsity soccer and badminton, and enjoys learning about geography,
+        history, politics, and current events — interests that come in handy for Reach for the Top. At Math
+        Together, Han is excited to share his love for math, inspire younger students, and give back to the
+        community that has shaped his journey.</p>
+      </details></article>
+    <article class="member"><img src="assets/img/team-chris.jpg" alt="Chris Fu">
+      <h3>Chris Fu</h3><p class="role">SDSS 2026</p>
+      <details><summary>Bio</summary>
+        <p>Chris is a dedicated student who finds great joy in exploring mathematics. He has qualified for
+        USAJMO, CMO, and APMO, earning USAJMO Honor.</p>
+        <p>Additionally, he is a high-level Go player, demonstrating a strong interest in logic. Passionate
+        about teaching, Chris has spent years tutoring and leading the Rising Stars Math Camp. At Math
+        Together, he hopes to inspire students' curiosity and passion for mathematics, and help them
+        discover its captivating beauty.</p>
+      </details></article>
+    <article class="member"><img src="assets/img/team-abhiraj.png" alt="Abhiraj Singh">
+      <h3>Abhiraj Singh</h3><p class="role">UTS 2027</p>
+      <details><summary>Bio</summary>
+        <p>Abhiraj is a dedicated student with a deep love for mathematics, thriving in both contest and
+        enrichment settings. He has consistently qualified for AIME since grade 7 and earned a perfect
+        score on CLMC. He brings strong communication and leadership skills from being an executive in his
+        local DECA chapter; his other interests include chemistry and badminton.</p>
+        <p>At Math Together Canada, he aims to help students discover the beauty of mathematical reasoning,
+        encourage collaborative approaches to challenging problems, and contribute to a supportive
+        community where curiosity drives learning.</p>
+      </details></article>
+    <article class="member"><img src="assets/img/team-eason.jpg" alt="Eason Zhang">
+      <h3>Eason Zhang</h3><p class="role">Hillfield 2028</p>
+      <details><summary>Bio</summary>
+        <p>Yixuan (Eason) Zhang is a highly motivated high school student with a strong academic record and
+        a passion for science, mathematics, and research. He has earned multiple academic awards, including
+        Highest Academic Standing and subject prizes in mathematics and science.</p>
+        <p>Beyond the classroom, Eason is active in STEM clubs, fencing, and community volunteering, with
+        over 150 hours of service experience. He is committed to continuous learning, teamwork, and using
+        his curiosity to contribute meaningfully to projects that make a positive impact.</p>
+      </details></article>
+    </div>
+  </div>
+
+  <div class="tier">
+    <h3 class="tier-label">Outreach</h3>
+    <div class="team-grid">
+    <article class="member"><img src="assets/img/team-eric.jpg" alt="Eric Zhang">
+      <h3>Eric Zhang</h3><p class="role">UCC 2027</p>
+      <details><summary>Bio</summary>
+        <p>Eric is a passionate student who loves business and debate, excelling in major competitions such
+        as being a top 10 speaker for Harvard WSDC and reaching the national semifinals. He has honed his
+        marketing and leadership skills as the Logistics Director for Asian Heritage activities at school
+        and as the Executive of Marketing for the WePioneer Competition.</p>
+        <p>At Math Together Canada, he hopes to inspire students through strategic problem-solving, foster
+        a dynamic learning environment, and bring communities together through a shared passion for
+        mathematics.</p>
+      </details></article>
+    <article class="member"><img src="assets/img/team-eddy.jpg" alt="Eddy Liang">
+      <h3>Eddy Liang</h3><p class="role">Crescent 2028</p>
+    </article>
+    </div>
+  </div>
+
+  <div class="tier">
+    <h3 class="tier-label">Board of Directors</h3>
+    <div class="team-grid">
+    <article class="member"><img src="assets/img/team-james.jpg" alt="James Qiu">
+      <h3>James Qiu</h3><p class="role">Stanford 2030</p>
+      <details><summary>Bio</summary>
+        <p>James is an enthusiastic student who loves math, business, and drama, excelling in AMC 10/12
+        (Distinguished Honor Roll), the Canadian Mathematical Olympiad (Performance with Honours), and
+        USAMO Honorable Mention.</p>
+        <p>He has honed his communication and leadership skills through debate, DECA, and founding
+        WePioneer, raising over $7k for SickKids via charity math contests. At Math Together Canada, he
+        hopes to spark deeper interest in math, promote team problem-solving, and foster a welcoming
+        community for everyone.</p>
+      </details></article>
+    <article class="member"><img src="assets/img/team-ming.jpg" alt="Ming Yang">
+      <h3>Ming Yang</h3><p class="role">MIT 2029</p>
+      <details><summary>Bio</summary>
+        <p>2x IMO Silver Medal, 2x CMO Best Solution Award, 2x APMO Silver Medal.</p>
+        <p>Ming is passionate about inspiring the next generation of math enthusiasts by creating engaging
+        problems, offering guidance, and sharing insights to help others grow their problem-solving skills.
+        Through tangible action and advice, he aims to make math more accessible, enjoyable, and rewarding
+        for the next generation.</p>
+      </details></article>
+    <article class="member"><img src="assets/img/team-shanna.jpg" alt="Shanna Xiao">
+      <h3>Shanna Xiao</h3><p class="role">Caltech 2029</p>
+      <details><summary>Bio</summary>
+        <p>Shanna is passionate about math and participated in various math competitions throughout high
+        school. She represented Team Canada at EGMO in 2023 and 2025, received Honourable Mention twice at
+        MPFG, and Honours and Honourable Mention on the USAJMO.</p>
+        <p>Other than math, she's interested in writing, reading, and arts and crafts. With Math Together
+        Canada, she hopes to contribute towards a math community for everyone and inspire younger students
+        to pursue mathematics as well.</p>
+      </details></article>
+    <article class="member"><img src="assets/img/team-emily.jpg" alt="Emily Ma">
+      <h3>Emily Ma</h3><p class="role">Harvard 2028</p>
+      <details><summary>Bio</summary>
+        <p>Emily is an undergraduate student at Harvard that is dedicated to sharing her love of math. She
+        has earned an IMO bronze medal, EGMO silver medal, USAMO silver medal, and two honourable mentions
+        on the CMO.</p>
+        <p>In her free time, Emily likes watching musicals and playing card games.</p>
+      </details></article>
+    <article class="member"><img src="assets/img/team-lillian.jpg" alt="Lillian Zhang">
+      <h3>Lillian Zhang</h3><p class="role">MIT PhD student</p>
+      <details><summary>Bio</summary>
+        <p>MIT (2020) in Mathematics, MIT PhD student in Computer Science, HMMT Director (2018–2019), USAMO
+        qualifier, MPFG top 10 (the only one from Canada in MPFG history).</p>
+        <p>Purpose: to build a home for math lovers, generate interest and wonder in the math indifferent,
+        and support the math adverse so that mathematics can be accessible to everyone.</p>
+      </details></article>
+    </div>
+  </div>
+</section>
+
+<section id="involved">
+  <h2>Get involved</h2>
+  <p>Want to make a difference? Join us as a volunteer! We're always looking for passionate individuals
+  who want to share their love for math.</p>
+  <p>Whether you're a math whiz or just someone who enjoys helping others, there's a place for you in our
+  community. Together, we can inspire the next generation of mathletes!</p>
+  <p>Sign up now and let's make math a blast for everyone. Your contribution could change lives!</p>
+  <p class="cta-row"><a class="btn" href="https://forms.gle/XjoktJdHGPGnzJs17">Get started</a></p>
+</section>
+
+<section id="faq">
+  <h2>Math queries unleashed!</h2>
+  <details class="faq"><summary>What is Math Together Canada?</summary>
+    <p>We're a vibrant community dedicated to making math fun and engaging for everyone!</p></details>
+  <details class="faq"><summary>How can I join the club?</summary>
+    <p>Simply click the <a href="https://forms.gle/XjoktJdHGPGnzJs17">Join Us</a> button and fill out the form!</p></details>
+  <details class="faq"><summary>What events do you offer?</summary>
+    <p>From math circles to competitions, we have it all!</p></details>
+  <details class="faq"><summary>Are there volunteer opportunities available?</summary>
+    <p>Absolutely! We love volunteers who share our passion for math!</p></details>
+  <details class="faq"><summary>How can I support Math Together Canada?</summary>
+    <p>You can donate, volunteer, or spread the word!</p></details>
+</section>
+
+</main>
+
+<footer id="contact">
+  <p class="big">Come and join us! <span class="note">let's explore math together</span></p>
+  <p><a class="btn" href="https://forms.gle/XjoktJdHGPGnzJs17">Contact us / Join us</a></p>
+  <p class="social">
+    <a href="https://www.youtube.com/@MathTogetherCanada">YouTube @MathTogetherCanada</a> ·
+    <a href="https://www.instagram.com/math_together_canada/">Instagram @math_together_canada</a>
+  </p>
+  <p class="fine">Math Together Canada · United by numbers, inspired by learning</p>
+</footer>
+
+</body>
+</html>
