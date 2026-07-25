@@ -1,0 +1,58 @@
+name: Publish 2026 charity event
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/publish-charity-event-2026.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Add event to website
+        shell: python
+        run: |
+          from pathlib import Path
+
+          path = Path('index.html')
+          html = path.read_text(encoding='utf-8')
+          event_id = 'news-charity-2026'
+
+          if event_id not in html:
+              marker = '  <div class="news-grid">\n'
+              article = '''
+
+    <article class="story" id="news-charity-2026">
+      <img src="assets/img/news-wepi.jpg" alt="4th Annual We Pi(π)oneer Charity Math Contest" loading="lazy">
+      <h3>4th Annual We Pi(π)oneer Charity Math Contest</h3><p class="date">September 5, 2026 · 9:00 AM–3:00 PM · Markham</p>
+      <details open><summary>Event details</summary>
+        <p>Join us for a day of problem-solving and community impact in support of SickKids Hospital.</p>
+        <p><strong>Location:</strong> TTMath, 590 Alden Rd, Unit 101, Markham, ON.</p>
+        <p><strong>Date and time:</strong> Saturday, September 5, 2026, from 9:00 AM to 3:00 PM.</p>
+        <p>Small donations make a difference. Sponsors and volunteers are welcome to be part of the impact.</p>
+      </details>
+    </article>
+'''
+              if marker not in html:
+                  raise SystemExit('Could not find news grid insertion point')
+              html = html.replace(marker, marker + article, 1)
+              path.write_text(html, encoding='utf-8')
+
+          Path('.github/workflows/publish-charity-event-2026.yml').unlink(missing_ok=True)
+      - name: Commit published event
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html .github/workflows/publish-charity-event-2026.yml
+          if git diff --cached --quiet; then
+            echo "No changes needed"
+          else
+            git commit -m "Publish 2026 charity math contest"
+            git push origin main
+          fi
