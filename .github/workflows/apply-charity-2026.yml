@@ -1,0 +1,86 @@
+name: Apply 2026 charity event update
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/event-2026-trigger'
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  update-and-deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Restore uploaded poster and update event card
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat .github/event-2026-image.part-* | base64 --decode > assets/img/news-charity-2026.jpg
+          python3 - <<'PY'
+          from pathlib import Path
+
+          path = Path('index.html')
+          html = path.read_text(encoding='utf-8')
+
+          html = html.replace('href="#news-charity-2025">Learn more →</a>',
+                              'href="#news-charity-2026">Learn more →</a>', 1)
+
+          event_id = 'news-charity-2026'
+          if event_id not in html:
+              marker = '  <div class="news-grid">\n'
+              article = '''
+
+    <article class="story" id="news-charity-2026">
+      <img src="assets/img/news-charity-2026.jpg" alt="4th Annual We Pi(π)oneer Charity Math Contest 2026 poster" loading="lazy">
+      <h3>4th Annual We Pi(π)oneer Charity Math Contest</h3><p class="date">September 5, 2026 · Markham</p>
+      <details><summary>Read the story</summary>
+        <p>Join us for the 4th Annual We Pi(π)oneer Charity Math Contest — a day of problem-solving, community spirit, and meaningful giving in support of SickKids Hospital.</p>
+        <p><strong>Date and time:</strong> Saturday, September 5, 2026, from 9:00 AM to 3:00 PM.</p>
+        <p><strong>Location:</strong> TTMath, 590 Alden Road, Unit 101, Markham, Ontario.</p>
+        <p>Small donations make a difference by helping children and families receive the care they need. Sponsors and volunteers are also welcome to be part of the impact.</p>
+      </details>
+    </article>
+'''
+              if marker not in html:
+                  raise SystemExit('Could not find the news grid insertion point')
+              html = html.replace(marker, marker + article, 1)
+
+          path.write_text(html, encoding='utf-8')
+          PY
+
+          rm -f .github/event-2026-image.part-* .github/event-2026-trigger
+          rm -f .github/workflows/apply-charity-2026.yml
+
+      - name: Commit final website files
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Add 2026 charity contest in standard event-card format"
+          git push origin main
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload static site
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
