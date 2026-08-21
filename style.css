@@ -621,6 +621,9 @@ h3.sub{margin:30px 0 12px;font-size:23px}
 .story summary::before,.member summary::before{content:"+ "}
 details[open]>summary::before{content:"− "}
 .story details p{font-size:15px;color:#525c7e;margin-top:10px}
+/* watch/read links sitting directly on a card, styled like the summary they replace */
+.story>p a{font-weight:600;color:#a2770e;text-decoration:none}
+.story>p a:hover{text-decoration:underline}
 
 /* story reading overlay */
 .story-dialog{
