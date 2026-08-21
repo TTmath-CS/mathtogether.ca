@@ -1,6 +1,7 @@
 {
   "artboards": [
-    { "file": "Main.dc.html", "x": 0, "y": 0, "w": 816, "h": 1056, "print": "fixed", "title": "AI Workshop flyer — Letter" }
+    { "file": "Main.dc.html", "x": 0, "y": 0, "w": 816, "h": 1056, "print": "fixed", "title": "English — Letter" },
+    { "file": "Chinese.dc.html", "x": 896, "y": 0, "w": 816, "h": 1056, "print": "fixed", "title": "中文版 — Letter" }
   ],
-  "launch": { "view": "focused", "file": "Main.dc.html" }
+  "launch": { "view": "canvas" }
 }
