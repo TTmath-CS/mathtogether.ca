@@ -644,6 +644,8 @@ details[open]>summary::before{content:"− "}
 .story-dialog .date{font:600 11px "IBM Plex Mono",monospace;letter-spacing:.1em;
   text-transform:uppercase;color:#c9432f;margin:6px 26px 0}
 .story-dialog p{margin:12px 26px 0;font-size:15.5px;line-height:1.62;color:#3c4568}
+/* photos set inside a story keep their own shape, unlike the cropped cover above */
+.story-dialog p img{height:auto;border-radius:6px}
 .story-dialog a{color:#5b4ed0;font-weight:600}
 .dlg-close{
   position:absolute;top:12px;right:14px;z-index:1;width:34px;height:34px;border-radius:50%;
