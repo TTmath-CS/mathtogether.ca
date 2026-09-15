@@ -602,10 +602,14 @@ h3.sub{margin:30px 0 12px;font-size:23px}
   border-radius:3px;padding:3px 8px;margin-right:10px;white-space:nowrap}
 
 .news-grid,.team-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:22px}
-.story{overflow:hidden}
+.story{overflow:hidden;display:flex;flex-direction:column}
 .story img{
   width:100%;height:170px;object-fit:cover;border-bottom:1px solid rgba(202,213,255,.24);
-  filter:saturate(1.05) contrast(1.04);
+  filter:saturate(1.05) contrast(1.04);flex:none;
+}
+/* a second photo sits at the foot of the card, filling the space a short story leaves */
+.story img.story-extra{
+  height:auto;margin-top:auto;border-bottom:none;border-top:1px solid rgba(202,213,255,.24);
 }
 .story-dialog img.poster-contain{
   object-fit:contain;background:#f4f6fc;height:auto;
