@@ -1,41 +1,42 @@
-// support.html is a plain page — no coordinate sky — so it takes just the two
-// behaviours from app.js that the shared stylesheet expects: the y-axis scroll
-// ruler and the on-scroll reveal.
+// support.html has no stories or team cards, so it takes just the behaviours
+// from app.js that the shared stylesheet expects: the mobile menu, the
+// on-scroll reveal and the stat count-up.
+var still = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-// The fixed y-axis ruler tracks scroll depth.
-var marker = document.querySelector('.yaxis .marker');
-function ruler() {
-  var max = document.documentElement.scrollHeight - innerHeight;
-  var p = max > 0 ? scrollY / max : 0;
-  var track = marker.parentElement.clientHeight - 12;
-  marker.style.top = p * track + 'px';
-  marker.setAttribute('data-v', Math.round(p * 100));
-}
-addEventListener('scroll', function () { requestAnimationFrame(ruler); }, { passive: true });
-ruler();
+// Mobile menu: the nav links collapse behind a toggle on narrow screens.
+var toggle = document.querySelector('.nav-toggle');
+var links = document.getElementById('site-links');
+toggle.addEventListener('click', function () {
+  var open = links.classList.toggle('open');
+  toggle.setAttribute('aria-expanded', open);
+});
+links.addEventListener('click', function (e) {
+  if (e.target.tagName !== 'A') return;
+  links.classList.remove('open');
+  toggle.setAttribute('aria-expanded', 'false');
+});
 
 // Fade blocks in on scroll, grid items staggered.
 var items = document.querySelectorAll(
-  'main section>h2, .section-lede, blockquote, .sponsor, ' +
-  '.live-points li, #join p, #join .cta-row');
+  '.section-head, .sponsor, .live-points li, blockquote, .cta-copy');
 
-document.querySelectorAll('.sponsor-grid').forEach(function (g) {
+document.querySelectorAll('.sponsor-grid, .live-points').forEach(function (g) {
   [].forEach.call(g.children, function (c, i) { c.dataset.d = Math.min(i, 5) * 80; });
 });
 
-var io = new IntersectionObserver(function (es) {
-  es.forEach(function (e) {
-    if (!e.isIntersecting) return;
-    e.target.style.transitionDelay = (e.target.dataset.d || 0) + 'ms';
-    e.target.classList.add('in');
-    io.unobserve(e.target);
-  });
-}, { threshold: 0.1 });
-
-items.forEach(function (el) { el.classList.add('reveal'); io.observe(el); });
+if (!still && 'IntersectionObserver' in window) {
+  var io = new IntersectionObserver(function (es) {
+    es.forEach(function (e) {
+      if (!e.isIntersecting) return;
+      e.target.style.transitionDelay = (e.target.dataset.d || 0) + 'ms';
+      e.target.classList.add('in');
+      io.unobserve(e.target);
+    });
+  }, { threshold: 0.1 });
+  items.forEach(function (el) { el.classList.add('reveal'); io.observe(el); });
+}
 
 // Count the hero stats up from zero.
-var still = matchMedia('(prefers-reduced-motion: reduce)').matches;
 document.querySelectorAll('.stats b').forEach(function (b) {
   var m = b.textContent.match(/^([^0-9]*)([\d,]+)(.*)$/);
   if (!m || still) return;
