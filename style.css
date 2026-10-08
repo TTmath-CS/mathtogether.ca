@@ -93,6 +93,10 @@ a:hover .arr{transform:translateX(3px)}
 .nav-toggle[aria-expanded="true"] span:nth-child(3){transform:translateY(-8px) rotate(-45deg)}
 
 /* --- hero --- */
+.hero-copy,.hero-photo{min-width:0}
+.formula-badge{min-width:0;flex-wrap:nowrap;white-space:nowrap}
+.formula-badge > span:last-child{min-width:0;white-space:nowrap}
+
 .hero{position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);
   background:var(--navy);min-height:520px;overflow:hidden}
 .hero-copy{position:relative;z-index:2;color:#fff;padding:64px 48px 64px max(20px,calc((100vw - 1180px)/2));
@@ -376,6 +380,17 @@ blockquote.pull .scribble{display:block;font-size:22px;margin-top:6px;color:var(
   .foot-main{grid-template-columns:1fr}
 }
 @media (max-width:640px){
+  /* Keep the homepage integral formula intact on narrow phone screens. */
+  .formula-badge{
+    font-size:clamp(9.5px,2.65vw,11px);
+    letter-spacing:.06em;
+    gap:2px 4px;
+    margin-bottom:20px;
+  }
+  .formula-badge .calc-integral{font-size:24px}
+  .formula-badge .limit-stack{font-size:7px;letter-spacing:.04em;margin-left:-3px}
+  .formula-badge > span:last-child{letter-spacing:.035em}
+
   .wrap{width:calc(100% - 32px)}
   .hero-copy{padding-inline:16px}
   .hero-copy .pi-mark{display:none}
