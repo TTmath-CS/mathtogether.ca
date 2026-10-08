@@ -39,6 +39,7 @@ document.querySelectorAll('.story').forEach(function (s) {
   var details = s.querySelector('details');
   if (!details) return;
   details.querySelector('summary').addEventListener('click', function (e) {
+    if (!dlg.showModal) return;
     e.preventDefault();
     openStory(s);
   });
@@ -49,6 +50,7 @@ document.querySelectorAll('[data-open-story]').forEach(function (a) {
   var s = document.getElementById(a.getAttribute('data-open-story'));
   if (!s || !s.querySelector('details')) return;
   a.addEventListener('click', function (e) {
+    if (!dlg.showModal) return;
     e.preventDefault();
     openStory(s);
   });
