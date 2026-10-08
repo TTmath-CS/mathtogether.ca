@@ -8,155 +8,166 @@
 <link rel="icon" href="assets/img/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,500;0,600;1,500&family=Public+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Caveat:wght@500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 <script src="app.js" defer></script>
 </head>
 <body>
 
-<nav>
-  <div class="links">
-    <a href="#about">About</a>
-    <a href="#programs">Programs</a>
-    <a href="#livestream">Livestream</a>
-    <a href="#news">News</a>
-    <a href="#team">Team</a>
-    <a href="#involved">Get involved</a>
-    <a href="support.html">Support us</a>
-    <a href="#faq">FAQ</a>
-    <a class="join" href="https://forms.gle/XjoktJdHGPGnzJs17">Join us</a>
-  </div>
-</nav>
-
-<header id="top">
-  <div class="hero-shell">
-    <div class="hero-in">
-      <div class="hero-brand">
-        <img src="assets/img/logo-badge.png" alt="Math Together Canada logo">
-        <p><strong>Math Together Canada</strong><small>mathtogether.ca</small></p>
-      </div>
-      <p class="eyebrow formula-badge" aria-label="Integral from coast to coast of curiosity plus friends equals MathTogether dot ca.">
-        <span class="badge-dot"></span>
-        <span class="formula-core">
-          <span class="calc-integral">∫</span><span class="limit-stack"><sup>coast</sup><sub>coast</sub></span>
-          <span class="formula-sum">(curiosity + friends)</span><span class="formula-dx">dx</span>
-          <span class="formula-eq">=</span><span class="formula-domain">mathtogether.ca</span>
-        </span>
-        <span class="formula-joke">homework panic becomes aha moments</span>
-      </p>
-      <h1>United by <em>Numbers</em>,<br> Inspired by <em>Learning</em>!</h1>
-      <p class="lede">We are a student-led community making contest math feel collaborative, generous,
-      and alive. Explore lessons, livestreams, camps, charity contests, and peer support built by
-      students who love solving hard problems together.</p>
-      <p class="cta-row">
-        <a class="btn" href="https://forms.gle/XjoktJdHGPGnzJs17">Sign up now</a>
-        <a class="btn ghost" href="https://www.youtube.com/@MathTogetherCanada">Watch on YouTube</a>
-      </p>
-    </div>
-
-    <div class="sky-stage" role="button" tabindex="0"
-      aria-label="Interactive night Cartesian plane. Click to discover a theorem, legend, conjecture, or math topic.">
-      <svg class="plane" viewBox="0 0 1200 640" preserveAspectRatio="none" aria-hidden="true">
-        <defs>
-          <linearGradient id="fall1" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0" stop-color="#8f84ff" stop-opacity=".45"/>
-            <stop offset="1" stop-color="#8f84ff" stop-opacity="0"/>
-          </linearGradient>
-          <linearGradient id="fall2" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0" stop-color="#ff8a73" stop-opacity=".38"/>
-            <stop offset="1" stop-color="#ff8a73" stop-opacity="0"/>
-          </linearGradient>
-        </defs>
-        <g class="axis">
-          <line x1="40" y1="580" x2="1170" y2="580"/>
-          <line x1="110" y1="30" x2="110" y2="615"/>
-          <polygon points="1170,580 1154,573 1154,587"/>
-          <polygon points="110,30 103,46 117,46"/>
-        </g>
-        <path class="area" fill="url(#fall1)" d="M110 560 C 280 560, 300 330, 470 330 S 660 470, 830 380 S 1080 120, 1170 100 L1170 580 L110 580 Z"/>
-        <path class="area" fill="url(#fall2)" d="M110 580 C 420 540, 760 470, 900 300 S 1080 60, 1170 40 L1170 580 Z"/>
-        <path class="cdepth d1" d="M110 560 C 280 560, 300 330, 470 330 S 660 470, 830 380 S 1080 120, 1170 100" transform="translate(7,12)"/>
-        <path class="cdepth d2" d="M110 580 C 420 540, 760 470, 900 300 S 1080 60, 1170 40" transform="translate(7,12)"/>
-        <path class="curve c1" d="M110 560 C 280 560, 300 330, 470 330 S 660 470, 830 380 S 1080 120, 1170 100"/>
-        <path class="curve c2" d="M110 580 C 420 540, 760 470, 900 300 S 1080 60, 1170 40"/>
-      </svg>
-      <p class="coords">(x, y) = (0.0, 0.0)</p>
-      <p class="sky-invite" aria-hidden="true">
-        <span></span><b>Click the coordinate sky</b>
-        <small>unlock conjectures, legends, and topics</small>
-      </p>
-      <p class="sky-caption">plot a point · spark an idea · meet a legend</p>
-    </div>
-  </div>
-
-  <div class="hero-foot">
-    <ul class="stats">
-      <li><b>500+</b> happy students</li>
-      <li><b>6</b> programs &amp; activities</li>
-      <li><b>6</b> community partners</li>
-      <li><b>$10,320</b> raised for SickKids</li>
-    </ul>
-    <nav class="plotmap" aria-label="Explore the site">
-      <a class="stop" href="#about"><i></i><span>(1, who we are)</span></a>
-      <a class="stop" href="#programs"><i></i><span>(2, programs)</span></a>
-      <a class="stop" href="#livestream"><i></i><span>(3, livestream)</span></a>
-      <a class="stop" href="#news"><i></i><span>(4, news)</span></a>
-      <a class="stop" href="#team"><i></i><span>(5, team)</span></a>
-      <a class="stop" href="#involved"><i></i><span>(6, join us)</span></a>
-      <a class="stop" href="support.html"><i></i><span>(7, support us)</span></a>
+<header class="site-nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="#top">
+      <img src="assets/img/logo-badge.png" alt="Math Together Canada logo">
+      <span>Math Together Canada</span>
+    </a>
+    <button class="nav-toggle" aria-expanded="false" aria-controls="site-links" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="links" id="site-links">
+      <a href="#about">About</a>
+      <a href="#programs">Programs</a>
+      <a href="#livestream">Livestream</a>
+      <a href="#news">News</a>
+      <a href="#team">Team</a>
+      <a href="#involved">Get involved</a>
+      <a href="support.html">Support us</a>
+      <a href="#faq">FAQ</a>
+      <a class="join" href="https://forms.gle/XjoktJdHGPGnzJs17">Join us</a>
     </nav>
   </div>
 </header>
 
-<div class="ruler-strip" aria-hidden="true"><div><span>Gauss</span><span>Pascal</span><span>Cayley</span><span>Fermat</span><span>Euclid</span><span>CIMC</span><span>COMC</span><span>CMO</span><span>AMC 8</span><span>AMC 10</span><span>AMC 12</span><span>AIME</span><span>Math Kangaroo</span><span>CTMC</span><span>HMMT</span><span>EGMO</span><span>IMO</span><span>MPFG</span><span>Gauss</span><span>Pascal</span><span>Cayley</span><span>Fermat</span><span>Euclid</span><span>CIMC</span><span>COMC</span><span>CMO</span><span>AMC 8</span><span>AMC 10</span><span>AMC 12</span><span>AIME</span><span>Math Kangaroo</span><span>CTMC</span><span>HMMT</span><span>EGMO</span><span>IMO</span><span>MPFG</span></div></div>
+<section class="hero" id="top">
+  <div class="hero-copy">
+    <p class="eyebrow formula-badge" aria-label="Integral from coast to coast of curiosity plus friends equals MathTogether dot ca.">
+      <span class="calc-integral">∫</span><span class="limit-stack"><sup>coast</sup><sub>coast</sub></span>
+      <span>(curiosity + friends) dx = mathtogether.ca</span>
+    </p>
+    <span class="pi-mark" aria-hidden="true">π</span>
+    <h1 class="mission">A non-profit organization for <span class="ul">everyone</span> to enjoy the beauty of the math</h1>
+    <p class="tagline">United by <em>Numbers</em>, Inspired by <em>Learning</em>!</p>
+    <p class="lede">We are a student-led community making contest math feel collaborative, generous,
+    and alive. Explore lessons, livestreams, camps, charity contests, and peer support built by
+    students who love solving hard problems together.</p>
+    <p class="cta-row">
+      <a class="btn" href="https://forms.gle/XjoktJdHGPGnzJs17">Sign up now <i class="arr" aria-hidden="true">→</i></a>
+      <a class="btn ghost" href="https://www.youtube.com/@MathTogetherCanada"><i class="play" aria-hidden="true"></i> Watch on YouTube</a>
+    </p>
+    <p class="scribble hero-scribble">homework panic becomes aha moments <span aria-hidden="true">♡</span></p>
+  </div>
+  <div class="hero-photo">
+    <img src="assets/img/news-charity-2026-event.jpg" alt="Students reaching for prizes at the 2026 Charity Math Competition">
+    <p class="scribble photo-scribble" aria-hidden="true">United by numbers, inspired by learning ♡</p>
+  </div>
+</section>
 
-<div class="yaxis" aria-hidden="true"><span class="marker">0</span></div>
+<div class="stats-bar">
+  <ul class="wrap stats">
+    <li><span class="ico red"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.2"/><circle cx="17" cy="9" r="2.5"/><path d="M2.5 19c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6z"/><path d="M15.2 13.4c3.4-.5 6.3 1.6 6.3 5.6h-4.6c0-2.2-.6-4.1-1.7-5.6z"/></svg></span>
+      <p><b>500+</b> happy students</p></li>
+    <li><span class="ico blue"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7.5" height="7.5" rx="1.6"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="1.6"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="1.6"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="1.6"/></svg></span>
+      <p><b>6</b> programs &amp; activities</p></li>
+    <li><span class="ico teal"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M1.5 10.5 6 6l4 2.2L13.6 6l3.4 1.4L22.5 6v6.6l-2.6 2.2-5.7 4.7a1.8 1.8 0 0 1-2.5-.2L6.2 14l-4.7-.8z"/></svg></span>
+      <p><b>6</b> community partners</p></li>
+    <li><span class="ico gold"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-8.5-5.2-8.5-11.2A4.8 4.8 0 0 1 12 6.6a4.8 4.8 0 0 1 8.5 3.2C20.5 15.8 12 21 12 21z"/></svg></span>
+      <p><b>$10,320</b> raised for SickKids</p></li>
+  </ul>
+</div>
 
 <main>
 
-<section id="about">
-  <h2>Who we are</h2>
-  <p>Founded by math enthusiasts, our club aims to make math fun and accessible for everyone.
-  We believe that numbers can be exciting and engaging, and we're here to prove it!</p>
-  <p>Our leadership team is a mix of seasoned advisors and enthusiastic students, all dedicated to
-  fostering a love for mathematics. Check out our bios to see who's behind the magic!</p>
-  <p>With a mission to inspire and help, we host events that challenge the norm and bring people
-  together. Join us and be part of something extraordinary!</p>
-  <blockquote>Math Together Canada is where numbers meet fun and friendship. <span class="note">— math enthusiasts united</span></blockquote>
-</section>
-
-<section id="programs">
-  <h2>Programs &amp; activities</h2>
-  <p class="section-lede">Programs that make math meaningful, fun, and community-driven!</p>
-  <div class="cards">
-    <article><h3>Peer Tutoring Support</h3>
-      <p>We help students succeed in regular school math through free tutoring!</p>
-      <a href="https://forms.gle/XjoktJdHGPGnzJs17">Get started →</a></article>
-    <article><h3>Contest Prep &amp; Hosting</h3>
-      <p>Challenging competitions that test your skills and boost your confidence.</p>
-      <a href="https://www.youtube.com/@MathTogetherCanada">Learn more →</a></article>
-    <article><h3>Math-Themed Charity Events</h3>
-      <p>We host fun, creative math events that give back to the community!</p>
-      <a href="#news-charity-2025">Learn more →</a></article>
-    <article><h3>Summer Camps</h3>
-      <p>Join our exciting summer camp filled with puzzles, games, and learning!</p>
-      <a href="#news-camp-2026">Learn more →</a></article>
-    <article><h3>Webinars &amp; Guest Speakers</h3>
-      <p>Learn from professional and passionate speakers through our math webinars!</p>
-      <a href="https://youtu.be/Bkamz7QCS7I">Learn more →</a></article>
-    <article><h3>Volunteer Opportunities</h3>
-      <p>We offer meaningful volunteer roles for students who want to make a difference!</p>
-      <a href="https://forms.gle/XjoktJdHGPGnzJs17">Get started →</a></article>
+<section class="featured wrap" aria-labelledby="featured-title">
+  <div class="featured-photo">
+    <img src="assets/img/news-charity-2026-awards.jpg" alt="Organizers announcing results in front of the We Pi(π)oneer Charity Math Competition banner">
   </div>
-  <p class="note center" aria-hidden="true">join the fun, grow your skills, and fall in love with math!</p>
+  <div class="featured-copy">
+    <p class="kicker">September 5, 2026 · Markham</p>
+    <span class="pi-mark" aria-hidden="true">π</span>
+    <h2 id="featured-title">Charity Math Competition 2026 — Spreading Knowledge and Kindness</h2>
+    <p class="facts"><span>102 student registrations</span><span>$3,197 raised for SickKids</span></p>
+    <p>On September 5, 2026, WePioneer hosted another successful Charity Math Competition in support of
+    SickKids Foundation.</p>
+    <p class="cta-row"><a class="btn" href="#news-charity-2026" data-open-story="news-charity-2026">Read the story <i class="arr" aria-hidden="true">→</i></a></p>
+  </div>
 </section>
 
-<section id="livestream">
-  <h2>Math Challenge livestream</h2>
-  <p class="section-lede">Are you passionate about math? Want to test your problem-solving skills in
-  real-time? Math Together Canada invites you to our Math Challenge — learning problem-solving
-  strategies through interactive discussions. Big math energy on our
-  <a href="https://www.youtube.com/@MathTogetherCanada">YouTube channel</a>!</p>
+<section id="about" class="about wrap">
+  <div class="about-head">
+    <p class="kicker">About</p>
+    <h2>Who <span class="ul">we are</span></h2>
+  </div>
+  <div class="about-body">
+    <p>Founded by math enthusiasts, our club aims to make math fun and accessible for everyone.
+    We believe that numbers can be exciting and engaging, and we're here to prove it!</p>
+    <p>Our leadership team is a mix of seasoned advisors and enthusiastic students, all dedicated to
+    fostering a love for mathematics. Check out our bios to see who's behind the magic!</p>
+    <p>With a mission to inspire and help, we host events that challenge the norm and bring people
+    together. Join us and be part of something extraordinary!</p>
+  </div>
+</section>
+
+<section id="programs" class="band-blue">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <p class="kicker">Our programs</p>
+        <h2>Programs &amp; <span class="ul">activities</span></h2>
+      </div>
+      <p class="section-lede">Programs that make math meaningful, fun, and community-driven!</p>
+    </div>
+    <div class="cards">
+      <article>
+        <div class="card-img"><img src="assets/img/news-winter-camp.jpg" alt="" loading="lazy">
+          <span class="ico red"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.2"/><circle cx="17" cy="9" r="2.5"/><path d="M2.5 19c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6z"/><path d="M15.2 13.4c3.4-.5 6.3 1.6 6.3 5.6h-4.6c0-2.2-.6-4.1-1.7-5.6z"/></svg></span></div>
+        <h3>Peer Tutoring Support</h3>
+        <p>We help students succeed in regular school math through free tutoring!</p>
+        <a href="https://forms.gle/XjoktJdHGPGnzJs17">Get started <i class="arr" aria-hidden="true">→</i></a></article>
+      <article>
+        <div class="card-img"><img src="assets/img/news-ctmc.jpg" alt="" loading="lazy">
+          <span class="ico gold"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h12v2h3v2.5A4.5 4.5 0 0 1 17.3 12 5.5 5.5 0 0 1 13 15.4V18h3v3H8v-3h3v-2.6A5.5 5.5 0 0 1 6.7 12 4.5 4.5 0 0 1 3 7.5V5h3zm0 4H5v.5A2.5 2.5 0 0 0 6.3 9.7 8 8 0 0 1 6 7zm12 0a8 8 0 0 1-.3 2.7A2.5 2.5 0 0 0 19 7.5V7z"/></svg></span></div>
+        <h3>Contest Prep &amp; Hosting</h3>
+        <p>Challenging competitions that test your skills and boost your confidence.</p>
+        <a href="https://www.youtube.com/@MathTogetherCanada">Learn more <i class="arr" aria-hidden="true">→</i></a></article>
+      <article>
+        <div class="card-img"><img src="assets/img/news-wepi.jpg" alt="" loading="lazy">
+          <span class="ico teal"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-8.5-5.2-8.5-11.2A4.8 4.8 0 0 1 12 6.6a4.8 4.8 0 0 1 8.5 3.2C20.5 15.8 12 21 12 21z"/></svg></span></div>
+        <h3>Math-Themed Charity Events</h3>
+        <p>We host fun, creative math events that give back to the community!</p>
+        <a href="#news-charity-2025">Learn more <i class="arr" aria-hidden="true">→</i></a></article>
+      <article>
+        <div class="card-img"><img src="assets/img/news-summer-camp-2025.jpg" alt="" loading="lazy">
+          <span class="ico gold"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M11 1.5h2v4h-2zm0 17h2v4h-2zM1.5 11h4v2h-4zm17 0h4v2h-4zM4.2 5.6l1.4-1.4 2.8 2.8L7 8.4zm12 12 1.4-1.4 2.8 2.8-1.4 1.4zM4.2 18.4 7 15.6 8.4 17l-2.8 2.8zm12-12L19 3.6 20.4 5l-2.8 2.8z"/></svg></span></div>
+        <h3>Summer Camps</h3>
+        <p>Join our exciting summer camp filled with puzzles, games, and learning!</p>
+        <a href="#news-camp-2026">Learn more <i class="arr" aria-hidden="true">→</i></a></article>
+      <article>
+        <div class="card-img"><img src="assets/img/news-ai.png" alt="" loading="lazy">
+          <span class="ico blue"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="8.5" y="2" width="7" height="12" rx="3.5"/><path d="M5 11h2a5 5 0 0 0 10 0h2a7 7 0 0 1-6 6.9V21h3v2H8v-2h3v-3.1A7 7 0 0 1 5 11z"/></svg></span></div>
+        <h3>Webinars &amp; Guest Speakers</h3>
+        <p>Learn from professional and passionate speakers through our math webinars!</p>
+        <a href="https://youtu.be/Bkamz7QCS7I">Learn more <i class="arr" aria-hidden="true">→</i></a></article>
+      <article>
+        <div class="card-img"><img src="assets/img/news-picnic.jpg" alt="" loading="lazy">
+          <span class="ico red"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5 14.8 8.3l6.4.9-4.6 4.5 1.1 6.3L12 17l-5.7 3 1.1-6.3-4.6-4.5 6.4-.9z"/></svg></span></div>
+        <h3>Volunteer Opportunities</h3>
+        <p>We offer meaningful volunteer roles for students who want to make a difference!</p>
+        <a href="https://forms.gle/XjoktJdHGPGnzJs17">Get started <i class="arr" aria-hidden="true">→</i></a></article>
+    </div>
+    <p class="scribble center" aria-hidden="true">join the fun, grow your skills, and fall in love with math! ♡</p>
+  </div>
+</section>
+
+<section id="livestream" class="wrap">
+  <div class="section-head">
+    <div>
+      <p class="kicker">Livestream</p>
+      <h2>Math Challenge <span class="ul">livestream</span></h2>
+    </div>
+    <p class="section-lede">Are you passionate about math? Want to test your problem-solving skills in
+    real-time? Math Together Canada invites you to our Math Challenge — learning problem-solving
+    strategies through interactive discussions. Big math energy on our
+    <a href="https://www.youtube.com/@MathTogetherCanada">YouTube channel</a>!</p>
+  </div>
   <ol class="live-points">
     <li><b>Problem-solving.</b> Tackle challenges from prestigious competitions like AMC and AIME.</li>
     <li><b>Interactive fun.</b> Engage with peers and experts in real-time problem-solving.</li>
@@ -176,8 +187,14 @@
   </ul>
 </section>
 
-<section id="news">
-  <h2>News &amp; stories</h2>
+<section id="news" class="band-cream">
+  <div class="wrap">
+  <div class="section-head">
+    <div>
+      <p class="kicker">Latest stories</p>
+      <h2>News &amp; <span class="ul">stories</span></h2>
+    </div>
+  </div>
 
   <div class="news-grid">
 
@@ -434,14 +451,28 @@
     </article>
 
   </div>
+  </div>
 </section>
 
-<section id="team">
-  <h2>Meet our team</h2>
+<section class="quote-band" aria-label="Our motto">
+  <div class="wrap quote-in">
+    <svg class="book" viewBox="0 0 120 70" aria-hidden="true"><path d="M60 16C46 6 24 6 8 12v50c16-6 38-6 52 4 14-10 36-10 52-4V12C96 6 74 6 60 16zm0 0v50" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/><path d="M18 22c10-3 22-3 32 2M18 32c10-3 22-3 32 2M18 42c10-3 22-3 32 2M70 24c10-5 22-5 32-2M70 34c10-5 22-5 32-2M70 44c10-5 22-5 32-2" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" opacity=".55"/></svg>
+    <blockquote>Math Together Canada is where numbers meet fun and friendship.</blockquote>
+    <p class="scribble" aria-hidden="true">— math enthusiasts united ♡</p>
+  </div>
+</section>
+
+<section id="team" class="wrap">
+  <div class="section-head">
+    <div>
+      <p class="kicker">The people</p>
+      <h2>Meet our <span class="ul">team</span></h2>
+    </div>
+  </div>
     <div class="tier">
     <h3 class="tier-label">Leadership</h3>
     <div class="team-grid">
-    <article class="member"><img src="assets/img/team-michael.jpg" alt="Michael Sun">
+    <article class="member"><img src="assets/img/team-michael.jpg" alt="Michael Sun" loading="lazy">
       <h3>Michael Sun</h3><p class="role">President · Appleby College 2027</p>
       <details><summary>Bio</summary>
         <p>Michael is a passionate math enthusiast who excels in problem-solving as a CIMC Champion, IMMC
@@ -452,7 +483,7 @@
         students and co-organizes charity math competitions, raising funds for SickKids and making a
         community impact.</p>
       </details></article>
-    <article class="member"><img src="assets/img/team-perry.jpg" alt="Perry Dai">
+    <article class="member"><img src="assets/img/team-perry.jpg" alt="Perry Dai" loading="lazy">
       <h3>Perry Dai</h3><p class="role">President · UTS 2027</p>
       <details><summary>Bio</summary>
         <p>Perry is a dedicated math enthusiast and avid competitor — highlights include CJMO Champion,
@@ -467,7 +498,7 @@
   <div class="tier">
     <h3 class="tier-label">Executives</h3>
     <div class="team-grid">
-    <article class="member"><img src="assets/img/team-kaylyn.jpg" alt="Kaylyn Zhang">
+    <article class="member"><img src="assets/img/team-kaylyn.jpg" alt="Kaylyn Zhang" loading="lazy">
       <h3>Kaylyn Zhang</h3><p class="role">UTS 2028</p>
       <details><summary>Bio</summary>
         <p>Kaylyn is a passionate math student who has participated and won prizes in many contests,
@@ -478,7 +509,7 @@
         She hopes that through Math Together Canada, everyone feels included and empowered to pursue their
         interests.</p>
       </details></article>
-    <article class="member"><img src="assets/img/team-prince.png" alt="Prince Zhang">
+    <article class="member"><img src="assets/img/team-prince.png" alt="Prince Zhang" loading="lazy">
       <h3>Prince Zhang</h3><p class="role">UCC 2028</p>
       <details><summary>Bio</summary>
         <p>A motivated math competitor, Prince has made the ARML tiebreakers and performed well in contests
@@ -493,7 +524,7 @@
   <div class="tier">
     <h3 class="tier-label">Content Contributors</h3>
     <div class="team-grid">
-    <article class="member"><img src="assets/img/team-max.jpg" alt="Maximilian Lin">
+    <article class="member"><img src="assets/img/team-max.jpg" alt="Maximilian Lin" loading="lazy">
       <h3>Maximilian Lin</h3><p class="role">WTCS 2028</p>
       <details><summary>Bio</summary>
         <p>Maximilian is a curious student with a deep love for mathematics. He is a CJMO Gold Medalist and
@@ -504,7 +535,7 @@
         competitions. Through Math Together, he hopes to inspire more students to discover the beauty of
         mathematics by making problem solving approachable, engaging, and rewarding.</p>
       </details></article>
-    <article class="member"><img src="assets/img/team-han.png" alt="Han Wu">
+    <article class="member"><img src="assets/img/team-han.png" alt="Han Wu" loading="lazy">
       <h3>Han Wu</h3><p class="role">Harvard 2030</p>
       <details><summary>Bio</summary>
         <p>Han is a student from Vancouver, BC, with a strong passion for math. He has qualified for the
@@ -514,7 +545,7 @@
         Together, Han is excited to share his love for math, inspire younger students, and give back to the
         community that has shaped his journey.</p>
       </details></article>
-    <article class="member"><img src="assets/img/team-chris.jpg" alt="Chris Fu">
+    <article class="member"><img src="assets/img/team-chris.jpg" alt="Chris Fu" loading="lazy">
       <h3>Chris Fu</h3><p class="role">SDSS 2026</p>
       <details><summary>Bio</summary>
         <p>Chris is a dedicated student who finds great joy in exploring mathematics. He has qualified for
@@ -524,7 +555,7 @@
         Together, he hopes to inspire students' curiosity and passion for mathematics, and help them
         discover its captivating beauty.</p>
       </details></article>
-    <article class="member"><img src="assets/img/team-abhiraj.png" alt="Abhiraj Singh">
+    <article class="member"><img src="assets/img/team-abhiraj.jpg" alt="Abhiraj Singh" loading="lazy">
       <h3>Abhiraj Singh</h3><p class="role">UTS 2027</p>
       <details><summary>Bio</summary>
         <p>Abhiraj is a dedicated student with a deep love for mathematics, thriving in both contest and
@@ -535,7 +566,7 @@
         encourage collaborative approaches to challenging problems, and contribute to a supportive
         community where curiosity drives learning.</p>
       </details></article>
-    <article class="member"><img src="assets/img/team-eason.jpg" alt="Eason Zhang">
+    <article class="member"><img src="assets/img/team-eason.jpg" alt="Eason Zhang" loading="lazy">
       <h3>Eason Zhang</h3><p class="role">Hillfield 2028</p>
       <details><summary>Bio</summary>
         <p>Yixuan (Eason) Zhang is a highly motivated high school student with a strong academic record and
@@ -551,7 +582,7 @@
   <div class="tier">
     <h3 class="tier-label">Outreach</h3>
     <div class="team-grid">
-    <article class="member"><img src="assets/img/team-eric.jpg" alt="Eric Zhang">
+    <article class="member"><img src="assets/img/team-eric.jpg" alt="Eric Zhang" loading="lazy">
       <h3>Eric Zhang</h3><p class="role">UCC 2027</p>
       <details><summary>Bio</summary>
         <p>Eric is a passionate student who loves business and debate, excelling in major competitions such
@@ -562,7 +593,7 @@
         a dynamic learning environment, and bring communities together through a shared passion for
         mathematics.</p>
       </details></article>
-    <article class="member"><img src="assets/img/team-eddy.jpg" alt="Eddy Liang">
+    <article class="member"><img src="assets/img/team-eddy.jpg" alt="Eddy Liang" loading="lazy">
       <h3>Eddy Liang</h3><p class="role">Crescent 2028</p>
     </article>
     </div>
@@ -571,7 +602,7 @@
   <div class="tier">
     <h3 class="tier-label">Board of Directors</h3>
     <div class="team-grid">
-    <article class="member"><img src="assets/img/team-james.jpg" alt="James Qiu">
+    <article class="member"><img src="assets/img/team-james.jpg" alt="James Qiu" loading="lazy">
       <h3>James Qiu</h3><p class="role">Stanford 2030</p>
       <details><summary>Bio</summary>
         <p>James is an enthusiastic student who loves math, business, and drama, excelling in AMC 10/12
@@ -582,7 +613,7 @@
         hopes to spark deeper interest in math, promote team problem-solving, and foster a welcoming
         community for everyone.</p>
       </details></article>
-    <article class="member"><img src="assets/img/team-ming.jpg" alt="Ming Yang">
+    <article class="member"><img src="assets/img/team-ming.jpg" alt="Ming Yang" loading="lazy">
       <h3>Ming Yang</h3><p class="role">MIT 2029</p>
       <details><summary>Bio</summary>
         <p>2x IMO Silver Medal, 2x CMO Best Solution Award, 2x APMO Silver Medal.</p>
@@ -591,7 +622,7 @@
         Through tangible action and advice, he aims to make math more accessible, enjoyable, and rewarding
         for the next generation.</p>
       </details></article>
-    <article class="member"><img src="assets/img/team-shanna.jpg" alt="Shanna Xiao">
+    <article class="member"><img src="assets/img/team-shanna.jpg" alt="Shanna Xiao" loading="lazy">
       <h3>Shanna Xiao</h3><p class="role">Caltech 2029</p>
       <details><summary>Bio</summary>
         <p>Shanna is passionate about math and participated in various math competitions throughout high
@@ -601,7 +632,7 @@
         Canada, she hopes to contribute towards a math community for everyone and inspire younger students
         to pursue mathematics as well.</p>
       </details></article>
-    <article class="member"><img src="assets/img/team-emily.jpg" alt="Emily Ma">
+    <article class="member"><img src="assets/img/team-emily.jpg" alt="Emily Ma" loading="lazy">
       <h3>Emily Ma</h3><p class="role">Harvard 2028</p>
       <details><summary>Bio</summary>
         <p>Emily is an undergraduate student at Harvard that is dedicated to sharing her love of math. She
@@ -609,7 +640,7 @@
         on the CMO.</p>
         <p>In her free time, Emily likes watching musicals and playing card games.</p>
       </details></article>
-    <article class="member"><img src="assets/img/team-lillian.jpg" alt="Lillian Zhang">
+    <article class="member"><img src="assets/img/team-lillian.jpg" alt="Lillian Zhang" loading="lazy">
       <h3>Lillian Zhang</h3><p class="role">MIT PhD student</p>
       <details><summary>Bio</summary>
         <p>MIT (2020) in Mathematics, MIT PhD student in Computer Science, HMMT Director (2018–2019), USAMO
@@ -619,38 +650,59 @@
       </details></article>
     </div>
   </div>
+
 </section>
 
-<section id="involved">
-  <h2>Get involved</h2>
-  <p>Want to make a difference? Join us as a volunteer! We're always looking for passionate individuals
-  who want to share their love for math.</p>
-  <p>Whether you're a math whiz or just someone who enjoys helping others, there's a place for you in our
-  community. Together, we can inspire the next generation of mathletes!</p>
-  <p>Sign up now and let's make math a blast for everyone. Your contribution could change lives!</p>
-  <p class="cta-row"><a class="btn" href="https://forms.gle/XjoktJdHGPGnzJs17">Get started</a></p>
+<section id="support" class="supporters">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <p class="kicker">Our supporters</p>
+        <h2>Support <span class="ul">us</span></h2>
+      </div>
+      <p class="section-lede">Every lesson, camp, and contest we run is free. That is only possible because
+      organizations choose to stand behind a room full of students who love math.</p>
+    </div>
+    <p class="support-copy">Our supporters cover the things enthusiasm cannot: contest registrations, camp materials,
+    livestream tools, and the prizes for the charity events we host for SickKids. Sponsorship keeps the
+    door open for every student who wants to walk through it.</p>
+    <a class="support-strip" href="support.html" aria-label="Meet the organizations that support Math Together Canada">
+      <span class="logo-cell"><img class="mark" src="assets/img/sponsors/ttmath.jpg" alt="TTmath"></span>
+      <span class="logo-cell"><img class="mark" src="assets/img/sponsors/citadel.svg" alt="Citadel"></span>
+      <span class="more">meet our supporters <i class="arr" aria-hidden="true">→</i></span>
+    </a>
+    <p class="cta-row">
+      <a class="btn" href="support.html">See who supports us <i class="arr" aria-hidden="true">→</i></a>
+      <a class="btn outline" href="https://forms.gle/XjoktJdHGPGnzJs17">Become a sponsor <i class="arr" aria-hidden="true">→</i></a>
+    </p>
+  </div>
 </section>
 
-<section id="support">
-  <h2>Support us</h2>
-  <p class="section-lede">Every lesson, camp, and contest we run is free. That is only possible because
-  organizations choose to stand behind a room full of students who love math.</p>
-  <p>Our supporters cover the things enthusiasm cannot: contest registrations, camp materials,
-  livestream tools, and the prizes for the charity events we host for SickKids. Sponsorship keeps the
-  door open for every student who wants to walk through it.</p>
-  <a class="support-strip" href="support.html" aria-label="Meet the organizations that support Math Together Canada">
-    <img class="mark ttmath" src="assets/img/sponsors/ttmath.jpg" alt="TTmath">
-    <img class="mark plated" src="assets/img/sponsors/citadel.svg" alt="Citadel">
-    <span>meet our supporters &rarr;</span>
-  </a>
-  <p class="cta-row">
-    <a class="btn" href="support.html">See who supports us</a>
-    <a class="btn ghost" href="https://forms.gle/XjoktJdHGPGnzJs17">Become a sponsor</a>
-  </p>
+<section id="involved" class="cta-band">
+  <div class="wrap cta-in">
+    <div>
+      <p class="kicker">Get involved</p>
+      <h2>Get <span class="ul">involved</span></h2>
+    </div>
+    <div class="cta-copy">
+      <p>Want to make a difference? Join us as a volunteer! We're always looking for passionate individuals
+      who want to share their love for math.</p>
+      <p>Whether you're a math whiz or just someone who enjoys helping others, there's a place for you in our
+      community. Together, we can inspire the next generation of mathletes!</p>
+      <p>Sign up now and let's make math a blast for everyone. Your contribution could change lives!</p>
+      <p class="cta-row"><a class="btn" href="https://forms.gle/XjoktJdHGPGnzJs17">Get started <i class="arr" aria-hidden="true">→</i></a></p>
+    </div>
+    <svg class="leaf" viewBox="0 0 100 100" aria-hidden="true"><path d="M50 4l7 14 8-4-2 18 12-10 2 8 13-2-5 14 7 4-24 18 3 10-19-3v19h-4V77l-19 3 3-10L8 52l7-4-5-14 13 2 2-8 12 10-2-18 8 4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+  </div>
 </section>
 
-<section id="faq">
-  <h2>Math queries unleashed!</h2>
+<section id="faq" class="wrap faq-wrap">
+  <div class="section-head">
+    <div>
+      <p class="kicker">FAQ</p>
+      <h2>Math queries <span class="ul">unleashed!</span></h2>
+    </div>
+  </div>
   <details class="faq"><summary>What is Math Together Canada?</summary>
     <p>We're a vibrant community dedicated to making math fun and engaging for everyone!</p></details>
   <details class="faq"><summary>How can I join the club?</summary>
@@ -665,15 +717,33 @@
 
 </main>
 
-<footer id="contact">
-  <p class="big">Come and join us! <span class="note">let's explore math together</span></p>
-  <p><a class="btn" href="https://forms.gle/XjoktJdHGPGnzJs17">Contact us / Join us</a></p>
-  <p class="social">
-    <a href="https://www.youtube.com/@MathTogetherCanada">YouTube @MathTogetherCanada</a> ·
-    <a href="https://www.instagram.com/math_together_canada/">Instagram @math_together_canada</a>
-  </p>
-  <p class="fine">Math Together Canada · United by numbers, inspired by learning</p>
-  <p class="fine">&copy; 2026 mathtogether.ca. All rights reserved.</p>
+<footer id="contact" class="site-foot">
+  <div class="wrap foot-top">
+    <p class="big">Come and join us! <span class="scribble">let's explore math together</span></p>
+    <p><a class="btn" href="https://forms.gle/XjoktJdHGPGnzJs17">Contact us / Join us <i class="arr" aria-hidden="true">→</i></a></p>
+  </div>
+  <div class="wrap foot-main">
+    <div class="foot-brand">
+      <a class="brand" href="#top"><img src="assets/img/logo-badge.png" alt="Math Together Canada logo"><span>Math Together Canada</span></a>
+      <p class="fine">Math Together Canada · United by numbers, inspired by learning</p>
+    </div>
+    <nav class="foot-links" aria-label="Footer">
+      <a href="#about">About</a>
+      <a href="#programs">Programs</a>
+      <a href="#livestream">Livestream</a>
+      <a href="#news">News</a>
+      <a href="#team">Team</a>
+      <a href="support.html">Support us</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <p class="social">
+      <a href="https://www.youtube.com/@MathTogetherCanada"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2 31 31 0 0 0 .5 12 31 31 0 0 0 1 16.8a3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1 31 31 0 0 0 .5-4.8 31 31 0 0 0-.5-4.8zM9.7 15V9l5.8 3z"/></svg>YouTube @MathTogetherCanada</a>
+      <a href="https://www.instagram.com/math_together_canada/"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 7.3a4.7 4.7 0 1 0 0 9.4 4.7 4.7 0 0 0 0-9.4zm0 7.7a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm6-7.9a1.1 1.1 0 1 1-2.2 0 1.1 1.1 0 0 1 2.2 0zM12 2.2c-2.7 0-3 0-4 .1-3.6.2-5.5 2.1-5.7 5.7-.1 1-.1 1.3-.1 4s0 3 .1 4c.2 3.6 2.1 5.5 5.7 5.7 1 .1 1.3.1 4 .1s3 0 4-.1c3.6-.2 5.5-2.1 5.7-5.7.1-1 .1-1.3.1-4s0-3-.1-4c-.2-3.6-2.1-5.5-5.7-5.7-1-.1-1.3-.1-4-.1zm0 1.8c2.6 0 2.9 0 4 .1 2.6.1 3.8 1.4 3.9 3.9.1 1 .1 1.3.1 4s0 2.9-.1 4c-.1 2.5-1.3 3.8-3.9 3.9-1 .1-1.3.1-4 .1s-2.9 0-4-.1c-2.6-.1-3.8-1.4-3.9-3.9-.1-1-.1-1.3-.1-4s0-2.9.1-4C4.1 5.4 5.3 4.2 7.9 4.1c1.1-.1 1.4-.1 4.1-.1z"/></svg>Instagram @math_together_canada</a>
+    </p>
+  </div>
+  <div class="wrap foot-base">
+    <p class="fine">&copy; 2026 mathtogether.ca. All rights reserved.</p>
+  </div>
 </footer>
 
 </body>

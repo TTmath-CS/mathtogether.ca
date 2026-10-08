@@ -8,115 +8,124 @@
 <link rel="icon" href="assets/img/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,500;0,600;1,500&family=Public+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Caveat:wght@500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 <script src="support.js" defer></script>
 </head>
 <body>
 
-<nav>
-  <div class="links">
-    <a href="index.html#about">About</a>
-    <a href="index.html#programs">Programs</a>
-    <a href="index.html#livestream">Livestream</a>
-    <a href="index.html#news">News</a>
-    <a href="index.html#team">Team</a>
-    <a href="index.html#involved">Get involved</a>
-    <a class="here" href="support.html" aria-current="page">Support us</a>
-    <a class="join" href="https://forms.gle/XjoktJdHGPGnzJs17">Join us</a>
-  </div>
-</nav>
-
-<header id="top">
-  <div class="hero-shell">
-    <div class="hero-in">
-      <div class="hero-brand">
-        <img src="assets/img/logo-badge.png" alt="Math Together Canada logo">
-        <p><strong>Math Together Canada</strong><small>mathtogether.ca</small></p>
-      </div>
-      <p class="eyebrow formula-badge" aria-label="The sum over all supporters of generosity equals free math for every student.">
-        <span class="badge-dot"></span>
-        <span class="formula-core">
-          <span class="calc-integral">&sum;</span><span class="limit-stack"><sup>partners</sup><sub>n = 1</sub></span>
-          <span class="formula-sum">(generosity)</span>
-          <span class="formula-eq">=</span><span class="formula-domain">free for every student</span>
-        </span>
-        <span class="formula-joke">someone pays the entry fee so nobody has to</span>
-      </p>
-      <h1>Backed by <em>Partners</em>,<br> Powered by <em>Generosity</em>!</h1>
-      <p class="lede">We keep every lesson, camp, and contest free. These are the organizations who make
-      that arithmetic work — and the reason a student's budget never decides whether they get to compete.</p>
-      <p class="cta-row">
-        <a class="btn" href="#partners">Meet our supporters</a>
-        <a class="btn ghost" href="index.html">Back to home</a>
-      </p>
-    </div>
-  </div>
-
-  <div class="hero-foot">
-    <ul class="stats">
-      <li><b>2</b> sponsoring organizations</li>
-      <li><b>500+</b> students reached</li>
-      <li><b>$0</b> charged to families</li>
-      <li><b>$10,320</b> raised for SickKids</li>
-    </ul>
-    <nav class="plotmap" aria-label="Explore this page">
-      <a class="stop" href="#partners"><i></i><span>(1, our supporters)</span></a>
-      <a class="stop" href="#how"><i></i><span>(2, where it goes)</span></a>
-      <a class="stop" href="#join"><i></i><span>(3, become a sponsor)</span></a>
-      <a class="stop" href="index.html"><i></i><span>(0, back home)</span></a>
+<header class="site-nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="index.html">
+      <img src="assets/img/logo-badge.png" alt="Math Together Canada logo">
+      <span>Math Together Canada</span>
+    </a>
+    <button class="nav-toggle" aria-expanded="false" aria-controls="site-links" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="links" id="site-links">
+      <a href="index.html#about">About</a>
+      <a href="index.html#programs">Programs</a>
+      <a href="index.html#livestream">Livestream</a>
+      <a href="index.html#news">News</a>
+      <a href="index.html#team">Team</a>
+      <a href="index.html#involved">Get involved</a>
+      <a class="here" href="support.html" aria-current="page">Support us</a>
+      <a class="join" href="https://forms.gle/XjoktJdHGPGnzJs17">Join us</a>
     </nav>
   </div>
 </header>
 
-<div class="ruler-strip" aria-hidden="true"><div><span>Thank you</span><span>Merci</span><span>Sponsors</span><span>Partners</span><span>Community</span><span>Generosity</span><span>Free for all</span><span>Thank you</span><span>Merci</span><span>Sponsors</span><span>Partners</span><span>Community</span><span>Generosity</span><span>Free for all</span></div></div>
+<section class="hero compact" id="top">
+  <div class="hero-copy">
+    <p class="eyebrow formula-badge" aria-label="The sum over all supporters of generosity equals free math for every student.">
+      <span class="calc-integral">&sum;</span><span class="limit-stack"><sup>partners</sup><sub>n = 1</sub></span>
+      <span>(generosity) = free for every student</span>
+    </p>
+    <span class="pi-mark" aria-hidden="true">π</span>
+    <h1>Backed by <span class="ul">Partners</span>,<br> Powered by <span class="ul">Generosity</span>!</h1>
+    <p class="lede">We keep every lesson, camp, and contest free. These are the organizations who make
+    that arithmetic work — and the reason a student's budget never decides whether they get to compete.</p>
+    <p class="cta-row">
+      <a class="btn" href="#partners">Meet our supporters <i class="arr" aria-hidden="true">→</i></a>
+      <a class="btn ghost" href="index.html">Back to home</a>
+    </p>
+    <p class="scribble hero-scribble">someone pays the entry fee so nobody has to <span aria-hidden="true">♡</span></p>
+  </div>
+  <div class="hero-photo">
+    <img src="assets/img/news-charity-2026-awards.jpg" alt="Organizers announcing results in front of the We Pi(π)oneer Charity Math Competition banner">
+  </div>
+</section>
 
-<div class="yaxis" aria-hidden="true"><span class="marker">0</span></div>
+<div class="stats-bar">
+  <ul class="wrap stats">
+    <li><span class="ico teal"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M1.5 10.5 6 6l4 2.2L13.6 6l3.4 1.4L22.5 6v6.6l-2.6 2.2-5.7 4.7a1.8 1.8 0 0 1-2.5-.2L6.2 14l-4.7-.8z"/></svg></span>
+      <p><b>2</b> sponsoring organizations</p></li>
+    <li><span class="ico red"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.2"/><circle cx="17" cy="9" r="2.5"/><path d="M2.5 19c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6z"/><path d="M15.2 13.4c3.4-.5 6.3 1.6 6.3 5.6h-4.6c0-2.2-.6-4.1-1.7-5.6z"/></svg></span>
+      <p><b>500+</b> students reached</p></li>
+    <li><span class="ico blue"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18v12H3zm9 2.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7z" fill-rule="evenodd"/></svg></span>
+      <p><b>$0</b> charged to families</p></li>
+    <li><span class="ico gold"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-8.5-5.2-8.5-11.2A4.8 4.8 0 0 1 12 6.6a4.8 4.8 0 0 1 8.5 3.2C20.5 15.8 12 21 12 21z"/></svg></span>
+      <p><b>$10,320</b> raised for SickKids</p></li>
+  </ul>
+</div>
 
 <main>
 
-<section id="partners">
-  <h2>Our supporters</h2>
-  <p class="section-lede">Two organizations currently stand behind Math Together Canada. Click either one
-  to visit them — they earned the trip.</p>
+<section id="partners" class="band-blue">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <p class="kicker">Our supporters</p>
+        <h2>Our <span class="ul">supporters</span></h2>
+      </div>
+      <p class="section-lede">Two organizations currently stand behind Math Together Canada. Click either one
+      to visit them — they earned the trip.</p>
+    </div>
 
-  <div class="sponsor-grid">
+    <div class="sponsor-grid">
 
-    <a class="sponsor" href="https://ttmath.ca/">
-      <span class="plate ttmath"><img src="assets/img/sponsors/ttmath.jpg" alt="TTmath logo"></span>
-      <span class="body">
-        <span class="rank">supporter 01</span>
-        <h3>TTmath</h3>
-        <span class="role">Founding supporter</span>
-        <p>TTmath backs the tutoring and contest-prep side of our work, and has supported Math Together
-        Canada since the very first session. Their coaching mindset — patient, rigorous, genuinely
-        excited about a hard problem — is a lot of what we try to pass on.</p>
-        <span class="go">ttmath.ca &rarr;</span>
-      </span>
-    </a>
+      <a class="sponsor" href="https://ttmath.ca/">
+        <span class="plate ttmath"><img src="assets/img/sponsors/ttmath.jpg" alt="TTmath logo"></span>
+        <span class="body">
+          <span class="rank">supporter 01</span>
+          <h3>TTmath</h3>
+          <span class="role">Founding supporter</span>
+          <p>TTmath backs the tutoring and contest-prep side of our work, and has supported Math Together
+          Canada since the very first session. Their coaching mindset — patient, rigorous, genuinely
+          excited about a hard problem — is a lot of what we try to pass on.</p>
+          <span class="go">ttmath.ca &rarr;</span>
+        </span>
+      </a>
 
-    <a class="sponsor" href="https://www.citadel.com">
-      <span class="plate"><img src="assets/img/sponsors/citadel.svg" alt="Citadel logo"></span>
-      <span class="body">
-        <span class="rank">supporter 02</span>
-        <h3>Citadel</h3>
-        <span class="role">Program sponsor</span>
-        <p>Citadel supports the programs that put students in front of real problems — contests, camps,
-        and the webinars where working professionals show what mathematics looks like after school ends.
-        Their backing is why those events cost a student nothing.</p>
-        <span class="go">citadel.com &rarr;</span>
-      </span>
-    </a>
+      <a class="sponsor" href="https://www.citadel.com">
+        <span class="plate"><img src="assets/img/sponsors/citadel.svg" alt="Citadel logo"></span>
+        <span class="body">
+          <span class="rank">supporter 02</span>
+          <h3>Citadel</h3>
+          <span class="role">Program sponsor</span>
+          <p>Citadel supports the programs that put students in front of real problems — contests, camps,
+          and the webinars where working professionals show what mathematics looks like after school ends.
+          Their backing is why those events cost a student nothing.</p>
+          <span class="go">citadel.com &rarr;</span>
+        </span>
+      </a>
 
+    </div>
+    <p class="scribble center" style="margin-top:34px" aria-hidden="true">thank you for keeping the door open! ♡</p>
   </div>
-  <p class="note center" aria-hidden="true">thank you for keeping the door open!</p>
 </section>
 
-<section id="how">
-  <h2>Where the support goes</h2>
-  <p class="section-lede">No overhead, no salaries — we are students. Sponsorship pays for the things
-  enthusiasm cannot cover.</p>
-  <ul class="live-points">
+<section id="how" class="wrap">
+  <div class="section-head">
+    <div>
+      <p class="kicker">Where it goes</p>
+      <h2>Where the support <span class="ul">goes</span></h2>
+    </div>
+    <p class="section-lede">No overhead, no salaries — we are students. Sponsorship pays for the things
+    enthusiasm cannot cover.</p>
+  </div>
+  <ul class="live-points four">
     <li><strong>Contest registrations.</strong> Entry fees for Kangaroo, CTMC, and the Waterloo contests,
     so cost is never the reason a student sits one out.</li>
     <li><strong>Camp materials.</strong> Problem sets, printing, prizes, and the puzzles that make a
@@ -126,33 +135,59 @@
     <li><strong>Charity events.</strong> Seed costs for the math-themed fundraisers that sent $10,320 to
     SickKids — every dollar raised goes straight through.</li>
   </ul>
-  <blockquote>Free is a promise, not a price tag. <span class="note">— and our sponsors are how we keep it</span></blockquote>
+  <blockquote class="pull">Free is a promise, not a price tag. <span class="scribble">— and our sponsors are how we keep it</span></blockquote>
 </section>
 
-<section id="join">
-  <h2>Become a sponsor</h2>
-  <p>If your organization wants more students solving hard problems together, we would love to talk.
-  Sponsorship can be funding, materials, venue space, or an hour of a working mathematician's time.</p>
-  <p>We are a student-led community across Canada, reaching over 500 students through tutoring, camps,
-  livestreams, and contests. Supporters are credited on this page and thanked at every event they make
-  possible.</p>
-  <p class="cta-row">
-    <a class="btn" href="https://forms.gle/XjoktJdHGPGnzJs17">Get in touch</a>
-    <a class="btn ghost" href="index.html#involved">Other ways to help</a>
-  </p>
+<section id="join" class="cta-band">
+  <div class="wrap cta-in">
+    <div>
+      <p class="kicker">Get in touch</p>
+      <h2>Become a <span class="ul">sponsor</span></h2>
+    </div>
+    <div class="cta-copy">
+      <p>If your organization wants more students solving hard problems together, we would love to talk.
+      Sponsorship can be funding, materials, venue space, or an hour of a working mathematician's time.</p>
+      <p>We are a student-led community across Canada, reaching over 500 students through tutoring, camps,
+      livestreams, and contests. Supporters are credited on this page and thanked at every event they make
+      possible.</p>
+      <p class="cta-row">
+        <a class="btn" href="https://forms.gle/XjoktJdHGPGnzJs17">Get in touch <i class="arr" aria-hidden="true">→</i></a>
+        <a class="btn ghost" href="index.html#involved">Other ways to help</a>
+      </p>
+    </div>
+    <svg class="leaf" viewBox="0 0 100 100" aria-hidden="true"><path d="M50 4l7 14 8-4-2 18 12-10 2 8 13-2-5 14 7 4-24 18 3 10-19-3v19h-4V77l-19 3 3-10L8 52l7-4-5-14 13 2 2-8 12 10-2-18 8 4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+  </div>
 </section>
 
 </main>
 
-<footer id="contact">
-  <p class="big">Come and join us! <span class="note">let's explore math together</span></p>
-  <p><a class="btn" href="https://forms.gle/XjoktJdHGPGnzJs17">Contact us / Join us</a></p>
-  <p class="social">
-    <a href="https://www.youtube.com/@MathTogetherCanada">YouTube @MathTogetherCanada</a> &middot;
-    <a href="https://www.instagram.com/math_together_canada/">Instagram @math_together_canada</a>
-  </p>
-  <p class="fine">Math Together Canada &middot; United by numbers, inspired by learning</p>
-  <p class="fine">&copy; 2026 mathtogether.ca. All rights reserved.</p>
+<footer id="contact" class="site-foot">
+  <div class="wrap foot-top">
+    <p class="big">Come and join us! <span class="scribble">let's explore math together</span></p>
+    <p><a class="btn" href="https://forms.gle/XjoktJdHGPGnzJs17">Contact us / Join us <i class="arr" aria-hidden="true">→</i></a></p>
+  </div>
+  <div class="wrap foot-main">
+    <div class="foot-brand">
+      <a class="brand" href="index.html"><img src="assets/img/logo-badge.png" alt="Math Together Canada logo"><span>Math Together Canada</span></a>
+      <p class="fine">Math Together Canada &middot; United by numbers, inspired by learning</p>
+    </div>
+    <nav class="foot-links" aria-label="Footer">
+      <a href="index.html#about">About</a>
+      <a href="index.html#programs">Programs</a>
+      <a href="index.html#livestream">Livestream</a>
+      <a href="index.html#news">News</a>
+      <a href="index.html#team">Team</a>
+      <a href="support.html">Support us</a>
+      <a href="index.html#faq">FAQ</a>
+    </nav>
+    <p class="social">
+      <a href="https://www.youtube.com/@MathTogetherCanada"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2 31 31 0 0 0 .5 12 31 31 0 0 0 1 16.8a3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1 31 31 0 0 0 .5-4.8 31 31 0 0 0-.5-4.8zM9.7 15V9l5.8 3z"/></svg>YouTube @MathTogetherCanada</a>
+      <a href="https://www.instagram.com/math_together_canada/"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 7.3a4.7 4.7 0 1 0 0 9.4 4.7 4.7 0 0 0 0-9.4zm0 7.7a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm6-7.9a1.1 1.1 0 1 1-2.2 0 1.1 1.1 0 0 1 2.2 0zM12 2.2c-2.7 0-3 0-4 .1-3.6.2-5.5 2.1-5.7 5.7-.1 1-.1 1.3-.1 4s0 3 .1 4c.2 3.6 2.1 5.5 5.7 5.7 1 .1 1.3.1 4 .1s3 0 4-.1c3.6-.2 5.5-2.1 5.7-5.7.1-1 .1-1.3.1-4s0-3-.1-4c-.2-3.6-2.1-5.5-5.7-5.7-1-.1-1.3-.1-4-.1zm0 1.8c2.6 0 2.9 0 4 .1 2.6.1 3.8 1.4 3.9 3.9.1 1 .1 1.3.1 4s0 2.9-.1 4c-.1 2.5-1.3 3.8-3.9 3.9-1 .1-1.3.1-4 .1s-2.9 0-4-.1c-2.6-.1-3.8-1.4-3.9-3.9-.1-1-.1-1.3-.1-4s0-2.9.1-4C4.1 5.4 5.3 4.2 7.9 4.1c1.1-.1 1.4-.1 4.1-.1z"/></svg>Instagram @math_together_canada</a>
+    </p>
+  </div>
+  <div class="wrap foot-base">
+    <p class="fine">&copy; 2026 mathtogether.ca. All rights reserved.</p>
+  </div>
 </footer>
 
 </body>
