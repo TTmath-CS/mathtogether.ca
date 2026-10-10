@@ -22,6 +22,7 @@ with sync_playwright() as p:
    if name=='index':
     assert page.locator('.home-proof + #about').count()==1
     photo=page.locator('.who-photo img')
+    assert photo.get_attribute('src') == 'assets/img/leadership-event.jpg'
     photo.scroll_into_view_if_needed()
     photo.evaluate('(e)=>e.loading="eager"')
     page.wait_for_function('document.querySelector(".who-photo img").naturalWidth > 0')

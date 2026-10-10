@@ -2,7 +2,7 @@
 
 Full-page Chromium screenshots updated for the second revision round of PR #20. Desktop viewport width: 1440px. Mobile viewport width: 390px. These are static review images, not a deployed website.
 
-**Pending item:** the user-selected Who We Are group photograph is visible in chat but its original file is not available in the workspace. Home screenshots still show the previous summer-camp photograph; it will be replaced once the original file or download URL is supplied. All other second-round revisions, including the reference-based homepage layout, are represented here.
+The homepage now uses the supplied authentic leadership event photograph at its original aspect ratio, without cropping. Home screenshots have been refreshed after the replacement.
 
 Open an image and use GitHub’s **Raw** or **Download** control to view it at full resolution.
 
