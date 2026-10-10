@@ -21,15 +21,34 @@ with sync_playwright() as p:
     page.goto('http://127.0.0.1:8000/'+name+'.html')
    if name=='index':
     assert page.locator('.home-proof + #about').count()==1
+    assert page.locator('.stat-icon').count()==4
+    assert page.locator('main > section').evaluate_all('(es)=>es.map(e=>e.id || e.classList[0]).join(",")') == 'home-hero,home-proof,about,featured-event,our-programs,latest-stories'
+    assert page.locator('.home-programs .cards > article').count()==3
+    assert page.locator('.home-story-card').count()==4
+    assert not page.locator('.home-join, .two-col-callout').count()
+    assert page.locator('.home-proof').evaluate('(e)=>e.getBoundingClientRect().height') < (150 if width <= 960 else 100)
+    if width == 1440:
+     assert page.locator('.home-story-card').evaluate_all('(es)=>new Set(es.map(e=>Math.round(e.getBoundingClientRect().top))).size')==1
     assert page.locator('.formula-lockup').evaluate('(e)=>e.scrollWidth<=e.clientWidth'),(width,'formula clipping')
     assert page.locator('.home-hero').evaluate('(e)=>getComputedStyle(e).paddingTop')=='0px'
+   if name in ['programs','news','team','get-involved','faq']:
+    assert page.locator('.page-hero-lede').evaluate('(e)=>Math.abs(e.getBoundingClientRect().width-e.closest(".page-hero-in").getBoundingClientRect().width)<1')
+   if name=='programs':
+    assert not page.locator('main > section .cta-in-simple').count()
+    assert page.locator('#livestream .livestream-channel a').get_attribute('href')=='https://www.youtube.com/@MathTogetherCanada'
+   if name=='get-involved':
+    assert not page.locator('#involved .kicker, .hero-scribble, blockquote.pull').count()
+    assert page.locator('#involved h2').evaluate('(e)=>parseFloat(getComputedStyle(e).fontSize)')>=34
    if name=='news':
     assert page.locator('.story').evaluate_all('(es)=>es.every(e=>e.firstElementChild.classList.contains("news-image"))')
     ratios=page.locator('.news-image').evaluate_all('(es)=>es.map(e=>e.clientWidth/e.clientHeight)')
     assert all(abs(r-16/9)<.02 for r in ratios),ratios
     heights=page.locator('.news-image').evaluate_all('(es)=>es.map(e=>e.clientHeight)');assert max(heights)-min(heights)<=1
+    assert page.locator('.story > p a').evaluate_all('(es)=>es.every(a=>{const t=a.previousSibling; if(!t || t.nodeType!==Node.TEXT_NODE)return false; const r=document.createRange();r.selectNodeContents(t);const rects=Array.from(r.getClientRects()).filter(r=>r.width>0&&r.height>0);return getComputedStyle(a).display==="block"&&a.getBoundingClientRect().top>=Math.max(...rects.map(r=>r.bottom))+12;})')
+    assert page.locator('.story summary').evaluate_all('(es)=>es.every(e=>parseFloat(getComputedStyle(e).marginTop)>=14)')
     page.locator('.story summary').first.click();assert page.locator('.story-dialog').is_visible();page.keyboard.press('Escape');assert not page.locator('.story-dialog').is_visible()
    if name=='team':
+    assert page.locator('.team-grid').evaluate_all('(grids)=>grids.every(g=>{const cards=Array.from(g.children);const lastTop=cards[cards.length-1].getBoundingClientRect().top;const last=cards.filter(e=>Math.abs(e.getBoundingClientRect().top-lastTop)<1);const a=last[0].getBoundingClientRect(),z=last[last.length-1].getBoundingClientRect(),r=g.getBoundingClientRect();return Math.abs((a.left+z.right)/2-(r.left+r.right)/2)<2;})')
     m=page.locator('.member').first;m.focus();page.keyboard.press('Enter');assert m.get_attribute('aria-pressed')=='true';page.keyboard.press('Space');assert m.get_attribute('aria-pressed')=='false'
    if name=='faq':page.locator('.faq summary').first.click();assert page.locator('.faq').first.get_attribute('open') is not None
    if width in [390,1440] and name!='faq':

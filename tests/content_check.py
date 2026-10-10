@@ -20,7 +20,13 @@ print('Internal file/anchor errors:',errors);assert not errors
 assert len(pages['news.html'].select('.story'))==17
 assert len(pages['team.html'].select('.member'))==16
 assert len(pages['programs.html'].select('.sessions li'))==9
-assert len(pages['index.html'].select('.home-destination'))==3
+assert len(pages['index.html'].select('.home-programs .cards article'))==3
+assert len(pages['index.html'].select('.home-story-card'))==4
+assert len(pages['index.html'].select('.stat-icon'))==4
+assert not pages['index.html'].select('.two-col-callout, .home-join')
+assert not pages['programs.html'].select('.cta-in-simple')
+assert pages['programs.html'].select_one('#livestream .livestream-channel')
+assert not pages['get-involved.html'].select('.hero-scribble, blockquote.pull, #involved .kicker')
 # Paragraph text and external links from original content must remain somewhere.
 current=' '.join(' '.join(s.stripped_strings) for s in pages.values())
 normalize=lambda t:re.sub(r'\s+',' ',t).strip()
@@ -28,9 +34,15 @@ current=normalize(current)
 missing=[];external=set()
 for name in pages:
  old=S(subprocess.check_output(['git','show','origin/main:'+name],cwd=root,text=True),'html.parser')
+ # Only the explicitly approved Our Approach paragraphs are exempt.
+ removed = {normalize(p.get_text(' ',strip=True)) for p in old.select('main > .band-blue p')} if name == 'about.html' else set()
+ if name == 'about.html':
+  original = [normalize(p.get_text(' ',strip=True)) for p in old.select('.about-body p')]
+  retained = [normalize(p.get_text(' ',strip=True)) for p in pages['index.html'].select('.about-body p')]
+  assert original == retained, 'Who We Are original text changed'
  for p in old.select('main p, .hero .lede'):
   text=normalize(p.get_text(' ',strip=True))
-  if name != 'index.html' and text and text not in current:missing.append((name,text))
+  if name != 'index.html' and text and text not in removed and text not in current:missing.append((name,text))
  for a in old.select('a[href]'):
   if urlsplit(a['href']).netloc:external.add(a['href'])
 new_external={a['href'] for s in pages.values() for a in s.select('a[href]') if urlsplit(a['href']).netloc}
