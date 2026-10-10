@@ -3,19 +3,45 @@ var still = matchMedia('(prefers-reduced-motion: reduce)').matches;
 // Mobile menu: the nav links collapse behind a toggle on narrow screens.
 var toggle = document.querySelector('.nav-toggle');
 var links = document.getElementById('site-links');
-toggle.addEventListener('click', function () {
-  var open = links.classList.toggle('open');
-  toggle.setAttribute('aria-expanded', open);
-});
-links.addEventListener('click', function (e) {
-  if (e.target.tagName !== 'A') return;
-  links.classList.remove('open');
-  toggle.setAttribute('aria-expanded', 'false');
-});
+if (toggle && links) {
+  function closeMenu(returnFocus) {
+    links.classList.remove('open');
+    toggle.setAttribute('aria-expanded', 'false');
+    toggle.setAttribute('aria-label', 'Open navigation');
+    if (returnFocus) toggle.focus();
+  }
+  toggle.addEventListener('click', function () {
+    var open = links.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', String(open));
+    toggle.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation');
+  });
+  links.addEventListener('click', function (e) {
+    if (e.target.closest('a')) closeMenu(false);
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && links.classList.contains('open')) closeMenu(true);
+  });
+  matchMedia('(min-width: 1141px)').addEventListener('change', function () { closeMenu(false); });
+}
+
+// Small compatibility map for old static-page URLs and homepage bookmarks.
+var legacy = document.querySelector('[data-legacy-target]');
+if (legacy) {
+  var target = legacy.dataset.legacyTarget;
+  if (location.pathname.endsWith('/support.html')) {
+    var supportAnchors = ['partners', 'how', 'join', 'contact'];
+    if (supportAnchors.indexOf(location.hash.slice(1)) !== -1) target = 'get-involved.html' + location.hash;
+  }
+  location.replace(target);
+} else if (location.pathname.endsWith('/index.html') || location.pathname.endsWith('/')) {
+  var oldSections = {programs: 'programs.html#programs', livestream: 'programs.html#livestream', news: 'news.html#news', team: 'team.html#team', involved: 'get-involved.html#involved', faq: 'faq.html#faq', supporters: 'get-involved.html#support'};
+  if (oldSections[location.hash.slice(1)]) location.replace(oldSections[location.hash.slice(1)]);
+}
 
 // News stories open in a reading overlay instead of stretching the card.
 var dlg = document.createElement('dialog');
 dlg.className = 'story-dialog';
+dlg.setAttribute('aria-label', 'News story');
 dlg.innerHTML = '<button class="dlg-close" aria-label="Close">×</button><div class="dlg-body"></div>';
 document.body.appendChild(dlg);
 var dlgBody = dlg.querySelector('.dlg-body');
@@ -29,7 +55,7 @@ function openStory(s) {
     var el = s.querySelector(sel);
     if (el) dlgBody.appendChild(el.cloneNode(true));
   });
-  details.querySelectorAll('p').forEach(function (p) {
+  details.querySelectorAll('p:not(.story-preview)').forEach(function (p) {
     dlgBody.appendChild(p.cloneNode(true));
   });
   dlg.showModal();
@@ -71,7 +97,7 @@ document.querySelectorAll('.member').forEach(function (m) {
   back.appendChild(title);
 
   if (details) {
-    details.querySelectorAll('p').forEach(function (p) { back.appendChild(p); });
+    details.querySelectorAll('p:not(.story-preview)').forEach(function (p) { back.appendChild(p); });
     details.remove();
   } else {
     var soon = document.createElement('p');
@@ -90,8 +116,17 @@ document.querySelectorAll('.member').forEach(function (m) {
   m.appendChild(flip);
   m.setAttribute('tabindex', '0');
   m.setAttribute('role', 'button');
+  m.setAttribute('aria-pressed', 'false');
+  m.setAttribute('aria-label', title.textContent + ': show biography');
 
-  function turn() { m.classList.toggle('flipped'); }
+  function turn() {
+    var flipped = m.classList.toggle('flipped');
+    m.setAttribute('aria-pressed', String(flipped));
+    m.setAttribute('aria-label', title.textContent + (flipped ? ': show photograph' : ': show biography'));
+    front.setAttribute('aria-hidden', String(flipped));
+    back.setAttribute('aria-hidden', String(!flipped));
+  }
+  back.setAttribute('aria-hidden', 'true');
   m.addEventListener('click', turn);
   m.addEventListener('keydown', function (e) {
     if (e.key !== 'Enter' && e.key !== ' ') return;
