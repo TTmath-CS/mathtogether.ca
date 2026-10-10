@@ -17,3 +17,5 @@ Open an image and use GitHub’s **Raw** or **Download** control to view it at f
 Home and News screenshots include automatic Latest News: three homepage cards selected from the News source. Exact dates are sorted descending; year-only items retain their source positions within the same year. Four items have no known year and remain outside homepage selection. See [date status](../docs/news-maintenance.md).
 
 Latest refinements: colored and aligned statistics, mobile heading/photo/text order, reduced Programs introductions, three-plus-two desktop member groups, and the Get Involved heart decoration. Home, Programs, Team and Get Involved screenshots refreshed.
+
+Home screenshots refreshed after verifying the rendered heading at 375, 390, 768 and 1440px: small red `LATEST NEWS` label above `Our Community in Action.`. The automatic three-card selection remains unchanged.

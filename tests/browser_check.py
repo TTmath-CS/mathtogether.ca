@@ -33,6 +33,9 @@ with sync_playwright() as p:
     assert page.locator('.home-programs .cards > article').count()==3
     page.wait_for_function('document.querySelector("[data-latest-news]").getAttribute("aria-busy")==="false"')
     assert page.locator('.home-story-card').count()==3
+    assert page.locator('.home-latest-head .home-kicker').inner_text().strip().upper()=='LATEST NEWS'
+    assert page.locator('.home-latest-head .home-kicker').evaluate('(e)=>getComputedStyle(e).textTransform')=='uppercase'
+    assert page.locator('.home-latest-head h2').inner_text().strip()=='Our Community in Action.'
     assert not page.locator('.home-join, .two-col-callout').count()
     assert page.locator('.home-proof').evaluate('(e)=>e.getBoundingClientRect().height') < (150 if width <= 960 else 100)
     if width in [375,390]:
