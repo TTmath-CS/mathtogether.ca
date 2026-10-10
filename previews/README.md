@@ -1,0 +1,21 @@
+# PR #20 screenshots
+
+Full-page Chromium screenshots updated for the second revision round of PR #20. Desktop viewport width: 1440px. Mobile viewport width: 390px. These are static review images, not a deployed website.
+
+The homepage now uses the supplied authentic leadership event photograph at its original aspect ratio, without cropping. Home screenshots have been refreshed after the replacement.
+
+Open an image and use GitHub’s **Raw** or **Download** control to view it at full resolution.
+
+| Page | Desktop | Mobile |
+|---|---|---|
+| Home | [View 1440px screenshot](home-1440.png) | [View 390px screenshot](home-390.png) |
+| Programs | [View 1440px screenshot](programs-1440.png) | [View 390px screenshot](programs-390.png) |
+| News | [View 1440px screenshot](news-1440.png) | [View 390px screenshot](news-390.png) |
+| Team | [View 1440px screenshot](team-1440.png) | [View 390px screenshot](team-390.png) |
+| Get Involved | [View 1440px screenshot](get-involved-1440.png) | [View 390px screenshot](get-involved-390.png) |
+
+Home and News screenshots include automatic Latest News: three homepage cards selected from the News source. Exact dates are sorted descending; year-only items retain their source positions within the same year. Four items have no known year and remain outside homepage selection. See [date status](../docs/news-maintenance.md).
+
+Latest refinements: colored and aligned statistics, mobile heading/photo/text order, reduced Programs introductions, three-plus-two desktop member groups, and the Get Involved heart decoration. Home, Programs, Team and Get Involved screenshots refreshed.
+
+Home screenshots refreshed after verifying the rendered heading at 375, 390, 768 and 1440px: small red `LATEST NEWS` label above `Our Community in Action.`. The automatic three-card selection remains unchanged.

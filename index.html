@@ -1,148 +1,420 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Math Together Canada — a student-led community making math fun, accessible and exciting from coast to coast.">
-<title>Math Together Canada</title>
-<link rel="icon" href="assets/img/logo.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Caveat:wght@500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
-<link rel="stylesheet" href="home.css">
-<script src="app.js" defer></script>
-</head>
-<body class="home-page">
-<header class="site-nav">
-  <div class="wrap nav-in">
-    <a class="brand" href="index.html" aria-current="page">
-      <img src="assets/img/logo-badge.png" alt="Math Together Canada logo">
-      <span>Math Together Canada</span>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta content="Math Together Canada — a student-led community making math fun, accessible and exciting from coast to coast." name="description"/>
+  <title>
+   Math Together Canada
+  </title>
+  <link href="assets/img/logo.png" rel="icon"/>
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&amp;family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;family=Caveat:wght@500;600&amp;display=swap" rel="stylesheet"/>
+  <link href="style.css" rel="stylesheet"/>
+  <link href="home.css" rel="stylesheet"/>
+  <script defer src="app.js">
+  </script>
+ </head>
+ <body class="home-page">
+  <a class="skip-link" href="#main-content">
+   Skip to content
+  </a>
+  <header class="site-nav">
+   <div class="wrap nav-in">
+    <a class="brand" href="index.html">
+     <img alt="Math Together Canada logo" src="assets/img/logo-badge.png"/>
+     <span>
+      Math Together Canada
+     </span>
     </a>
-    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-links" aria-label="Menu">
-      <span></span><span></span><span></span>
+    <button aria-controls="site-links" aria-expanded="false" aria-label="Open navigation" class="nav-toggle" type="button">
+     <span>
+     </span>
+     <span>
+     </span>
+     <span>
+     </span>
     </button>
-    <nav class="links" id="site-links">
-      <a href="about.html">About</a>
-      <a href="programs.html">Programs</a>
-      <a href="livestream.html">Livestream</a>
-      <a href="news.html">News</a>
-      <a href="team.html">Team</a>
-      <a href="get-involved.html">Get involved</a>
-      <a href="support.html">Support us</a>
-      <a href="faq.html">FAQ</a>
-      <a class="join" href="https://forms.gle/XjoktJdHGPGnzJs17">Join us</a>
+    <nav aria-label="Main navigation" class="links" id="site-links">
+     <a aria-current="page" class="here" href="index.html">
+      Home
+     </a>
+     <a href="programs.html">
+      Programs
+     </a>
+     <a href="news.html">
+      News
+     </a>
+     <a href="team.html">
+      Team
+     </a>
+     <a href="get-involved.html">
+      Get Involved
+     </a>
+     <a href="faq.html">
+      FAQ
+     </a>
+     <a class="join" href="https://forms.gle/XjoktJdHGPGnzJs17">
+      Join Us
+     </a>
     </nav>
-  </div>
-</header>
-
-<main>
-<section class="home-hero">
-  <div class="home-hero-copy">
-    <div class="formula-lockup" aria-label="Integral from coast to coast of curiosity plus friends equals mathtogether.ca">
-      <span class="formula-integral">∫</span>
-      <span class="formula-limits"><sup>coast</sup><sub>coast</sub></span>
-      <span class="formula-text">(curiosity + friends) dx = mathtogether.ca</span>
+   </div>
+  </header>
+  <main id="main-content">
+   <section class="home-hero">
+    <div class="home-hero-copy">
+     <div aria-label="Integral from coast to coast of curiosity plus friends equals mathtogether.ca" class="formula-lockup" role="img">
+      <span class="formula-integral">
+       ∫
+      </span>
+      <span class="formula-limits">
+       <sup>
+        coast
+       </sup>
+       <sub>
+        coast
+       </sub>
+      </span>
+      <span class="formula-text">
+       (curiosity + friends) dx = mathtogether.ca
+      </span>
+     </div>
+     <p class="home-eyebrow">
+      Student-led · Canada-wide · For everyone
+     </p>
+     <h1>
+      A non-profit organization for everyone to enjoy the
+      <span class="home-underline">
+       beauty of math
+      </span>
+     </h1>
+     <p class="home-lead">
+      A student-led community where contest math becomes a shared experience — through tutoring, camps, livestreams, competitions, and friends who love a difficult problem.
+     </p>
+     <div class="home-actions">
+      <a class="home-btn home-btn-primary" href="programs.html">
+       Explore programs
+       <span>
+        →
+       </span>
+      </a>
+      <a class="home-btn home-btn-secondary" href="https://www.youtube.com/@MathTogetherCanada">
+       Watch on YouTube
+       <span>
+        ↗
+       </span>
+      </a>
+     </div>
+     <p class="home-note">
+      homework panic → aha moments
+      <span>
+       ♡
+      </span>
+     </p>
     </div>
-    <p class="home-eyebrow">Student-led · Canada-wide · For everyone</p>
-    <h1>A non-profit organization for everyone to enjoy the <span class="home-underline">beauty of math</span></h1>
-    <p class="home-lead">A student-led community where contest math becomes a shared experience — through tutoring, camps, livestreams, competitions, and friends who love a difficult problem.</p>
-    <div class="home-actions">
-      <a class="home-btn home-btn-primary" href="programs.html">Explore programs <span>→</span></a>
-      <a class="home-btn home-btn-secondary" href="https://www.youtube.com/@MathTogetherCanada">Watch on YouTube <span>↗</span></a>
+    <div class="home-hero-media">
+     <img alt="Students reaching for prizes at the 2026 Charity Math Competition" src="assets/img/news-charity-2026-event.jpg"/>
+     <div class="home-photo-caption">
+      <span class="home-caption-dot">
+      </span>
+      <span>
+       Learning together, one problem at a time.
+      </span>
+     </div>
     </div>
-    <p class="home-note">homework panic → aha moments <span>♡</span></p>
-  </div>
-  <div class="home-hero-media">
-    <img src="assets/img/news-charity-2026-event.jpg" alt="Students reaching for prizes at the 2026 Charity Math Competition">
-    <div class="home-photo-caption">
-      <span class="home-caption-dot"></span>
-      <span>Learning together, one problem at a time.</span>
-    </div>
-  </div>
-</section>
-
-<section class="home-proof">
-  <div class="wrap home-proof-grid">
-    <div><strong>500+</strong><span>students reached</span></div>
-    <div><strong>6</strong><span>programs &amp; activities</span></div>
-    <div><strong>6</strong><span>community partners</span></div>
-    <div><strong>$10,320</strong><span>raised for SickKids</span></div>
-  </div>
-</section>
-
-<section class="home-feature wrap">
-  <div class="home-feature-media">
-    <img src="assets/img/news-charity-2026-awards.jpg" alt="Organizers announcing results at the 2026 Charity Math Competition">
-    <span class="home-feature-tag">Latest highlight</span>
-  </div>
-  <div class="home-feature-copy">
-    <p class="home-kicker">September 5, 2026 · Markham</p>
-    <h2>Charity Math Competition 2026 — <span class="home-underline">Knowledge + Kindness</span></h2>
-    <p class="home-feature-stats"><b>102</b> student registrations <i>•</i> <b>$3,197</b> raised for SickKids</p>
-    <p>Another day of challenging problems, new friendships, and giving back. See the full recap, photos, and story.</p>
-    <a class="home-text-link" href="news.html#news-charity-2026">Read the story <span>→</span></a>
-  </div>
-</section>
-
-<section class="home-destinations">
-  <div class="wrap">
-    <div class="home-section-head">
-      <div>
-        <p class="home-kicker">Explore Math Together</p>
-        <h2>One community.<br><span class="home-underline">Eight ways in.</span></h2>
+   </section>
+   <section class="home-proof">
+    <div class="wrap home-proof-grid">
+     <div>
+      <svg aria-hidden="true" class="stat-icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24">
+       <path d="m2 9 10-5 10 5-10 5-10-5Z">
+       </path>
+       <path d="M6 11v6c4 3 8 3 12 0v-6M22 9v7">
+       </path>
+      </svg>
+      <div class="stat-copy">
+       <strong>
+        500+
+       </strong>
+       <span>
+        students reached
+       </span>
       </div>
-      <p>Everything now lives in its own page — so you can jump straight to what matters to you.</p>
+     </div>
+     <div>
+      <svg aria-hidden="true" class="stat-icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24">
+       <path d="M12 5v16M3 4c4-1 6 0 9 1 3-1 5-2 9-1v15c-4-1-6 0-9 2-3-2-5-3-9-2V4Z">
+       </path>
+      </svg>
+      <div class="stat-copy">
+       <strong>
+        6
+       </strong>
+       <span>
+        programs &amp; activities
+       </span>
+      </div>
+     </div>
+     <div>
+      <svg aria-hidden="true" class="stat-icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24">
+       <circle cx="9" cy="8" r="3">
+       </circle>
+       <path d="M2 21v-2a7 7 0 0 1 14 0v2M16 5a3 3 0 0 1 0 6M19 14a5 5 0 0 1 3 5v2">
+       </path>
+      </svg>
+      <div class="stat-copy">
+       <strong>
+        6
+       </strong>
+       <span>
+        community partners
+       </span>
+      </div>
+     </div>
+     <div>
+      <svg aria-hidden="true" class="stat-icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24">
+       <path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z">
+       </path>
+      </svg>
+      <div class="stat-copy">
+       <strong>
+        $10,320
+       </strong>
+       <span>
+        raised for SickKids
+       </span>
+      </div>
+     </div>
     </div>
-    <div class="home-destination-grid">
-      <a href="about.html" class="home-destination"><span>01</span><h3>About</h3><p>Our mission, values, and the people-first idea behind Math Together.</p><b>Learn more →</b></a>
-      <a href="programs.html" class="home-destination"><span>02</span><h3>Programs</h3><p>Tutoring, contest prep, camps, webinars, and volunteer opportunities.</p><b>Explore →</b></a>
-      <a href="livestream.html" class="home-destination"><span>03</span><h3>Livestream</h3><p>Contest walkthroughs and interactive problem-solving with the community.</p><b>Watch →</b></a>
-      <a href="news.html" class="home-destination"><span>04</span><h3>News</h3><p>Event recaps, student stories, camps, competitions, and community updates.</p><b>Read →</b></a>
-      <a href="team.html" class="home-destination"><span>05</span><h3>Team</h3><p>Meet the students and advisors building the community.</p><b>Meet us →</b></a>
-      <a href="get-involved.html" class="home-destination"><span>06</span><h3>Get involved</h3><p>Volunteer, teach, organize, create, and help another student grow.</p><b>Join in →</b></a>
-      <a href="support.html" class="home-destination"><span>07</span><h3>Support us</h3><p>Meet the organizations helping keep our programs open and accessible.</p><b>See supporters →</b></a>
-      <a href="faq.html" class="home-destination"><span>08</span><h3>FAQ</h3><p>Quick answers about joining, events, volunteering, and support.</p><b>Find answers →</b></a>
+   </section>
+   <section class="who-we-are wrap" id="about">
+    <div class="who-photo">
+     <img alt="Math Together Canada Presidents, Executives and fellow members together at an event" height="1279" loading="lazy" src="assets/img/leadership-event.jpg" width="1706"/>
     </div>
-  </div>
-</section>
-
-<section class="home-join">
-  <div class="wrap home-join-inner">
-    <div>
-      <p class="home-kicker">Ready?</p>
-      <h2>Come solve something <span class="home-underline">beautiful.</span></h2>
-      <p>Join the community, bring your questions, and make math a little more joyful.</p>
+    <div class="who-copy">
+     <div class="about-head">
+      <p class="kicker">
+       About
+      </p>
+      <h2>
+       Who
+       <span class="ul">
+        we are
+       </span>
+      </h2>
+     </div>
+     <div class="about-body">
+      <p>
+       Founded by math enthusiasts, our club aims to make math fun and accessible for everyone.
+    We believe that numbers can be exciting and engaging, and we're here to prove it!
+      </p>
+      <p>
+       Our leadership team is a mix of seasoned advisors and enthusiastic students, all dedicated to
+    fostering a love for mathematics. Check out our bios to see who's behind the magic!
+      </p>
+      <p>
+       With a mission to inspire and help, we host events that challenge the norm and bring people
+    together. Join us and be part of something extraordinary!
+      </p>
+     </div>
     </div>
-    <div class="home-join-actions">
-      <a class="home-btn home-btn-primary" href="https://forms.gle/XjoktJdHGPGnzJs17">Join us <span>→</span></a>
-      <a class="home-btn home-btn-light" href="news.html">See what's new <span>→</span></a>
+   </section>
+   <section class="home-feature wrap" id="featured-event">
+    <div class="home-feature-media">
+     <img alt="Organizers announcing results at the 2026 Charity Math Competition" src="assets/img/news-charity-2026-awards.jpg"/>
     </div>
-  </div>
-</section>
-</main>
-
-<footer class="site-foot">
-  <div class="wrap foot-top">
-    <p class="big">Come and join us! <span class="scribble">let's explore math together</span></p>
-    <p><a class="btn" href="https://forms.gle/XjoktJdHGPGnzJs17">Contact us / Join us <i class="arr">→</i></a></p>
-  </div>
-  <div class="wrap foot-main">
-    <div class="foot-brand">
-      <a class="brand" href="index.html"><img src="assets/img/logo-badge.png" alt="Math Together Canada logo"><span>Math Together Canada</span></a>
-      <p class="fine">Math Together Canada · United by numbers, inspired by learning</p>
+    <div class="home-feature-copy">
+     <p class="home-kicker">
+      Featured Event
+     </p>
+     <p class="event-date">
+      September 5, 2026 · Markham
+     </p>
+     <h2>
+      We Pi(π)oneer Charity Math Contest 2026
+     </h2>
+     <p class="home-feature-stats">
+      <b>
+       102
+      </b>
+      student registrations
+      <i>
+       •
+      </i>
+      <b>
+       $3,197
+      </b>
+      raised for SickKids
+     </p>
+     <p>
+      Another day of challenging problems, new friendships, and giving back. See the full recap, photos, and story.
+     </p>
+     <a class="btn" href="news.html#news-charity-2026">
+      Read the Event Recap →
+     </a>
     </div>
-    <nav class="foot-links" aria-label="Footer">
-      <a href="about.html">About</a><a href="programs.html">Programs</a><a href="livestream.html">Livestream</a><a href="news.html">News</a>
-      <a href="team.html">Team</a><a href="get-involved.html">Get involved</a><a href="support.html">Support us</a><a href="faq.html">FAQ</a>
-    </nav>
-    <p class="social">
-      <a href="https://www.youtube.com/@MathTogetherCanada">YouTube @MathTogetherCanada</a>
-      <a href="https://www.instagram.com/math_together_canada/">Instagram @math_together_canada</a>
+   </section>
+   <section class="home-programs" id="our-programs">
+    <div class="wrap">
+     <div class="home-section-head">
+      <div>
+       <p class="home-kicker">
+        Our Programs
+       </p>
+       <h2>
+        Math for everyone.
+       </h2>
+      </div>
+      <p>
+       Student-led, free, and welcoming programs designed to help every curious mind belong, improve, and make a difference.
+      </p>
+     </div>
+     <div class="cards">
+      <article>
+       <div class="card-img">
+        <img alt="" loading="lazy" src="assets/img/news-winter-camp.jpg"/>
+        <span class="ico red">
+         <svg aria-hidden="true" viewbox="0 0 24 24">
+          <circle cx="9" cy="8" r="3.2">
+          </circle>
+          <circle cx="17" cy="9" r="2.5">
+          </circle>
+          <path d="M2.5 19c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6z">
+          </path>
+          <path d="M15.2 13.4c3.4-.5 6.3 1.6 6.3 5.6h-4.6c0-2.2-.6-4.1-1.7-5.6z">
+          </path>
+         </svg>
+        </span>
+       </div>
+       <h3>
+        Free Peer Tutoring
+       </h3>
+       <p>
+        Free peer tutoring to help students succeed in regular school math.
+       </p>
+       <a href="programs.html#programs">
+        Learn more →
+       </a>
+      </article>
+      <article>
+       <div class="card-img">
+        <img alt="" loading="lazy" src="assets/img/news-ctmc.jpg"/>
+        <span class="ico gold">
+         <svg aria-hidden="true" viewbox="0 0 24 24">
+          <path d="M6 3h12v2h3v2.5A4.5 4.5 0 0 1 17.3 12 5.5 5.5 0 0 1 13 15.4V18h3v3H8v-3h3v-2.6A5.5 5.5 0 0 1 6.7 12 4.5 4.5 0 0 1 3 7.5V5h3zm0 4H5v.5A2.5 2.5 0 0 0 6.3 9.7 8 8 0 0 1 6 7zm12 0a8 8 0 0 1-.3 2.7A2.5 2.5 0 0 0 19 7.5V7z">
+          </path>
+         </svg>
+        </span>
+       </div>
+       <h3>
+        Contest Math Programs
+       </h3>
+       <p>
+        Challenging competitions and contest preparation to grow your skills and confidence.
+       </p>
+       <a href="programs.html#programs">
+        Learn more →
+       </a>
+      </article>
+      <article>
+       <div class="card-img">
+        <img alt="" loading="lazy" src="assets/img/news-wepi.jpg"/>
+        <span class="ico teal">
+         <svg aria-hidden="true" viewbox="0 0 24 24">
+          <path d="M12 21s-8.5-5.2-8.5-11.2A4.8 4.8 0 0 1 12 6.6a4.8 4.8 0 0 1 8.5 3.2C20.5 15.8 12 21 12 21z">
+          </path>
+         </svg>
+        </span>
+       </div>
+       <h3>
+        Charity Math Events
+       </h3>
+       <p>
+        Creative math events that bring students together and give back to the community.
+       </p>
+       <a href="programs.html#programs">
+        Learn more →
+       </a>
+      </article>
+     </div>
+    </div>
+   </section>
+   <section class="home-latest" id="latest-stories">
+    <div class="wrap">
+     <div class="home-latest-head">
+      <div>
+       <p class="home-kicker">
+        Latest News
+       </p>
+       <h2>
+        Our Community in Action.
+       </h2>
+      </div>
+      <a class="home-text-link" href="news.html#news">
+       View all news →
+      </a>
+     </div>
+     <p class="latest-news-status" role="status">
+      Loading latest news…
+     </p>
+     <div aria-busy="true" class="home-story-grid" data-latest-news="">
+     </div>
+     <noscript>
+      <p>
+       See all news on the
+       <a href="news.html#news">
+        News page
+       </a>
+       .
+      </p>
+     </noscript>
+    </div>
+   </section>
+  </main>
+  <footer class="site-foot" id="contact">
+   <div class="wrap foot-top">
+    <p class="big">
+     Come and join us!
+     <span class="scribble">
+      let's explore math together
+     </span>
     </p>
-  </div>
-  <div class="wrap foot-base"><p class="fine">&copy; 2026 mathtogether.ca. All rights reserved.</p></div>
-</footer>
-</body>
+    <p>
+     <a class="btn" href="https://forms.gle/XjoktJdHGPGnzJs17">
+      Contact us / Join us
+      <i class="arr">
+       →
+      </i>
+     </a>
+    </p>
+   </div>
+   <div class="wrap foot-main">
+    <div class="foot-brand">
+     <a class="brand" href="index.html">
+      <img alt="Math Together Canada logo" src="assets/img/logo-badge.png"/>
+      <span>
+       Math Together Canada
+      </span>
+     </a>
+     <p class="fine">
+      Math Together Canada · United by numbers, inspired by learning
+     </p>
+    </div>
+    <p class="social">
+     <a href="https://www.youtube.com/@MathTogetherCanada">
+      YouTube @MathTogetherCanada
+     </a>
+     <a href="https://www.instagram.com/math_together_canada/">
+      Instagram @math_together_canada
+     </a>
+    </p>
+   </div>
+   <div class="wrap foot-base">
+    <p class="fine">
+     © 2026 mathtogether.ca. All rights reserved.
+    </p>
+   </div>
+  </footer>
+ </body>
 </html>
