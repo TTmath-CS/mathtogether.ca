@@ -21,6 +21,12 @@ with sync_playwright() as p:
     page.goto('http://127.0.0.1:8000/'+name+'.html')
    if name=='index':
     assert page.locator('.home-proof + #about').count()==1
+    photo=page.locator('.who-photo img')
+    photo.scroll_into_view_if_needed()
+    photo.evaluate('(e)=>e.loading="eager"')
+    page.wait_for_function('document.querySelector(".who-photo img").naturalWidth > 0')
+    assert photo.evaluate('(e)=>Math.abs(e.getBoundingClientRect().width/e.getBoundingClientRect().height-e.naturalWidth/e.naturalHeight)<0.001'), (width, 'Who We Are photograph cropped or stretched')
+    page.evaluate('scrollTo(0,0)')
     assert page.locator('.stat-icon').count()==4
     assert page.locator('main > section').evaluate_all('(es)=>es.map(e=>e.id || e.classList[0]).join(",")') == 'home-hero,home-proof,about,featured-event,our-programs,latest-stories'
     assert page.locator('.home-programs .cards > article').count()==3

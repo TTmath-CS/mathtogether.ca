@@ -442,7 +442,7 @@ main > section { padding-block: 56px; }
 .two-col-callout { padding-block: 0; }
 .cta-in-simple { padding-block: 0; }
 .who-we-are { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1.1fr); gap: 40px; align-items: center; }
-.who-photo img { width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: var(--radius); display: block; }
+.who-photo img { width: 100%; height: auto; aspect-ratio: auto; object-fit: contain; border-radius: var(--radius); display: block; }
 .who-copy h2 { font-size: clamp(30px,3vw,40px); margin-bottom: 20px; }
 .who-copy p { font-size: 16px; }
 .volunteer-section .cta-copy p { color: var(--ink); }
