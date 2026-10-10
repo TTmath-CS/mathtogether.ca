@@ -21,7 +21,16 @@ assert len(pages['news.html'].select('.story'))==17
 assert len(pages['team.html'].select('.member'))==16
 assert len(pages['programs.html'].select('.sessions li'))==9
 assert len(pages['index.html'].select('.home-programs .cards article'))==3
-assert len(pages['index.html'].select('.home-story-card'))==4
+assert not pages['index.html'].select('.home-story-card'), 'Homepage must not duplicate the News content'
+assert pages['index.html'].select_one('[data-latest-news]')
+from datetime import date
+for story in pages['news.html'].select('.story'):
+ assert story.get('id')
+ if story.get('data-date'): date.fromisoformat(story['data-date'])
+ elif story.get('data-year'):
+  assert re.fullmatch(r'\d{4}', story['data-year'])
+  assert story.get('data-date-status') == 'year-only'
+ else: assert story.get('data-date-status') == 'needs-confirmation'
 assert len(pages['index.html'].select('.stat-icon'))==4
 assert not pages['index.html'].select('.two-col-callout, .home-join')
 assert not pages['programs.html'].select('.cta-in-simple')

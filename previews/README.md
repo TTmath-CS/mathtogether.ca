@@ -13,3 +13,5 @@ Open an image and use GitHub’s **Raw** or **Download** control to view it at f
 | News | [View 1440px screenshot](news-1440.png) | [View 390px screenshot](news-390.png) |
 | Team | [View 1440px screenshot](team-1440.png) | [View 390px screenshot](team-390.png) |
 | Get Involved | [View 1440px screenshot](get-involved-1440.png) | [View 390px screenshot](get-involved-390.png) |
+
+Home and News screenshots include automatic Latest News: three homepage cards selected from the News source. Exact dates are sorted descending; year-only items retain their source positions within the same year. Four items have no known year and remain outside homepage selection. See [date status](../docs/news-maintenance.md).

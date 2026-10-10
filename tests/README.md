@@ -24,8 +24,11 @@ Then run:
 
 ```sh
 python3 tests/browser_check.py
+python3 tests/latest_news_check.py
 ```
 
 This checks all six primary pages at 375, 390, 768 and 1440 pixels, menu actions, formula fit, compact statistics with icons, exact homepage section order, program/story counts, full-width hero descriptions, news action spacing, centered incomplete team rows, image containers and placement, keyboard team interactions, news dialogs, FAQ and legacy URLs. Ten screenshots are saved outside the checkout to `/tmp/mathtogether-screenshots`; override with `SCREENSHOT_DIR`.
 
 During redesign, HTML was also checked with html-validate's recommended rules (format-only exceptions and inline styles allowed), CSS parsed with css-tree, and WCAG A/AA checked with axe-core on all six primary pages at 390 and 1440 pixels. These tools are optional and do not change the website's static publishing workflow. Automated accessibility checks supplement, rather than replace, human review.
+
+Latest News is generated from `news.html`; see [news maintenance and unresolved dates](../docs/news-maintenance.md). The news-specific browser check tests exact-date sorting independently of source order, year-only source-order fallback, date validation, the three-item limit, newer additions without homepage changes, deep links and fetch failure.

@@ -31,7 +31,8 @@ with sync_playwright() as p:
     assert page.locator('.stat-icon').count()==4
     assert page.locator('main > section').evaluate_all('(es)=>es.map(e=>e.id || e.classList[0]).join(",")') == 'home-hero,home-proof,about,featured-event,our-programs,latest-stories'
     assert page.locator('.home-programs .cards > article').count()==3
-    assert page.locator('.home-story-card').count()==4
+    page.wait_for_function('document.querySelector("[data-latest-news]").getAttribute("aria-busy")==="false"')
+    assert page.locator('.home-story-card').count()==3
     assert not page.locator('.home-join, .two-col-callout').count()
     assert page.locator('.home-proof').evaluate('(e)=>e.getBoundingClientRect().height') < (150 if width <= 960 else 100)
     if width == 1440:

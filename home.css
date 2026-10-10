@@ -156,7 +156,7 @@ linear-gradient(145deg,#173f8f,#0f2c6b);background-size:28px 28px;color:#fff}
 .home-page main > .home-latest { padding-block: 36px; background: #fff; }
 .home-latest-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 20px; margin-bottom: 24px; }
 .home-latest-head .home-text-link { margin: 0; flex: none; font-size: 14px; }
-.home-story-grid { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 18px; }
+.home-story-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 18px; }
 .home-story-card { display: flex; flex-direction: column; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; text-decoration: none; color: var(--ink); background: #fff; transition: box-shadow .2s; }
 .home-story-card:hover { box-shadow: var(--shadow); }
 .home-story-card h3 { padding: 12px 12px 8px; font: 700 15px/1.35 var(--sans); }
@@ -184,3 +184,5 @@ linear-gradient(145deg,#173f8f,#0f2c6b);background-size:28px 28px;color:#fff}
 @media (max-width: 640px) {
  .home-proof-grid > div { padding-block: 8px; }
 }
+
+@media (max-width: 640px) { .home-story-grid { grid-template-columns: 1fr; } }
