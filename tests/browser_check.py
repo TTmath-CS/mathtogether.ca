@@ -35,6 +35,9 @@ with sync_playwright() as p:
     assert page.locator('.home-story-card').count()==3
     assert not page.locator('.home-join, .two-col-callout').count()
     assert page.locator('.home-proof').evaluate('(e)=>e.getBoundingClientRect().height') < (150 if width <= 960 else 100)
+    if width in [375,390]:
+     assert page.locator('#about').evaluate('''(s)=>{const r=q=>s.querySelector(q).getBoundingClientRect();return r('.about-head').bottom<=r('.who-photo').top && r('.who-photo').bottom<=r('.about-body').top;}''')
+     assert page.locator('#featured-event').evaluate('''(s)=>{const r=q=>s.querySelector(q).getBoundingClientRect();return r('.home-kicker').bottom<=r('h2').top && r('h2').bottom<=r('.home-feature-media').top && r('.home-feature-media').bottom<=r('.event-date').top;}''')
     if width == 1440:
      assert page.locator('.home-story-card').evaluate_all('(es)=>new Set(es.map(e=>Math.round(e.getBoundingClientRect().top))).size')==1
     assert page.locator('.formula-lockup').evaluate('(e)=>e.scrollWidth<=e.clientWidth'),(width,'formula clipping')
@@ -42,9 +45,12 @@ with sync_playwright() as p:
    if name in ['programs','news','team','get-involved','faq']:
     assert page.locator('.page-hero-lede').evaluate('(e)=>Math.abs(e.getBoundingClientRect().width-e.closest(".page-hero-in").getBoundingClientRect().width)<1')
    if name=='programs':
+    assert not page.locator('#programs .section-head > .section-lede, #livestream .section-lede').count()
     assert not page.locator('main > section .cta-in-simple').count()
     assert page.locator('#livestream .livestream-channel a').get_attribute('href')=='https://www.youtube.com/@MathTogetherCanada'
    if name=='get-involved':
+    assert page.locator('.involved-heart').is_visible()
+    assert not page.locator('.sponsor .rank').count()
     assert not page.locator('#involved .kicker, .hero-scribble, blockquote.pull').count()
     assert page.locator('#involved h2').evaluate('(e)=>parseFloat(getComputedStyle(e).fontSize)')>=34
    if name=='news':
@@ -56,6 +62,9 @@ with sync_playwright() as p:
     assert page.locator('.story summary').evaluate_all('(es)=>es.every(e=>parseFloat(getComputedStyle(e).marginTop)>=14)')
     page.locator('.story summary').first.click();assert page.locator('.story-dialog').is_visible();page.keyboard.press('Escape');assert not page.locator('.story-dialog').is_visible()
    if name=='team':
+    assert page.locator('.team-grid-five').count()==2
+    if width==1440:
+     assert page.locator('.team-grid-five').evaluate_all('''(gs)=>gs.every(g=>{const rs=Array.from(g.children).map(e=>e.getBoundingClientRect());return rs.length===5 && rs[0].top===rs[2].top && rs[3].top===rs[4].top && rs[3].top>rs[0].top && rs.every(r=>Math.abs(r.width-rs[0].width)<1);})''')
     assert page.locator('.team-grid').evaluate_all('(grids)=>grids.every(g=>{const cards=Array.from(g.children);const lastTop=cards[cards.length-1].getBoundingClientRect().top;const last=cards.filter(e=>Math.abs(e.getBoundingClientRect().top-lastTop)<1);const a=last[0].getBoundingClientRect(),z=last[last.length-1].getBoundingClientRect(),r=g.getBoundingClientRect();return Math.abs((a.left+z.right)/2-(r.left+r.right)/2)<2;})')
     m=page.locator('.member').first;m.focus();page.keyboard.press('Enter');assert m.get_attribute('aria-pressed')=='true';page.keyboard.press('Space');assert m.get_attribute('aria-pressed')=='false'
    if name=='faq':page.locator('.faq summary').first.click();assert page.locator('.faq').first.get_attribute('open') is not None

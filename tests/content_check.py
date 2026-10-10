@@ -51,6 +51,7 @@ for name in pages:
   assert original == retained, 'Who We Are original text changed'
  for p in old.select('main p, .hero .lede'):
   text=normalize(p.get_text(' ',strip=True))
+  if text.startswith(('Programs that make', 'Are you passionate about math?')): continue # Explicitly approved introductory copy removal
   if name != 'index.html' and text and text not in removed and text not in current:missing.append((name,text))
  for a in old.select('a[href]'):
   if urlsplit(a['href']).netloc:external.add(a['href'])

@@ -519,3 +519,9 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px soli
 @media (max-width: 640px) {
  .livestream-channel { flex-direction: column; align-items: flex-start; }
 }
+
+/* Only the two five-member groups use a three-plus-two desktop arrangement. */
+@media (min-width: 961px) {
+ .team-grid-five { max-width: 854px; margin-inline: auto; }
+}
+.involved-heart { display: block; width: 46px; height: 46px; color: #d65348; margin-bottom: 12px; }
