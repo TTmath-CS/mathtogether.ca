@@ -29,6 +29,8 @@ Every logo uses the same 112px-tall container and retains its original aspect
 ratio, including transparent margins. BLACK BELT WORLD's original white lettering
 has a dark CSS backing for contrast. This changes only the container background;
 the image remains unaltered and there is no sponsorship tier or ranking.
+Six supporters form two equal rows of three on desktop/tablet; at 600px or below,
+the responsive grid uses two columns.
 
 The new supporter destinations were supplied by the site owner. On 2026-11-02,
 the official [Jane Street website](https://www.janestreet.com/) and

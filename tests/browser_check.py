@@ -37,7 +37,11 @@ with sync_playwright() as p:
     assert page.locator('.stat-copy').first.inner_text().splitlines()==['850+', 'Students Reached']
     assert page.locator('[data-supporter-count]').inner_text().strip()=='6'
     assert page.locator('#featured-event a[href="news.html#news-charity-2026"]').count()==1
-    assert page.locator('#featured-event a[href="news.html#historical-recaps"]').inner_text().strip()=='Explore Past Charity Contest Recaps →'
+    recaps=page.locator('#featured-event .home-past-recaps')
+    assert recaps.locator('summary').inner_text().strip()=='Explore Past Charity Contest Recaps →'
+    recaps.locator('summary').focus();page.keyboard.press('Enter');assert recaps.get_attribute('open') is not None
+    assert recaps.locator('a').count()==2
+    page.keyboard.press('Space');assert recaps.get_attribute('open') is None
     assert page.locator('#faq details').count()==5
     summary=page.locator('#faq summary').first
     summary.focus();page.keyboard.press('Enter');assert page.locator('#faq details').first.get_attribute('open') is not None
@@ -91,13 +95,14 @@ with sync_playwright() as p:
     grid.locator('img').evaluate_all('(es)=>es.forEach(e=>e.loading="eager")')
     page.wait_for_function('Array.from(document.querySelectorAll(".supporter-grid img")).every(e=>e.complete&&e.naturalWidth>0)')
     assert grid.locator('img').evaluate_all('(es)=>es.every(e=>{const r=e.getBoundingClientRect();return e.complete&&e.naturalWidth>0&&getComputedStyle(e).objectFit==="contain"&&Math.abs((r.width/r.height)/(e.naturalWidth/e.naturalHeight)-1)<0.01;})')
-    if width in [375,390,1440]:
+    if width in [375,390,768,1440]:
      columns=grid.locator('a').evaluate_all('(es)=>{const top=es[0].getBoundingClientRect().top;return es.filter(e=>Math.abs(e.getBoundingClientRect().top-top)<1).length;}')
-     assert columns==(4 if width==1440 else 2),(width,'supporter columns',columns)
+     assert columns==(3 if width>600 else 2),(width,'supporter columns',columns)
     assert not page.locator('.sponsor .rank').count()
     assert not page.locator('#involved .kicker, .hero-scribble, blockquote.pull').count()
     assert page.locator('#involved h2').evaluate('(e)=>parseFloat(getComputedStyle(e).fontSize)')>=34
    if name=='news':
+    assert not page.locator('#historical-recaps').count()
     assert page.locator('#news-summer-camp-voices details a').count()==5
     assert page.locator('#news-interview-yingshan a').count()==2
     page.locator('#news-summer-camp-voices summary').click()
@@ -110,7 +115,7 @@ with sync_playwright() as p:
     assert page.locator('#news-interview-yingshan a').evaluate_all('(es)=>es.every(a=>{const r=a.getBoundingClientRect();return a.textContent.trim().length>10&&r.width>0&&r.left>=0&&r.right<=innerWidth;} )')
     for year in [2024,2025]:
      expected_title=page.locator(f'#news-charity-{year} h3').inner_text()
-     page.locator(f'#historical-recaps a[href="#news-charity-{year}"]').click()
+     page.goto(f'http://127.0.0.1:8000/news.html#news-charity-{year}')
      page.locator('.story-dialog').wait_for(state='visible')
      assert page.locator('.story-dialog h3').inner_text()==expected_title
      assert str(year) in page.locator('.story-dialog .date').inner_text()

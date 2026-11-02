@@ -42,7 +42,7 @@ assert len(home.select('.home-programs .cards article')) == 3
 assert not home.select('.home-story-card'), 'Homepage must derive news from news.html'
 assert home.select_one('[data-latest-news]')
 assert home.select_one('#featured-event a[href="news.html#news-charity-2026"]')
-assert text(home.select_one('#featured-event a[href="news.html#historical-recaps"]')) == 'Explore Past Charity Contest Recaps →'
+assert text(home.select_one('#featured-event .home-past-recaps summary')) == 'Explore Past Charity Contest Recaps →'
 assert [text(p) for p in original('index.html').select('.about-body p')] == [text(p) for p in home.select('.about-body p')]
 faq_old = original('faq.html').select('details.faq')
 faq_new = home.select('#faq details.faq')
@@ -80,8 +80,9 @@ for key, story in news_new.items():
     else:
         assert [a['href'] for a in story.select('a')] == [a['href'] for a in old.select('a')], key
 for year in [2024, 2025]:
-    assert pages['news.html'].select_one(f'#historical-recaps a[href="#news-charity-{year}"]')
-assert not pages['news.html'].select_one('#historical-recaps a[href*="2023"]'), 'No unconfirmed 2023 recap'
+    assert home.select_one(f'.home-past-recaps a[href="news.html#news-charity-{year}"]')
+assert not pages['news.html'].select_one('#historical-recaps'), 'News keeps its original story-list layout'
+assert not home.select_one('.home-past-recaps a[href*="2023"]'), 'No unconfirmed 2023 recap'
 
 team_old = {text(m.h3): m for m in original('team.html').select('.member')}
 team_new = {text(m.h3): m for m in pages['team.html'].select('.member')}

@@ -219,6 +219,11 @@ linear-gradient(145deg,#173f8f,#0f2c6b);background-size:28px 28px;color:#fff}
 .home-faq .section-head { justify-content: flex-start; text-align: left; margin-bottom: 28px; }
 .home-faq summary:focus-visible { outline: 3px solid var(--navy); outline-offset: 3px; border-radius: 10px; }
 .home-past-recaps { margin-top: 20px; }
+.home-past-recaps > summary { display: inline-block; margin: 0; cursor: pointer; list-style: none; }
+.home-past-recaps > summary::-webkit-details-marker { display: none; }
+.home-past-recaps > summary:focus-visible { outline: 3px solid var(--navy); outline-offset: 4px; border-radius: 3px; }
+.home-past-recaps ul { display: flex; flex-wrap: wrap; gap: 8px 20px; list-style: none; padding: 0; margin: 12px 0 0; }
+.home-past-recaps li a { display: inline-block; padding-block: 4px; font-weight: 600; }
 @media (max-width: 600px) {
   .home-faq { padding-top: 44px; padding-bottom: 48px; }
 }

@@ -535,10 +535,3 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px soli
  .team-grid-five { max-width: 854px; margin-inline: auto; }
 }
 .involved-heart { display: block; width: 46px; height: 46px; color: #d65348; margin-bottom: 12px; }
-/* Historical links reuse the original News articles and their stable hashes. */
-.recap-links { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; list-style: none; padding: 0; margin: 24px 0 0; }
-.recap-links a { display: flex; gap: 18px; align-items: center; height: 100%; padding: 20px; background: #fff; border: 1px solid var(--line); border-radius: 12px; text-decoration: none; color: var(--navy); }
-.recap-links a:hover { border-color: var(--navy); text-decoration: underline; }
-.recap-links a:focus-visible { outline: 3px solid var(--navy); outline-offset: 4px; }
-.recap-year { font: 700 28px/1 var(--serif); }
-@media (max-width: 600px) { .recap-links { grid-template-columns: 1fr; } }
