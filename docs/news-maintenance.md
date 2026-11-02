@@ -50,6 +50,6 @@ node --check app.js
 
 News、Programs 和首页 Latest News 的可见日期统一为英文缩写月份与年份，例如 `Sep 2026`。正文中的完整活动日期也通过 `<time datetime="原有完整日期">Sep 2026</time>` 显示；原有完整日期保留在机器可读属性中，排序用的 9 个 `data-date` 值完全不变。已知活动范围的结束日期保留为 `data-end-date`，不把活动日期伪装成发布日期。
 
-仅知道季节与年份的内容显示 `2025 · summer video series`；未确认月份的 Programs Waterloo 条目仍显示 `2025`。没有为这些条目补造月份。已知活动月份但发布日期未确认的三个营地条目保留原有 year-only 排序规则，同时以 `data-display-month="YYYY-MM"` 供首页显示已知月份。
+仅知道季节与年份的新闻显示 `2025 · summer video series`，不补造月份。Programs 的 2026 Cayley、Galois、Fryer、Pascal 已按用户确认显示 Aug 2026；2025 Waterloo 和 Fermat 讲解条目已移除。已知活动月份但发布日期未确认的三个营地条目保留原有 year-only 排序规则，同时以 `data-display-month="YYYY-MM"` 供首页显示已知月份。
 
 首页精选活动下方的历史回顾入口可展开已有的 2024 与 2025 慈善竞赛回顾链接，直接进入 News 对应原文章。News 不新增历史回顾突出区块，保留原新闻列表布局。没有新建或推测往年回顾文章、日期、统计数据或 URL。

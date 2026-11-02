@@ -227,3 +227,12 @@ linear-gradient(145deg,#173f8f,#0f2c6b);background-size:28px 28px;color:#fff}
 @media (max-width: 600px) {
   .home-faq { padding-top: 44px; padding-bottom: 48px; }
 }
+
+/* Homepage section labels share the scale of the section headings. */
+.home-page main .kicker, .home-page main .home-kicker {
+  font-size: clamp(32px, 3.6vw, 44px);
+  line-height: 1.15;
+  letter-spacing: .01em;
+  overflow-wrap: break-word;
+}
+.home-latest-head > div, .home-faq .section-head > div { min-width: 0; }

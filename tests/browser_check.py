@@ -42,6 +42,7 @@ with sync_playwright() as p:
     recaps.locator('summary').focus();page.keyboard.press('Enter');assert recaps.get_attribute('open') is not None
     assert recaps.locator('a').count()==2
     page.keyboard.press('Space');assert recaps.get_attribute('open') is None
+    assert page.locator('#about .kicker, #featured-event .home-kicker, #our-programs .home-kicker, #latest-stories .home-kicker, #faq .kicker').evaluate_all('(es)=>es.length===5&&es.every(e=>parseFloat(getComputedStyle(e).fontSize)>=parseFloat(getComputedStyle(e.closest("section").querySelector("h2")).fontSize))'), (width,'Red section labels must be at least as large as the section headings')
     assert page.locator('#faq details').count()==5
     summary=page.locator('#faq summary').first
     summary.focus();page.keyboard.press('Enter');assert page.locator('#faq details').first.get_attribute('open') is not None
@@ -66,17 +67,17 @@ with sync_playwright() as p:
    if name in ['programs','news','team','get-involved']:
     assert page.locator('.page-hero-lede').evaluate('(e)=>Math.abs(e.getBoundingClientRect().width-e.closest(".page-hero-in").getBoundingClientRect().width)<1')
    if name=='programs':
-    assert page.locator('.sessions > li').count()==9
+    assert page.locator('.sessions > li').count()==8
     assert page.locator('#session-comc-2025 a').count()==4
     assert page.locator('#session-amc10-2025 a').count()==6
     assert page.locator('#session-amc12-2025 a').count()==3
-    assert page.locator('#session-fermat-2025 a').count()==2
     assert page.locator('#session-cayley-2026 a').count()==3
+    assert page.locator('#session-cayley-2026 time, #session-galois-2026 time, #session-fryer-2026 time, #session-pascal-2026 time').evaluate_all('(es)=>es.length===4&&es.every(e=>e.dateTime==="2026-08"&&e.textContent==="Aug 2026")')
     for session_id in ['session-galois-2026','session-fryer-2026','session-pascal-2026']:
      assert page.locator('#'+session_id+' a').count()==1
     assert page.locator('.sessions a').evaluate_all('(es)=>es.every(a=>a.target==="_blank"&&a.rel.includes("noopener")&&a.rel.includes("noreferrer"))')
     assert page.locator('#session-charity-2026 .session-content').evaluate('''(e)=>{const ranges=Array.from(e.childNodes).filter(n=>n.nodeType===Node.TEXT_NODE&&n.textContent.trim()).flatMap(n=>{const r=document.createRange();r.selectNodeContents(n);return Array.from(r.getClientRects());}).filter(r=>r.width>0&&r.height>0);return ranges.length>0&&e.querySelector('a').getBoundingClientRect().top>=Math.max(...ranges.map(r=>r.bottom));}'''), (width,'Charity recording link must start below its description')
-    assert not page.locator('#session-kangaroo-2025, #session-questions-2025, #session-amc10a-2024, #session-waterloo-2025, .sessions .recording-pending').count()
+    assert not page.locator('#session-kangaroo-2025, #session-questions-2025, #session-amc10a-2024, #session-waterloo-2025, #session-fermat-2025, .sessions .recording-pending').count()
     assert page.locator('.sessions a').evaluate_all('(es)=>es.every(a=>!a.href.includes("@MathTogetherCanada"))')
     assert page.locator('.session-content a').evaluate_all('(es)=>es.every(e=>{const r=e.getBoundingClientRect();return r.width>0&&r.left>=0&&r.right<=innerWidth;} )')
 
