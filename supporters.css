@@ -56,3 +56,8 @@
   .supporter-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
   .supporter-logo { padding: 16px; }
 }
+
+/* Keep the requested Chinese name inside the equal-size logo container. */
+.supporter-logo.has-caption { flex-direction: column; gap: 4px; padding-block: 12px; }
+.supporter-logo.has-caption img { flex-shrink: 0; }
+.supporter-caption { flex: none; color: var(--navy-ink); font: 600 14px/20px var(--sans); white-space: nowrap; }

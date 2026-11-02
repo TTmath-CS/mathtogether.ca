@@ -46,3 +46,7 @@ website is valid; its URL remains unchanged. No third-party directory logo was s
 
 四家新增机构的原始 logo 已从用户提供的 ZIP 接入，现六家支持者均展示原始 logo。
 所有官网链接保持不变；志鸿牙医 HTTP 官网已获用户确认有效。无需再补充支持者 logo。
+
+Woodbine-Steeles Dental Clinic also displays the owner-requested Chinese caption
+“小月牙医” beneath the logo inside the same container. The caption is native web
+text; the supplied PNG and its original proportions remain unchanged.

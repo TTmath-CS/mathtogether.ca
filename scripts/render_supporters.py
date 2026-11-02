@@ -22,13 +22,17 @@ for supporter in supporters:
     name = escape(supporter['name'])
     url = escape(supporter['url'], quote=True)
     cards.append(f'      <a class="supporter-card" data-supporter-id="{supporter["id"]}" href="{url}" target="_blank" rel="noopener noreferrer" aria-label="Visit {name} (opens in a new tab)">')
-    cards.append('       <span class="supporter-logo">')
+    logo_class = 'supporter-logo has-caption' if supporter.get('caption') else 'supporter-logo'
+    cards.append(f'       <span class="{logo_class}">')
     if supporter.get('logo'):
         logo = escape(supporter['logo'], quote=True)
         assert (ROOT / supporter['logo']).is_file(), f'Missing logo: {logo}'
         cards.append(f'        <img src="{logo}" alt="{name} logo" loading="lazy"/>')
     else:
         cards.append(f'        <span class="supporter-wordmark">{name}</span>')
+    if supporter.get('caption'):
+        language = f' lang="{escape(supporter["caption_lang"], quote=True)}"' if supporter.get('caption_lang') else ''
+        cards.append(f'        <span class="supporter-caption"{language}>{escape(supporter["caption"])}</span>')
     cards.append('       </span>')
     cards.append('      </a>')
 cards.append('     </div>')
