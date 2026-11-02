@@ -19,8 +19,12 @@ with sync_playwright() as p:
     toggle=page.locator('.nav-toggle');assert toggle.is_visible()
     toggle.click();assert page.locator('#site-links').is_visible();assert toggle.get_attribute('aria-expanded')=='true'
     page.keyboard.press('Escape');assert toggle.get_attribute('aria-expanded')=='false'
-    toggle.click();page.locator('#site-links a').first.click();assert page.locator('.nav-toggle').get_attribute('aria-expanded')=='false'
-    page.goto('http://127.0.0.1:8000/'+name+'.html')
+    original_url=page.url
+    toggle.click()
+    with page.expect_popup() as opened: page.locator('#site-links a').first.click()
+    opened.value.close()
+    assert page.url==original_url
+    assert page.locator('.nav-toggle').get_attribute('aria-expanded')=='false'
    if name=='index':
     assert page.locator('.home-proof + #about').count()==1
     photo=page.locator('.who-photo img')
@@ -98,14 +102,17 @@ with sync_playwright() as p:
     if width in [375,390,768,1440]:
      columns=grid.locator('a').evaluate_all('(es)=>{const top=es[0].getBoundingClientRect().top;return es.filter(e=>Math.abs(e.getBoundingClientRect().top-top)<1).length;}')
      assert columns==(3 if width>600 else 2),(width,'supporter columns',columns)
-    assert not page.locator('.sponsor .rank').count()
+    assert not page.locator('.sponsor .rank, .supporter-stories').count()
+    assert not page.get_by_text('How our supporters help',exact=True).count()
     assert not page.locator('#involved .kicker, .hero-scribble, blockquote.pull').count()
     assert page.locator('#involved h2').evaluate('(e)=>parseFloat(getComputedStyle(e).fontSize)')>=34
    if name=='news':
     assert not page.locator('#historical-recaps').count()
     assert page.locator('#news-summer-camp-voices details a').count()==5
     assert page.locator('#news-interview-yingshan a').count()==2
-    page.locator('#news-summer-camp-voices summary').click()
+    assert page.locator('.story-read-link').count()==page.locator('.story > details').count()
+    assert page.locator('.story-read-link').evaluate_all('(es)=>es.every(a=>a.href.endsWith("news.html#"+a.closest(".story").id))')
+    page.goto('http://127.0.0.1:8000/news.html#news-summer-camp-voices')
     page.locator('.story-dialog').wait_for(state='visible')
     assert page.locator('.story-dialog a').count()==5
     assert page.locator('.story-dialog').evaluate('(e)=>e.scrollWidth<=e.clientWidth')
@@ -125,8 +132,8 @@ with sync_playwright() as p:
     assert all(abs(r-16/9)<.02 for r in ratios),ratios
     heights=page.locator('.news-image').evaluate_all('(es)=>es.map(e=>e.clientHeight)');assert max(heights)-min(heights)<=1
     assert page.locator('.story > p a').evaluate_all('(es)=>es.every(a=>{const t=a.previousSibling; if(!t || t.nodeType!==Node.TEXT_NODE)return false; const r=document.createRange();r.selectNodeContents(t);const rects=Array.from(r.getClientRects()).filter(r=>r.width>0&&r.height>0);return getComputedStyle(a).display==="block"&&a.getBoundingClientRect().top>=Math.max(...rects.map(r=>r.bottom))+12;})')
-    assert page.locator('.story summary').evaluate_all('(es)=>es.every(e=>parseFloat(getComputedStyle(e).marginTop)>=14)')
-    page.locator('.story summary').first.click();assert page.locator('.story-dialog').is_visible();page.keyboard.press('Escape');assert not page.locator('.story-dialog').is_visible()
+    assert page.locator('.story-read-link').evaluate_all('(es)=>es.every(e=>getComputedStyle(e).display!=="none"&&e.getBoundingClientRect().height>0)')
+    assert not page.locator('.story-dialog').is_visible()
    if name=='team':
     assert page.locator('.team-grid-five').count()==2
     if width==1440:
@@ -141,6 +148,8 @@ with sync_playwright() as p:
      assert card.locator('.back').evaluate('(e)=>e.scrollHeight<=e.clientHeight||e.scrollTop>0')
      page.keyboard.press('Space');assert card.get_attribute('aria-pressed')=='false'
     m=page.locator('.member').first;m.focus();page.keyboard.press('Enter');assert m.get_attribute('aria-pressed')=='true';page.keyboard.press('Space');assert m.get_attribute('aria-pressed')=='false'
+   assert page.locator('a[href]').evaluate_all('(es)=>es.every(a=>{return a.matches(".skip-link")||(a.target==="_blank"&&a.relList.contains("noopener")&&a.relList.contains("noreferrer"));})'), (name,width,'Navigational links must open a secure new tab')
+   assert page.locator('.skip-link').get_attribute('target')!='_blank'
    if width in [390,1440]:
     page.locator('img[loading]').evaluate_all('(es)=>es.forEach(e=>e.loading="eager")')
     page.evaluate('document.activeElement.blur()')
@@ -163,6 +172,11 @@ with sync_playwright() as p:
   page=b.new_page()
   for old,target in [('about.html','index.html#about'),('livestream.html','programs.html#livestream'),('support.html','get-involved.html#support'),('support.html#partners','get-involved.html#partners'),('index.html#news','news.html#news'),('faq.html','index.html#faq'),('faq.html#faq','index.html#faq'),('index.html#faq','index.html#faq')]:
    page.goto('http://127.0.0.1:8000/'+old);page.wait_for_url('**/'+target);assert page.locator('#'+target.split('#')[1]).count()==1
-  ctx=b.new_context(java_script_enabled=False);page=ctx.new_page();page.goto('http://127.0.0.1:8000/about.html');assert page.locator('main a').get_attribute('href')=='index.html#about';page.goto('http://127.0.0.1:8000/faq.html');page.wait_for_url('**/index.html#faq');assert page.locator('#faq details').count()==5;ctx.close()
+  ctx=b.new_context(java_script_enabled=False);page=ctx.new_page();page.goto('http://127.0.0.1:8000/about.html');assert page.locator('main a').get_attribute('href')=='index.html#about';page.goto('http://127.0.0.1:8000/faq.html');page.wait_for_url('**/index.html#faq');assert page.locator('#faq details').count()==5
+  page.goto('http://127.0.0.1:8000/news.html')
+  assert not page.locator('.story-read-link').count()
+  first_details=page.locator('.story details').first
+  first_details.locator('summary').click();assert first_details.get_attribute('open') is not None
+  ctx.close()
  b.close()
 print(json.dumps(results));print(f'PASS: {len(results)} page/viewport combinations for {names}; {len(names)*2} screenshots. Full-page checks also exercise FAQ and legacy URLs when index is selected.')

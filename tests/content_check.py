@@ -9,8 +9,10 @@ from bs4 import BeautifulSoup as S
 
 root = Path(__file__).resolve().parents[1]
 pages = {f.name: S(f.read_text(), 'html.parser') for f in root.glob('*.html')}
+# Fixed pre-round-3 content snapshot; origin/main now contains those updates.
+PRESERVATION_BASE = 'c0f98861a1978cc51f1f9540e3e53728d5742e93'
 def original(name):
-    return S(subprocess.check_output(['git', 'show', 'origin/main:' + name], cwd=root, text=True), 'html.parser')
+    return S(subprocess.check_output(['git', 'show', PRESERVATION_BASE + ':' + name], cwd=root, text=True), 'html.parser')
 def text(node):
     return re.sub(r'\s+', ' ', node.get_text(' ', strip=True)).strip()
 
@@ -21,6 +23,12 @@ for name, soup in pages.items():
     assert len(soup.select('h1')) == 1, (name, 'h1 count')
     assert not soup.select('header nav a[href="faq.html"], header nav a[href="index.html#faq"]'), (name, 'FAQ navigation')
     assert [text(a) for a in soup.select('header nav a')] == ['Home', 'Programs', 'News', 'Team', 'Get Involved', 'Join Us'], name
+    for anchor in soup.select('a[href]'):
+        if 'skip-link' in anchor.get('class', []):
+            assert anchor.get('target') != '_blank', (name, 'Skip link must stay in this page')
+        else:
+            assert anchor.get('target') == '_blank', (name, anchor['href'], 'Expected a new tab')
+            assert {'noopener', 'noreferrer'} <= set(anchor.get('rel', [])), (name, anchor['href'], 'Missing link security')
     for a in soup.select('[href], [src]'):
         ref = a.get('href', a.get('src'))
         u = urlsplit(ref)
@@ -179,7 +187,8 @@ for supporter in supporters:
     for image in supporter.select('img'):
         assert image.get('alt')
 assert 'Supporters are listed alphabetically, with no ranking implied.' in text(pages['get-involved.html'])
-assert not pages['get-involved.html'].select('.sponsor .rank, .sponsor .role')
+assert not pages['get-involved.html'].select('.sponsor .rank, .sponsor .role, .supporter-stories')
+assert 'How our supporters help' not in text(pages['get-involved.html'])
 data = json.loads((root / 'data/supporters.json').read_text())
 ordered = sorted(data, key=lambda s:s['sort_name'].casefold())
 assert [s['data-supporter-id'] for s in supporters] == [s['id'] for s in ordered]

@@ -535,3 +535,10 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px soli
  .team-grid-five { max-width: 854px; margin-inline: auto; }
 }
 .involved-heart { display: block; width: 46px; height: 46px; color: #d65348; margin-bottom: 12px; }
+
+/* Reading actions are links; source details provide the JavaScript-free fallback. */
+.story details[hidden] { display: none; }
+.story-read-link { display: block; margin: auto 18px 16px; padding: 14px 0 10px; color: var(--coral); font-size: 14.5px; font-weight: 700; text-decoration: none; }
+.story-read-link::after { content: " →"; }
+.story-read-link:hover { text-decoration: underline; }
+.story-read-link:focus-visible { outline: 3px solid var(--navy); outline-offset: 4px; border-radius: 3px; }
