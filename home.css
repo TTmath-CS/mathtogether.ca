@@ -126,11 +126,11 @@ linear-gradient(145deg,#173f8f,#0f2c6b);background-size:28px 28px;color:#fff}
 .home-page .site-foot .brand { color: #fff; }
 
 /* Compact outline icons share the statistic row without adding another tier. */
-.home-proof-grid > div { display: flex; align-items: center; justify-content: center; gap: 12px; min-width: 0; }
-.stat-icon { width: 24px; height: 24px; flex: none; color: var(--navy); }
-.stat-copy { min-width: 0; text-align: left; }
+.home-proof-grid > div { display: block; min-width: 0; }
+.stat-icon { position: absolute; right: calc(100% + 8px); top: 2px; width: 24px; height: 24px; color: var(--navy); }
+.stat-copy { min-width: 0; text-align: center; }
+.stat-value { position: relative; width: max-content; margin-inline: auto; }
 @media (max-width: 760px) {
- .home-proof-grid > div { gap: 8px; justify-content: flex-start; }
  .stat-icon { width: 20px; height: 20px; }
 }
 
@@ -187,9 +187,8 @@ linear-gradient(145deg,#173f8f,#0f2c6b);background-size:28px 28px;color:#fff}
 
 @media (max-width: 640px) { .home-story-grid { grid-template-columns: 1fr; } }
 
-/* Align the icon with the number, keeping its label on the next line. */
-.home-proof-grid > div { align-items: flex-start; }
-.stat-icon { margin-top: 3px; }
+/* Center each value over its label; the decorative icon sits beside the value. */
+.stat-icon { margin-top: 0; }
 .home-proof-grid > div:nth-child(1) .stat-icon { color: #c4473d; }
 .home-proof-grid > div:nth-child(2) .stat-icon { color: #285aa6; }
 .home-proof-grid > div:nth-child(3) .stat-icon { color: #ad7a12; }
@@ -214,4 +213,17 @@ linear-gradient(145deg,#173f8f,#0f2c6b);background-size:28px 28px;color:#fff}
  .home-feature-copy > .btn { margin-top: 0; }
  .who-we-are .about-head h2 { margin-bottom: 0; }
  .home-feature-copy > .btn { justify-self: start; }
+}
+/* Native details keep FAQ content readable and keyboard operable without JS. */
+.home-faq { padding-top: 64px; padding-bottom: 72px; scroll-margin-top: 100px; }
+.home-faq .section-head { justify-content: flex-start; text-align: left; margin-bottom: 28px; }
+.home-faq summary:focus-visible { outline: 3px solid var(--navy); outline-offset: 3px; border-radius: 10px; }
+.home-past-recaps { margin-top: 20px; }
+.home-past-recaps > summary { display: inline-block; margin: 0; cursor: pointer; list-style: none; }
+.home-past-recaps > summary::-webkit-details-marker { display: none; }
+.home-past-recaps > summary:focus-visible { outline: 3px solid var(--navy); outline-offset: 4px; border-radius: 3px; }
+.home-past-recaps ul { display: flex; flex-wrap: wrap; gap: 8px 20px; list-style: none; padding: 0; margin: 12px 0 0; }
+.home-past-recaps li a { display: inline-block; padding-block: 4px; font-weight: 600; }
+@media (max-width: 600px) {
+  .home-faq { padding-top: 44px; padding-bottom: 48px; }
 }

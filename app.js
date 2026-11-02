@@ -34,7 +34,7 @@ if (legacy) {
   }
   location.replace(target);
 } else if (location.pathname.endsWith('/index.html') || location.pathname.endsWith('/')) {
-  var oldSections = {programs: 'programs.html#programs', livestream: 'programs.html#livestream', news: 'news.html#news', team: 'team.html#team', involved: 'get-involved.html#involved', faq: 'faq.html#faq', supporters: 'get-involved.html#support'};
+  var oldSections = {programs: 'programs.html#programs', livestream: 'programs.html#livestream', news: 'news.html#news', team: 'team.html#team', involved: 'get-involved.html#involved', supporters: 'get-involved.html#support'};
   if (oldSections[location.hash.slice(1)]) location.replace(oldSections[location.hash.slice(1)]);
 }
 
@@ -119,10 +119,17 @@ if (latestGrid) {
       date.className = 'date';
       if (preciseDate) {
         date.dateTime = preciseDate;
-        date.textContent = new Intl.DateTimeFormat('en-CA', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' }).format(new Date(preciseDate + 'T00:00:00Z'));
+        date.textContent = new Intl.DateTimeFormat('en-CA', { year: 'numeric', month: 'short', timeZone: 'UTC' }).format(new Date(preciseDate + 'T00:00:00Z'));
       } else {
         date.dataset.year = newsYear(story);
-        date.textContent = newsYear(story);
+        // A known event month can be displayed without treating it as a
+        // publication date or changing the year-only sorting policy.
+        var displayMonth = story.getAttribute('data-display-month') || '';
+        if (/^\d{4}-(0[1-9]|1[0-2])$/.test(displayMonth) && displayMonth.slice(0, 4) === newsYear(story)) {
+          date.textContent = new Intl.DateTimeFormat('en-CA', { year: 'numeric', month: 'short', timeZone: 'UTC' }).format(new Date(displayMonth + '-01T00:00:00Z'));
+        } else {
+          date.textContent = newsYear(story);
+        }
       }
       card.appendChild(frame);
       card.appendChild(heading);
@@ -132,7 +139,16 @@ if (latestGrid) {
     latestStatus.hidden = true;
   }).catch(function () {
     latestStatus.textContent = 'Latest news is currently unavailable. Please visit the News page.';
-  }).finally(function () { latestGrid.setAttribute('aria-busy', 'false'); });
+  }).finally(function () {
+    latestGrid.setAttribute('aria-busy', 'false');
+    // These cards add height above the FAQ after the browser's initial hash
+    // scroll. Restore that destination once the asynchronous layout is ready.
+    if (location.hash === '#faq') {
+      requestAnimationFrame(function () {
+        document.getElementById('faq').scrollIntoView({ block: 'start' });
+      });
+    }
+  });
 }
 
 // News stories open in a reading overlay instead of stretching the card.
@@ -231,18 +247,26 @@ document.querySelectorAll('.member').forEach(function (m) {
   m.setAttribute('tabindex', '0');
   m.setAttribute('role', 'button');
   m.setAttribute('aria-pressed', 'false');
-  m.setAttribute('aria-label', title.textContent + ': show biography');
+  // Let the visible face provide its full accessible name (name, position,
+  // and hint); the hidden face is excluded below.
 
   function turn() {
     var flipped = m.classList.toggle('flipped');
     m.setAttribute('aria-pressed', String(flipped));
-    m.setAttribute('aria-label', title.textContent + (flipped ? ': show photograph' : ': show biography'));
     front.setAttribute('aria-hidden', String(flipped));
     back.setAttribute('aria-hidden', String(!flipped));
   }
   back.setAttribute('aria-hidden', 'true');
   m.addEventListener('click', turn);
   m.addEventListener('keydown', function (e) {
+    // Long biographies remain readable with a keyboard inside the fixed card.
+    if (m.classList.contains('flipped') && back.scrollHeight > back.clientHeight && ['ArrowDown', 'ArrowUp', 'PageDown', 'PageUp', 'Home', 'End'].indexOf(e.key) !== -1) {
+      e.preventDefault();
+      if (e.key === 'Home') back.scrollTop = 0;
+      else if (e.key === 'End') back.scrollTop = back.scrollHeight;
+      else back.scrollTop += (e.key === 'ArrowDown' ? 40 : e.key === 'ArrowUp' ? -40 : e.key === 'PageDown' ? back.clientHeight : -back.clientHeight);
+      return;
+    }
     if (e.key !== 'Enter' && e.key !== ' ') return;
     e.preventDefault();
     turn();
