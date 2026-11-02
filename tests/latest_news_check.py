@@ -17,6 +17,7 @@ with sync_playwright() as p:
     page.wait_for_function('document.querySelector("[data-latest-news]").getAttribute("aria-busy")==="false"')
     cards = page.locator('.home-story-card')
     assert cards.count() == 3
+    assert cards.evaluate_all('(es)=>es.every(a=>a.target==="_blank"&&a.relList.contains("noopener")&&a.relList.contains("noreferrer"))'), 'Generated latest-news links must preserve the current page'
     assert cards.locator('.date').evaluate_all(r'(es)=>es.every(e=>/^(?:[A-Z][a-z]{2} )?\d{4}$/.test(e.textContent.trim()))'), 'Homepage dates must omit days'
     assert cards.locator('h3').all_text_contents() == [s['title'] for s in expected[:3]]
     assert cards.locator('img').evaluate_all('(es)=>es.map(e=>e.getAttribute("src"))') == [s['image'] for s in expected[:3]]
@@ -26,6 +27,7 @@ with sync_playwright() as p:
     for item in expected[:3]:
         page.goto(base + 'news.html#' + item['id'])
         if page.locator('#' + item['id'] + ' details').count():
+            assert page.locator('#' + item['id'] + ' > .story-read-link').count()==1
             assert page.locator('.story-dialog').is_visible()
             assert page.locator('.story-dialog h3').inner_text().strip() == item['title']
         else:
@@ -47,6 +49,7 @@ with sync_playwright() as p:
     new_link = page.locator('.home-story-card').first.get_attribute('href')
     page.goto(base + new_link)
     assert page.locator('.story-dialog h3').inner_text() == 'New regression news'
+    assert page.locator('.story-read-link').count()==page.locator('.story > details').count()
     page.unroute('**/news.html')
     # Reverse dated slots only; year-only slots retain their source order.
     page.goto(base + 'news.html')

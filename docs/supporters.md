@@ -6,6 +6,8 @@ Run `python3 scripts/render_supporters.py` after editing the data. This updates
 the grid in `get-involved.html` and every `data-supporter-count` value on that page
 and the homepage. Run with `--check` to detect stale output without writing files.
 Only add confirmed, distinct organizations; use one entry per organization.
+The former “How our supporters help” block and its unused description data were
+removed at the owner's request; the generator outputs only the supporter grid.
 
 The `sort_name` value uses the official English name, case-insensitively, or
 pinyin when the organization has no confirmed English name. Display names retain

@@ -1,5 +1,17 @@
 var still = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+// Page and destination links keep the current page open. Skip links move focus
+// within the current document and retain their native accessibility behavior.
+function setNewTabLink(link) {
+  if (link.classList.contains('skip-link')) return;
+  link.target = '_blank';
+  link.rel = 'noopener noreferrer';
+  if ((link.getAttribute('aria-label') || '').toLowerCase().indexOf('opens in a new tab') === -1) {
+    link.setAttribute('aria-description', 'Opens in a new tab');
+  }
+}
+document.querySelectorAll('a[href]').forEach(setNewTabLink);
+
 // Mobile menu: the nav links collapse behind a toggle on narrow screens.
 var toggle = document.querySelector('.nav-toggle');
 var links = document.getElementById('site-links');
@@ -108,6 +120,7 @@ if (latestGrid) {
       var card = document.createElement('a');
       card.className = 'home-story-card';
       card.href = 'news.html#' + encodeURIComponent(story.id);
+      setNewTabLink(card);
       var frame = document.createElement('div');
       frame.className = 'news-image';
       var image = story.querySelector('.news-image img').cloneNode(true);
@@ -164,7 +177,7 @@ dlg.addEventListener('click', function (e) { if (e.target === dlg) dlg.close(); 
 function openStory(s) {
   var details = s.querySelector('details');
   if (!details) return;
-  if (typeof dlg.showModal !== 'function') { details.open = true; return; }
+  if (typeof dlg.showModal !== 'function') { details.hidden = false; details.open = true; return; }
   dlgBody.innerHTML = '';
   ['img', 'h3', '.date'].forEach(function (sel) {
     var el = s.querySelector(sel);
@@ -177,14 +190,21 @@ function openStory(s) {
   if (!dlg.open) dlg.showModal();
 }
 
+// Use native links for reading actions, including keyboard and middle-click.
+// The original details remain available when JavaScript is disabled.
 document.querySelectorAll('.story').forEach(function (s) {
   var details = s.querySelector('details');
   if (!details) return;
-  details.querySelector('summary').addEventListener('click', function (e) {
-    if (!dlg.showModal) return;
-    e.preventDefault();
-    openStory(s);
-  });
+  var link = s.querySelector('.story-read-link');
+  if (!link) {
+    link = document.createElement('a');
+    link.className = 'story-read-link';
+    link.href = 'news.html#' + encodeURIComponent(s.id);
+    link.textContent = details.querySelector('summary').textContent.trim();
+    details.before(link);
+  }
+  setNewTabLink(link);
+  details.hidden = true;
 });
 
 // Exact story bookmarks open their reading dialog; video-only stories remain visible
@@ -200,17 +220,6 @@ function openLinkedStory() {
 }
 window.addEventListener('hashchange', openLinkedStory);
 openLinkedStory();
-
-// The featured event's button opens its full story in the same overlay.
-document.querySelectorAll('[data-open-story]').forEach(function (a) {
-  var s = document.getElementById(a.getAttribute('data-open-story'));
-  if (!s || !s.querySelector('details')) return;
-  a.addEventListener('click', function (e) {
-    if (!dlg.showModal) return;
-    e.preventDefault();
-    openStory(s);
-  });
-});
 
 // Team cards flip like award medals: person on the front, bio on the back.
 document.querySelectorAll('.member').forEach(function (m) {

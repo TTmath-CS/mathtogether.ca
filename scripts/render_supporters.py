@@ -36,12 +36,6 @@ for supporter in supporters:
     cards.append('       </span>')
     cards.append('      </a>')
 cards.append('     </div>')
-cards.append('     <details class="supporter-stories">')
-cards.append('      <summary>How our supporters help</summary>')
-for supporter in supporters:
-    if supporter.get('description'):
-        cards.append(f'      <p><strong>{escape(supporter["name"])}</strong> — {escape(supporter["description"])}</p>')
-cards.append('     </details>')
 generated = '\n'.join(cards)
 stale = []
 for filename in ['get-involved.html', 'index.html']:
