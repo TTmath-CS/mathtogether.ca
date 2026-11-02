@@ -16,6 +16,6 @@ Open an image and use GitHub’s **Raw** or **Download** control to view it at f
 
 Home and News screenshots include automatic Latest News: three homepage cards selected from the News source. Exact dates are sorted descending; year-only items retain their source positions within the same year. Four items have no known year and remain outside homepage selection. See [date status](../docs/news-maintenance.md).
 
-Programs groups the supplied COMC and AMC10A/AMC10B recordings by question range and labels partial recordings accurately. Two nonexistent recordings were removed after owner confirmation. News marks the unresolved Summer Camp recording as pending. The complete old/new URL table is in [the video audit](../docs/video-link-audit.md). Date labels use abbreviated English month and year while full machine dates and Latest News sorting are preserved.
+Programs groups the supplied COMC, AMC10, Fermat and AMC12 recordings by question range. Six sessions remain after owner-approved removals. News includes five individually titled Summer Camp videos and both Yingshan interview parts. The complete old/new URL table is in [the video audit](../docs/video-link-audit.md). Date labels use abbreviated English month and year while full machine dates and Latest News sorting are preserved.
 
 The proposed social-sharing cover remains outside the repository pending approval. Metadata uses the existing approved leadership photograph; see [SEO review and testing limits](../docs/seo-review.md).

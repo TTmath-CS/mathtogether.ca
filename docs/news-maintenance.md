@@ -14,13 +14,13 @@
 
 首页链接采用 `news.html#<story-id>`。有完整文章的条目自动打开对应阅读弹窗；视频条目定位到对应卡片并保留原始视频链接。JavaScript 被禁用或读取失败时，首页保留 News 页面入口。请通过 HTTP 服务或 GitHub Pages 访问，不能通过 `file://` 读取新闻。
 
-## 当前日期待确认清单
+## 当前日期精度（用户确认保留）
 
 原网站没有区分发布日期与活动日期。当前 9 条精确日期直接取自原有新闻日期标签，未新增日期；原文未区分活动日期和发布日期，无法独立核实实际发布日。
 
 其余 8 条未设置 `data-date`。按用户确认的规则，四条夏令营/冬令营相关新闻使用原文明确年份（`data-year`、`data-date-status="year-only"`）参与首页选择；有已知活动月份的条目显示月份与年份，只有季节时仍仅显示年份。同年这些条目保留源文件从左到右位置。另四条连年份也未提供，标记 `needs-confirmation`，不进入首页选择。没有为日期范围、月份或季节补造日期。
 
-| 新闻 | 原有日期文字 | 待确认原因 |
+| 新闻 | 原有日期文字 | 当前精度依据 |
 |---|---|---|
 | Math Camp 2026 | August 17–21, 2026 · North York | 活动日期范围，未说明发布日期 |
 | Math Winter Camp | December 2025 · Oakville | 只有月份 |
@@ -31,7 +31,7 @@
 | From Math To Quant: Houting's Inspiring Journey | Video | 没有日期 |
 | From Math To AI: High Schoolers Interview Industry Experts | Video | 没有日期 |
 
-确认后，只需在对应 News 卡片设置真实的 `data-date` 并移除待确认标记。自动选择无需再改首页。
+用户已确认保留现有信息，不补造缺少的月份或发布日期。将来获得真实发布日期时，可在对应 News 卡片设置真实的 `data-date` 并移除待确认标记。自动选择无需再改首页。
 
 ## 测试
 

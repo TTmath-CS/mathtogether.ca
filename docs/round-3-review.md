@@ -9,17 +9,14 @@
 - 保留 TTmath、Citadel，增加四家指定支持机构；依官方英文名称排序，添加不含排名含义的说明。桌面四列、手机两列，112px 等高标志容器，图片保持原比例。六家机构及两处机构统计共用 `data/supporters.json`，通过 `scripts/render_supporters.py` 生成静态内容。
 - 按原文更新 Perry、Kaylyn、Xuanyi(Prince) 的姓名和两段简介，照片、职位及其余 13 名成员保持不变。较长简介支持键盘滚动。
 - 按最终澄清显示 **850+ Students Reached**；社区伙伴统计核实为 **6**。
-- 审核全部九条原有 Programs/Livestream 记录；按用户确认删除不存在的 Math Kangaroo 赛后讨论和 Interactive Q&A，现保留七条。补齐用户提供的四条 COMC 和六条 AMC10A/AMC10B 官方录像，逐条核对 YouTube 标题并标注题号范围；首条 COMC 已按用户确认显示 B3 & B4，十条录像的题号范围均已确认。Programs 不再有缺失录像链接。保留完整 [旧/新链接与核实表](video-link-audit.md)。
-- News、Programs、首页新闻日期显示统一为 `Mon YYYY`，保留原有完整日期和排序精度；缺少月份时不补造。
+- 审核全部九条原有 Programs/Livestream 记录；按用户确认移除 Math Kangaroo 赛后讨论、Interactive Q&A 和 2024 AMC10A，现保留六条。补齐 COMC、AMC10A/AMC10B、Fermat 两部分、AMC12A Q21–25 和 AMC12B Q1–20 的指定录像，所有链接按核实范围标注。News 夏令营系列新增五条视频并使用各视频原题，Yingshan 访谈新增两集并保留 Part 1 的五秒时间参数；May 2025 标签已获用户确认。完整 [旧/新链接与核实表](video-link-audit.md)记录所有原条目和新增视频。
+- News、Programs、首页新闻日期显示统一为 `Mon YYYY`，保留原有完整日期和排序精度；用户已确认缺少月份或发布日期的内容保留现有信息，不补造。
 - 所有九页补齐 production domain 的 SEO、分享元数据；添加 sitemap、robots、favicon 和有用的结构化数据。拟议分享封面尚未发布或用于元数据。
 
 ## 待补充或确认
 
-1. 请提供 **Summer Camp Students’ Voices** 的正确系列链接。COMC 与 AMC10 录像已按用户提供链接补齐；Math Kangaroo 赛后讨论与 Interactive Q&A 已按用户确认移除。
-2. 请确认 **2024 AMC10A** 原有 **Jun 2025** 标签的含义；已核实系列首集上传于 2025 年 5 月，页面保留原标签，未擅自修改活动日期。
-3. 请确认 **Yingshan Xiao** 访谈候选 `https://youtu.be/Bkamz7QCS7I`（Part 1）及原有 May 2025 标签。News 目前保留频道入口，并准确标注为访问频道。
-4. 请提供 **Jane Street、小月牙医、志鸿牙医 / Dr Hong Dental、BLACK BELT WORLD** 获准使用的原始标志文件。当前使用文字标志；保留既有 TTmath、Citadel 图片。Dr Hong Dental 指定的 HTTP 地址未能核实实时可达性，请确认是否仍有效。
-5. 请审核聊天中提供的 **1200 × 630 分享封面提案**及其生成的标志处理。文件不在提交内容中，不会上线。当前元数据继续使用已有获准的活动照片。
+1. 四家新增支持者的 logo 预览已在聊天中提供，但执行环境没有收到可读取的原图文件或附件引用，暂保留文字标志。请将原图作为文件/ZIP 附件上传，或放入此功能分支的 `assets/img/sponsors/`，即可接入。保留既有 TTmath、Citadel 图片。Dr Hong Dental 指定的 HTTP 官网已获用户确认有效，链接保持原样。
+2. **1200 × 630 分享封面提案**仍等待批准，包括其中生成的标志处理。文件不在提交内容中，不会上线。当前元数据继续使用已有获准的活动照片。
 
 ## 验证与限制
 

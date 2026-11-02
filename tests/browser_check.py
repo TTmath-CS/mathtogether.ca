@@ -59,10 +59,13 @@ with sync_playwright() as p:
    if name in ['programs','news','team','get-involved']:
     assert page.locator('.page-hero-lede').evaluate('(e)=>Math.abs(e.getBoundingClientRect().width-e.closest(".page-hero-in").getBoundingClientRect().width)<1')
    if name=='programs':
-    assert page.locator('.sessions > li').count()==7
+    assert page.locator('.sessions > li').count()==6
     assert page.locator('#session-comc-2025 a').count()==4
     assert page.locator('#session-amc10-2025 a').count()==6
-    assert not page.locator('#session-kangaroo-2025, #session-questions-2025, .sessions .recording-pending').count()
+    assert page.locator('#session-amc12-2025 a').count()==3
+    assert page.locator('#session-fermat-2025 a').count()==2
+    assert page.locator('#session-waterloo-2025 a').count()==2
+    assert not page.locator('#session-kangaroo-2025, #session-questions-2025, #session-amc10a-2024, .sessions .recording-pending').count()
     assert page.locator('.sessions a').evaluate_all('(es)=>es.every(a=>!a.href.includes("@MathTogetherCanada"))')
     assert page.locator('.session-content a').evaluate_all('(es)=>es.every(e=>{const r=e.getBoundingClientRect();return r.width>0&&r.left>=0&&r.right<=innerWidth;} )')
 
@@ -79,7 +82,7 @@ with sync_playwright() as p:
     grid.scroll_into_view_if_needed()
     grid.locator('img').evaluate_all('(es)=>es.forEach(e=>e.loading="eager")')
     page.wait_for_function('Array.from(document.querySelectorAll(".supporter-grid img")).every(e=>e.complete&&e.naturalWidth>0)')
-    assert grid.locator('img').evaluate_all('(es)=>es.every(e=>e.complete&&e.naturalWidth>0&&getComputedStyle(e).objectFit==="contain")')
+    assert grid.locator('img').evaluate_all('(es)=>es.every(e=>e.complete&&e.naturalWidth>0&&getComputedStyle(e).objectFit==="contain"&&Math.abs(e.clientWidth/e.clientHeight-e.naturalWidth/e.naturalHeight)<0.03))')
     if width in [375,390,1440]:
      columns=grid.locator('a').evaluate_all('(es)=>{const top=es[0].getBoundingClientRect().top;return es.filter(e=>Math.abs(e.getBoundingClientRect().top-top)<1).length;}')
      assert columns==(4 if width==1440 else 2),(width,'supporter columns',columns)
@@ -87,6 +90,16 @@ with sync_playwright() as p:
     assert not page.locator('#involved .kicker, .hero-scribble, blockquote.pull').count()
     assert page.locator('#involved h2').evaluate('(e)=>parseFloat(getComputedStyle(e).fontSize)')>=34
    if name=='news':
+    assert page.locator('#news-summer-camp-voices details a').count()==5
+    assert page.locator('#news-interview-yingshan a').count()==2
+    page.locator('#news-summer-camp-voices summary').click()
+    page.locator('.story-dialog').wait_for(state='visible')
+    assert page.locator('.story-dialog a').count()==5
+    assert page.locator('.story-dialog').evaluate('(e)=>e.scrollWidth<=e.clientWidth')
+    assert page.locator('.story-dialog a').evaluate_all('(es)=>es.every(a=>a.textContent.trim().length>10)')
+    page.keyboard.press('Escape')
+    page.locator('#news-interview-yingshan').scroll_into_view_if_needed()
+    assert page.locator('#news-interview-yingshan a').evaluate_all('(es)=>es.every(a=>{const r=a.getBoundingClientRect();return a.textContent.trim().length>10&&r.width>0&&r.left>=0&&r.right<=innerWidth;} )')
     for year in [2024,2025]:
      expected_title=page.locator(f'#news-charity-{year} h3').inner_text()
      page.locator(f'#historical-recaps a[href="#news-charity-{year}"]').click()

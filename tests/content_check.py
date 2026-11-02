@@ -69,8 +69,14 @@ for key, story in news_new.items():
         assert story.get('data-date-status') == 'needs-confirmation'
     if key == 'news-summer-camp-voices':
         assert not story.select('a[href="https://youtu.be/U1bpogh_TXU"]'), 'Wrong quant interview video must not remain on summer camps'
-        assert story.select_one('.recording-pending')
+        assert not story.select_one('.recording-pending')
+        expected = ['JRGoP28tTjE', 'r3zC6nGIJXQ', '7tPu9H0FQ88', 'NdSrw3FwQCU', '9Lm0e-yhQgs']
+        assert [a['href'] for a in story.select('a')] == ['https://www.youtube.com/watch?v='+video for video in expected]
+        assert all(len(text(a)) > 10 for a in story.select('a'))
         assert 'https://youtu.be/U1bpogh_TXU' in (root/'docs/video-link-audit.md').read_text()
+    elif key == 'news-interview-yingshan':
+        assert [a['href'] for a in story.select('a')] == ['https://www.youtube.com/watch?v=Bkamz7QCS7I&t=5s', 'https://www.youtube.com/watch?v=gnG3twj-XNw']
+        assert all(len(text(a)) > 10 for a in story.select('a'))
     else:
         assert [a['href'] for a in story.select('a')] == [a['href'] for a in old.select('a')], key
 for year in [2024, 2025]:
@@ -106,23 +112,24 @@ for name, expected in expected_bios.items():
 
 sessions_old = original('programs.html').select('.sessions li')
 sessions_new = pages['programs.html'].select('.sessions > li')
-assert len(sessions_old) == 9 and len(sessions_new) == 7
-# Only the two sessions confirmed nonexistent by the user may be removed.
+assert len(sessions_old) == 9 and len(sessions_new) == 6
+# Only the three sessions explicitly removed by the user may be removed.
 removed_descriptions = [
     'Community discussion after the Math Kangaroo Contest, with CMO/CJMO qualifiers',
     'Interactive Q&A session: your burning questions, answered by math experts',
+    'Complete breakdown of the 2024 AMC10A Contest',
 ]
 retained_descriptions = []
 for old in sessions_old:
     description = ''.join(str(t) for t in old.find_all(string=True, recursive=False)).strip().rstrip('—').strip()
     if description not in removed_descriptions:
         retained_descriptions.append(description)
-assert len(retained_descriptions) == 7
+assert len(retained_descriptions) == 6
 for description, session in zip(retained_descriptions, sessions_new):
     assert description in text(session), description
 for removed in removed_descriptions:
     assert removed not in text(pages['programs.html'])
-assert not pages['programs.html'].select('#session-kangaroo-2025, #session-questions-2025, .sessions .recording-pending')
+assert not pages['programs.html'].select('#session-kangaroo-2025, #session-questions-2025, #session-amc10a-2024, .sessions .recording-pending')
 for session in sessions_new:
     assert session.select_one('time[datetime]')
     assert session.select('a'), session['id']
@@ -134,6 +141,11 @@ expected_comc = ['9343O-spIAI', '24KYT2FrM_Q', 'WeVz3kbnq4U', 'kObBbe_cfIE']
 expected_amc10 = ['WFVfabjtnb4', 'GCJ6smMF7io', '2AHhJ-EjRn4', 'quRP3FsrB6k', 'TiIWCAKGZQg', 'VqWHUufAXvs']
 assert [a['href'] for a in pages['programs.html'].select('#session-comc-2025 a')] == ['https://www.youtube.com/watch?v='+video for video in expected_comc]
 assert [a['href'] for a in pages['programs.html'].select('#session-amc10-2025 a')] == ['https://www.youtube.com/watch?v='+video for video in expected_amc10]
+expected_fermat = ['a3Yr2WHDnII', 'It0yMNFz8u8']
+for session_id in ['session-fermat-2025', 'session-waterloo-2025']:
+    assert [a['href'] for a in pages['programs.html'].select('#'+session_id+' a')] == ['https://www.youtube.com/watch?v='+video for video in expected_fermat]
+expected_amc12 = ['nXs682bcsNQ', 'MeyLmhwl-FA', 'PeSHSVGMpNI']
+assert [a['href'] for a in pages['programs.html'].select('#session-amc12-2025 a')] == ['https://www.youtube.com/watch?v='+video for video in expected_amc12]
 assert len(pages['programs.html'].select('#session-comc-2025 a')) == 4
 assert len(pages['programs.html'].select('#session-amc10-2025 a')) == 6
 assert pages['programs.html'].select_one('#livestream .livestream-channel a')['href'] == 'https://www.youtube.com/@MathTogetherCanada'
@@ -155,4 +167,4 @@ ordered = sorted(data, key=lambda s:s['sort_name'].casefold())
 assert [s['data-supporter-id'] for s in supporters] == [s['id'] for s in ordered]
 assert len({s['id'] for s in data}) == 6
 subprocess.run(['python3', 'scripts/render_supporters.py', '--check'], cwd=root, check=True)
-print('PASS: local files/anchors, navigation, FAQ preservation, profile text/photos/positions, 17 News records and date precision, seven confirmed sessions, six supporters and homepage statistics.')
+print('PASS: local files/anchors, navigation, FAQ preservation, profile text/photos/positions, 17 News records and date precision, six confirmed sessions, six supporters and homepage statistics.')

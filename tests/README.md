@@ -14,7 +14,7 @@ node --check app.js
 node --check support.js
 ```
 
-`content_check.py` compares against `origin/main`; fetch that reference before running it. It checks local files and anchors, primary navigation, exact FAQ questions/answers, exact replacement biographies, the other 13 unchanged profiles, preserved photos/positions, all 17 News records and precise date metadata, seven confirmed session descriptions (two nonexistent sessions removed with user authorization), alphabetized supporters and homepage statistics. Approved biography, supporter, date presentation and video link changes are checked separately from preservation.
+`content_check.py` compares against `origin/main`; fetch that reference before running it. It checks local files and anchors, primary navigation, exact FAQ questions/answers, exact replacement biographies, the other 13 unchanged profiles, preserved photos/positions, all 17 News records and precise date metadata, six retained session descriptions (three sessions removed with user authorization), alphabetized supporters and homepage statistics. Approved biography, supporter, date presentation and video link changes are checked separately from preservation.
 
 `seo_check.py` checks unique titles/descriptions, canonical URLs, Open Graph and Twitter metadata, existing social image files/dimensions, JSON-LD syntax, legacy `noindex` metadata, sitemap URLs and robots.txt. It does not claim a production preview crawl occurred.
 

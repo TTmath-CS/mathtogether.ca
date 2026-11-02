@@ -219,6 +219,11 @@ h3.sub{font-size:26px;margin-bottom:16px}
 .story details p{font-size:15px;color:var(--muted);margin-top:10px}
 .story>p a{font-weight:700;color:var(--coral);text-decoration:none}
 .story>p a:hover{text-decoration:underline}
+.story-video-links{padding:0 18px 18px;margin-top:auto}
+.story-video-links a{display:block;margin-top:12px;font-size:15px;font-weight:700;color:var(--coral);text-decoration:none}
+.story-video-links a:hover{text-decoration:underline}
+.story-video-links a:focus-visible{outline:3px solid var(--navy);outline-offset:3px}
+.story-video-link a{overflow-wrap:anywhere}
 
 /* story reading overlay (built by app.js) */
 .story-dialog{width:min(700px,92vw);max-height:86vh;margin:auto;padding:0;overflow:hidden;border:0;
