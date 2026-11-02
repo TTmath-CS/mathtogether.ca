@@ -8,8 +8,8 @@
 - 保留 2026 年精选活动回顾按钮。首页历史回顾入口可展开 2024、2025 年原文章链接；News 移除新增的历史回顾突出区块，维持原有新闻列表布局与全部 17 条文章内容。
 - 保留 TTmath、Citadel，增加四家指定支持机构；依官方英文名称排序，添加不含排名含义的说明。四个新增 logo 已从用户提供的 `logos.zip` 原样接入，未裁剪、重绘或重新编码。桌面和平板每行三家、共两行，手机每行两家；112px 等高容器与原图比例保持不变。BLACK BELT WORLD 的白色字样使用深色底以确保清晰。六家机构及两处机构统计共用 `data/supporters.json`，通过 `scripts/render_supporters.py` 生成静态内容。
 - 按原文更新 Perry、Kaylyn、Xuanyi(Prince) 的姓名和两段简介，照片、职位及其余 13 名成员保持不变。较长简介支持键盘滚动。
-- 按最终澄清显示 **850+ Students Reached**；社区伙伴统计核实为 **6**。首页每个数字居中置于说明文字上方，保留装饰图标；FAQ 使用与其他首页区块相同的左边缘和左对齐标题。 首页 About、Featured Event、Our Programs、Latest News、FAQ 五处红字标签均不小于对应主标题，并保留响应式换行。
-- 审核全部九条原有 Programs/Livestream 记录；按用户确认移除五条旧记录，包括 2025 Fermat。当前八条记录、20 个独立视频链接，涵盖 2026 慈善竞赛、Cayley、Galois、Fryer、Pascal 和 2025 COMC、AMC10、AMC12。原先没有月份的四条 2026 记录统一为用户确认的 Aug 2026，机器日期为 2026-08。慈善竞赛 Watch 链接另起一行。News 原有 17 条新闻内容和布局保留，已确认的视频链接继续有效。完整 [旧/新链接与核实表](video-link-audit.md)记录变更。
+- 按最终澄清显示 **850+ Students Reached**；社区伙伴统计核实为 **6**。首页每个数字居中置于说明文字上方，保留装饰图标；FAQ 使用与其他首页区块相同的左边缘和左对齐标题。 首页 About、Featured Event、Our Programs、Latest News、FAQ 五处红字标签恢复原来的小字号。
+- 审核全部九条原有 Programs/Livestream 记录；按用户确认移除五条旧记录，包括 2025 Fermat。当前八条记录、20 个独立视频链接，涵盖 2026 慈善竞赛、Cayley、Galois、Fryer、Pascal 和 2025 COMC、AMC10、AMC12。原先没有月份的四条 2026 记录统一为用户确认的 Aug 2026，机器日期为 2026-08。视频讲解标题统一去除末尾长横线，2025 COMC、AMC10、AMC12 使用与 2026 年一致的年份加竞赛名称格式；Watch 链接继续另起一行。News 原有 17 条新闻内容和布局保留，已确认的视频链接继续有效。完整 [旧/新链接与核实表](video-link-audit.md)记录变更。
 - News、Programs、首页新闻日期显示统一为 `Mon YYYY`，保留原有完整日期和排序精度；用户已确认缺少月份或发布日期的内容保留现有信息，不补造。
 - 视频讲解链接（含 News 阅读弹窗）与首页 Watch on YouTube 在新标签页打开，保留当前网站页面；链接包含新标签页的无障碍提示及外链安全属性。
 - 所有九页补齐 production domain 的 SEO、分享元数据；添加 sitemap、robots、favicon 和有用的结构化数据。拟议分享封面尚未发布或用于元数据。

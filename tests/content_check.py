@@ -129,7 +129,7 @@ for old in sessions_old:
         retained_descriptions.append(description)
 assert len(retained_descriptions) == 4
 for description in retained_descriptions:
-    assert any(description in text(session) for session in sessions_new), description
+    assert any(description.removeprefix('Complete breakdown of the ') in text(session) for session in sessions_new), description
 for removed in removed_descriptions:
     assert removed not in text(pages['programs.html'])
 assert not pages['programs.html'].select('#session-kangaroo-2025, #session-questions-2025, #session-amc10a-2024, #session-waterloo-2025, #session-fermat-2025, .sessions .recording-pending')

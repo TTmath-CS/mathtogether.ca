@@ -42,7 +42,6 @@ with sync_playwright() as p:
     recaps.locator('summary').focus();page.keyboard.press('Enter');assert recaps.get_attribute('open') is not None
     assert recaps.locator('a').count()==2
     page.keyboard.press('Space');assert recaps.get_attribute('open') is None
-    assert page.locator('#about .kicker, #featured-event .home-kicker, #our-programs .home-kicker, #latest-stories .home-kicker, #faq .kicker').evaluate_all('(es)=>es.length===5&&es.every(e=>parseFloat(getComputedStyle(e).fontSize)>=parseFloat(getComputedStyle(e.closest("section").querySelector("h2")).fontSize))'), (width,'Red section labels must be at least as large as the section headings')
     assert page.locator('#faq details').count()==5
     summary=page.locator('#faq summary').first
     summary.focus();page.keyboard.press('Enter');assert page.locator('#faq details').first.get_attribute('open') is not None

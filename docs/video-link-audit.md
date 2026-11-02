@@ -10,6 +10,8 @@ YouTube watch-page titles and indexed YouTube descriptions were checked. The off
 
 ## Every Programs / Livestream entry
 
+Current visible session titles omit trailing em dashes. The 2025 COMC, AMC10 and AMC12 titles use the same concise year-first format as the 2026 titles. Original labels below remain for the historical old/new URL audit.
+
 | Entry (original session label) | Old URL | Proposed / implemented URL | Verification status and action |
 |---|---|---|---|
 | 4th Annual We Pi(π)oneer Charity Math Contest — Sep 2026 | https://youtu.be/YcqCzscEtQo | https://youtu.be/YcqCzscEtQo | Retained existing direct link. YouTube title is **We Pioneer 4th Charity Math Contest Coming Soon！** It is an announcement, so the action now says **Watch event announcement**. The action occupies its own line beneath the description, using the shared video-links layout. Exact upload date/playback not independently verified. |
