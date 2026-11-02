@@ -195,6 +195,9 @@ h3.sub{font-size:26px;margin-bottom:16px}
 .sessions li > span:first-child{flex:none;min-width:150px;font:700 12px/1.6 var(--sans);letter-spacing:.06em;
   text-transform:uppercase;color:var(--coral)}
 .sessions .session-content{min-width:0}
+.sessions .session-video-links{margin-top:8px}
+.sessions .session-video-links p{margin:4px 0 0}
+.sessions .session-video-links a{display:inline-block;margin:0 14px 4px 0;white-space:nowrap}
 .sessions .recording-pending{color:var(--muted);font-size:14px}
 .sessions a{font-weight:700;color:var(--navy)}
 

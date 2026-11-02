@@ -2,6 +2,8 @@ from playwright.sync_api import sync_playwright
 from pathlib import Path
 import json, os, shutil
 out=Path(os.environ.get('SCREENSHOT_DIR', '/tmp/mathtogether-screenshots'));out.mkdir(parents=True, exist_ok=True)
+names=os.environ.get('TEST_PAGES', 'index,programs,news,team,get-involved').split(',')
+assert names and set(names)<=set(['index','programs','news','team','get-involved'])
 results=[]
 with sync_playwright() as p:
  executable = os.environ.get('CHROMIUM_PATH') or shutil.which('chromium')
@@ -9,7 +11,7 @@ with sync_playwright() as p:
  for width in [375,390,768,1440]:
   ctx=b.new_context(viewport={'width':width,'height':900},reduced_motion='reduce')
   page=ctx.new_page();errors=[];page.on('pageerror',lambda e:errors.append(str(e)))
-  for name in ['index','programs','news','team','get-involved']:
+  for name in names:
    page.goto('http://127.0.0.1:8000/'+name+'.html');page.wait_for_timeout(250)
    assert page.evaluate('document.documentElement.scrollWidth <= innerWidth'),(name,width,'overflow')
    assert [t.strip() for t in page.locator('header nav a').all_text_contents()]==['Home','Programs','News','Team','Get Involved','Join Us']
@@ -57,6 +59,13 @@ with sync_playwright() as p:
    if name in ['programs','news','team','get-involved']:
     assert page.locator('.page-hero-lede').evaluate('(e)=>Math.abs(e.getBoundingClientRect().width-e.closest(".page-hero-in").getBoundingClientRect().width)<1')
    if name=='programs':
+    assert page.locator('.sessions > li').count()==7
+    assert page.locator('#session-comc-2025 a').count()==4
+    assert page.locator('#session-amc10-2025 a').count()==6
+    assert not page.locator('#session-kangaroo-2025, #session-questions-2025, .sessions .recording-pending').count()
+    assert page.locator('.sessions a').evaluate_all('(es)=>es.every(a=>!a.href.includes("@MathTogetherCanada"))')
+    assert page.locator('.session-content a').evaluate_all('(es)=>es.every(e=>{const r=e.getBoundingClientRect();return r.width>0&&r.left>=0&&r.right<=innerWidth;} )')
+
     assert not page.locator('#programs .section-head > .section-lede, #livestream .section-lede').count()
     assert not page.locator('main > section .cta-in-simple').count()
     assert page.locator('#livestream .livestream-channel a').get_attribute('href')=='https://www.youtube.com/@MathTogetherCanada'
@@ -116,17 +125,18 @@ with sync_playwright() as p:
    results.append((name,width,'passed'))
   assert not errors,errors
   ctx.close()
- # FAQ redirects land at the visible section after asynchronous Latest News renders.
- ctx=b.new_context(viewport={'width':390,'height':900},reduced_motion='reduce');page=ctx.new_page()
- for url in ['faq.html','faq.html#faq','index.html#faq']:
-  page.goto('http://127.0.0.1:8000/'+url);page.wait_for_url('**/index.html#faq')
-  page.wait_for_function('document.querySelector("[data-latest-news]").getAttribute("aria-busy")==="false"')
-  page.wait_for_function('(()=>{const r=document.querySelector("#faq").getBoundingClientRect();return r.top<innerHeight&&r.bottom>0;})()')
- ctx.close()
- # Compatibility including deep bookmarks and JS-free fallback.
- page=b.new_page()
- for old,target in [('about.html','index.html#about'),('livestream.html','programs.html#livestream'),('support.html','get-involved.html#support'),('support.html#partners','get-involved.html#partners'),('index.html#news','news.html#news'),('faq.html','index.html#faq'),('faq.html#faq','index.html#faq'),('index.html#faq','index.html#faq')]:
-  page.goto('http://127.0.0.1:8000/'+old);page.wait_for_url('**/'+target);assert page.locator('#'+target.split('#')[1]).count()==1
- ctx=b.new_context(java_script_enabled=False);page=ctx.new_page();page.goto('http://127.0.0.1:8000/about.html');assert page.locator('main a').get_attribute('href')=='index.html#about';page.goto('http://127.0.0.1:8000/faq.html');page.wait_for_url('**/index.html#faq');assert page.locator('#faq details').count()==5;ctx.close()
+ if 'index' in names:
+  # FAQ redirects land at the visible section after asynchronous Latest News renders.
+  ctx=b.new_context(viewport={'width':390,'height':900},reduced_motion='reduce');page=ctx.new_page()
+  for url in ['faq.html','faq.html#faq','index.html#faq']:
+   page.goto('http://127.0.0.1:8000/'+url);page.wait_for_url('**/index.html#faq')
+   page.wait_for_function('document.querySelector("[data-latest-news]").getAttribute("aria-busy")==="false"')
+   page.wait_for_function('(()=>{const r=document.querySelector("#faq").getBoundingClientRect();return r.top<innerHeight&&r.bottom>0;})()')
+  ctx.close()
+  # Compatibility including deep bookmarks and JS-free fallback.
+  page=b.new_page()
+  for old,target in [('about.html','index.html#about'),('livestream.html','programs.html#livestream'),('support.html','get-involved.html#support'),('support.html#partners','get-involved.html#partners'),('index.html#news','news.html#news'),('faq.html','index.html#faq'),('faq.html#faq','index.html#faq'),('index.html#faq','index.html#faq')]:
+   page.goto('http://127.0.0.1:8000/'+old);page.wait_for_url('**/'+target);assert page.locator('#'+target.split('#')[1]).count()==1
+  ctx=b.new_context(java_script_enabled=False);page=ctx.new_page();page.goto('http://127.0.0.1:8000/about.html');assert page.locator('main a').get_attribute('href')=='index.html#about';page.goto('http://127.0.0.1:8000/faq.html');page.wait_for_url('**/index.html#faq');assert page.locator('#faq details').count()==5;ctx.close()
  b.close()
-print(json.dumps(results));print('PASS: 20 page/viewport combinations, menu, formula, image ratios, news dialog, team keyboard, FAQ and legacy URLs; 10 screenshots')
+print(json.dumps(results));print(f'PASS: {len(results)} page/viewport combinations for {names}; {len(names)*2} screenshots. Full-page checks also exercise FAQ and legacy URLs when index is selected.')

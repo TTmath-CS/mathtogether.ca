@@ -105,18 +105,37 @@ for name, expected in expected_bios.items():
     assert [text(p) for p in team_new[name].select('details p')] == expected, name
 
 sessions_old = original('programs.html').select('.sessions li')
-sessions_new = pages['programs.html'].select('.sessions li')
-assert len(sessions_old) == len(sessions_new) == 9
-# Session descriptions stay intact while date presentation, watch URLs/status may change.
-for old, new in zip(sessions_old, sessions_new):
+sessions_new = pages['programs.html'].select('.sessions > li')
+assert len(sessions_old) == 9 and len(sessions_new) == 7
+# Only the two sessions confirmed nonexistent by the user may be removed.
+removed_descriptions = [
+    'Community discussion after the Math Kangaroo Contest, with CMO/CJMO qualifiers',
+    'Interactive Q&A session: your burning questions, answered by math experts',
+]
+retained_descriptions = []
+for old in sessions_old:
     description = ''.join(str(t) for t in old.find_all(string=True, recursive=False)).strip().rstrip('—').strip()
-    assert description in text(new), description
+    if description not in removed_descriptions:
+        retained_descriptions.append(description)
+assert len(retained_descriptions) == 7
+for description, session in zip(retained_descriptions, sessions_new):
+    assert description in text(session), description
+for removed in removed_descriptions:
+    assert removed not in text(pages['programs.html'])
+assert not pages['programs.html'].select('#session-kangaroo-2025, #session-questions-2025, .sessions .recording-pending')
 for session in sessions_new:
     assert session.select_one('time[datetime]')
-    if session.get('data-video-status') == 'needs-confirmation':
-        assert session.select_one('.recording-pending') and not session.select('a'), session['id']
+    assert session.select('a'), session['id']
     for action in session.select('a'):
         assert '@MathTogetherCanada' not in action['href'], session['id']
+        u = urlsplit(action['href'])
+        assert (u.netloc == 'youtu.be' and u.path.strip('/')) or (u.netloc in {'youtube.com', 'www.youtube.com'} and u.path == '/watch' and 'v=' in u.query), action['href']
+expected_comc = ['9343O-spIAI', '24KYT2FrM_Q', 'WeVz3kbnq4U', 'kObBbe_cfIE']
+expected_amc10 = ['WFVfabjtnb4', 'GCJ6smMF7io', '2AHhJ-EjRn4', 'quRP3FsrB6k', 'TiIWCAKGZQg', 'VqWHUufAXvs']
+assert [a['href'] for a in pages['programs.html'].select('#session-comc-2025 a')] == ['https://www.youtube.com/watch?v='+video for video in expected_comc]
+assert [a['href'] for a in pages['programs.html'].select('#session-amc10-2025 a')] == ['https://www.youtube.com/watch?v='+video for video in expected_amc10]
+assert len(pages['programs.html'].select('#session-comc-2025 a')) == 4
+assert len(pages['programs.html'].select('#session-amc10-2025 a')) == 6
 assert pages['programs.html'].select_one('#livestream .livestream-channel a')['href'] == 'https://www.youtube.com/@MathTogetherCanada'
 
 supporters = pages['get-involved.html'].select('.supporter-grid > a')
@@ -136,4 +155,4 @@ ordered = sorted(data, key=lambda s:s['sort_name'].casefold())
 assert [s['data-supporter-id'] for s in supporters] == [s['id'] for s in ordered]
 assert len({s['id'] for s in data}) == 6
 subprocess.run(['python3', 'scripts/render_supporters.py', '--check'], cwd=root, check=True)
-print('PASS: local files/anchors, navigation, FAQ preservation, profile text/photos/positions, 17 News records and date precision, nine sessions, six supporters and homepage statistics.')
+print('PASS: local files/anchors, navigation, FAQ preservation, profile text/photos/positions, 17 News records and date precision, seven confirmed sessions, six supporters and homepage statistics.')

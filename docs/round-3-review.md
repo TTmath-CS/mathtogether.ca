@@ -9,13 +9,15 @@
 - 保留 TTmath、Citadel，增加四家指定支持机构；依官方英文名称排序，添加不含排名含义的说明。桌面四列、手机两列，112px 等高标志容器，图片保持原比例。六家机构及两处机构统计共用 `data/supporters.json`，通过 `scripts/render_supporters.py` 生成静态内容。
 - 按原文更新 Perry、Kaylyn、Xuanyi(Prince) 的姓名和两段简介，照片、职位及其余 13 名成员保持不变。较长简介支持键盘滚动。
 - 按最终澄清显示 **850+ Students Reached**；社区伙伴统计核实为 **6**。
-- 审核所有九条 Programs/Livestream 视频记录，修正可靠匹配并明确部分讲解范围；错误且无法确认的目的地址改为待补充。保留完整 [旧/新链接与核实表](video-link-audit.md)。
+- 审核全部九条原有 Programs/Livestream 记录；按用户确认删除不存在的 Math Kangaroo 赛后讨论和 Interactive Q&A，现保留七条。补齐用户提供的四条 COMC 和六条 AMC10A/AMC10B 官方录像，逐条核对 YouTube 标题并标注题号范围；首条 COMC 的题号说明与页面标题不同，暂以中性 B problems 标注，其余九条题号吻合。Programs 不再有缺失录像链接。保留完整 [旧/新链接与核实表](video-link-audit.md)。
 - News、Programs、首页新闻日期显示统一为 `Mon YYYY`，保留原有完整日期和排序精度；缺少月份时不补造。
 - 所有九页补齐 production domain 的 SEO、分享元数据；添加 sitemap、robots、favicon 和有用的结构化数据。拟议分享封面尚未发布或用于元数据。
 
 ## 待补充或确认
 
-1. 请提供 **2025 COMC、2025 AMC10、Math Kangaroo 赛后讨论、Interactive Q&A** 的正确视频链接，以及 **Summer Camp Students’ Voices** 的正确系列链接。
+- 首条 COMC 链接 `https://www.youtube.com/watch?v=9343O-spIAI`：用户说明为 **B1 & B2**，YouTube 标题为 **B3 & B4**，请确认题号。页面暂显示 **Watch COMC B problems**。
+
+1. 请提供 **Summer Camp Students’ Voices** 的正确系列链接。COMC 与 AMC10 录像已按用户提供链接补齐；Math Kangaroo 赛后讨论与 Interactive Q&A 已按用户确认移除。
 2. 请确认 **2024 AMC10A** 原有 **Jun 2025** 标签的含义；已核实系列首集上传于 2025 年 5 月，页面保留原标签，未擅自修改活动日期。
 3. 请确认 **Yingshan Xiao** 访谈候选 `https://youtu.be/Bkamz7QCS7I`（Part 1）及原有 May 2025 标签。News 目前保留频道入口，并准确标注为访问频道。
 4. 请提供 **Jane Street、小月牙医、志鸿牙医 / Dr Hong Dental、BLACK BELT WORLD** 获准使用的原始标志文件。当前使用文字标志；保留既有 TTmath、Citadel 图片。Dr Hong Dental 指定的 HTTP 地址未能核实实时可达性，请确认是否仍有效。
