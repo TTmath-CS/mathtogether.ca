@@ -12,7 +12,7 @@ YouTube watch-page titles and indexed YouTube descriptions were checked. The off
 |---|---|---|---|
 | 4th Annual We Pi(π)oneer Charity Math Contest — Sep 2026 | https://youtu.be/YcqCzscEtQo | https://youtu.be/YcqCzscEtQo | Retained existing direct link. YouTube title is **We Pioneer 4th Charity Math Contest Coming Soon！** It is an announcement, so the action now says **Watch event announcement**. Exact upload date/playback not independently verified. |
 | Complete breakdown of the 2025 Fermat Contest — May 2025 | https://youtu.be/TA2mtv_Prxc | https://youtu.be/a3Yr2WHDnII | Corrected content mismatch: old title is **2024 Euclid: Problems 1-4**. New title is **2025 Fermat Contest Questions 1 - 20**, indexed by YouTube as **By: Math Together**. Action says **Watch Fermat Q1–20**, not complete coverage. The new URL already exists in the project. Exact publication date unverified; existing May label retained. |
-| Complete breakdown of the 2025 COMC Contest — Nov 2025 | https://youtu.be/GCJ6smMF7io | B problems: https://www.youtube.com/watch?v=9343O-spIAI <br> C1 & C2: https://www.youtube.com/watch?v=24KYT2FrM_Q <br> C3: https://www.youtube.com/watch?v=WeVz3kbnq4U <br> C4: https://www.youtube.com/watch?v=kObBbe_cfIE | Owner supplied all four recordings on 2 Nov 2026. YouTube titles confirm COMC 2025; the first link is labeled neutrally **COMC B problems** pending clarification because the owner described B1 & B2, while the page title says B3 & B4. The three C-section ranges match. Original URL is AMC10A Q11–20 and now belongs under AMC10A. No fabricated publication dates. |
+| Complete breakdown of the 2025 COMC Contest — Nov 2025 | https://youtu.be/GCJ6smMF7io | B3 & B4: https://www.youtube.com/watch?v=9343O-spIAI <br> C1 & C2: https://www.youtube.com/watch?v=24KYT2FrM_Q <br> C3: https://www.youtube.com/watch?v=WeVz3kbnq4U <br> C4: https://www.youtube.com/watch?v=kObBbe_cfIE | Owner supplied all four recordings on 2 Nov 2026 and confirmed the first recording covers **B3 & B4**, matching the YouTube title. All four COMC 2025 question ranges are confirmed. Original URL is AMC10A Q11–20 and now belongs under AMC10A. No fabricated publication dates. |
 | Complete breakdown of the 2025 AMC10 Contest — Nov 2025 | https://youtu.be/MeyLmhwl-FA | AMC10A Q1–10: https://www.youtube.com/watch?v=WFVfabjtnb4 <br> AMC10A Q11–20: https://www.youtube.com/watch?v=GCJ6smMF7io <br> AMC10A Q21–25: https://www.youtube.com/watch?v=2AHhJ-EjRn4 <br> AMC10B Q1–10: https://www.youtube.com/watch?v=quRP3FsrB6k <br> AMC10B Q11–20: https://www.youtube.com/watch?v=TiIWCAKGZQg <br> AMC10B Q21–25: https://www.youtube.com/watch?v=VqWHUufAXvs | Owner supplied and confirmed all six recordings on 2 Nov 2026; YouTube titles independently match both complete question ranges. Rendered in clearly labeled AMC10A and AMC10B groups. Original URL belongs to AMC12B and remains under that entry. Publication dates not invented. |
 | Complete breakdown of the 2025 AMC12 Contest — Nov 2025 | https://www.youtube.com/@MathTogetherCanada | https://youtu.be/MeyLmhwl-FA | Reliable contest/content match from the existing project URL and YouTube title **2025 AMC 12B \| Q1–10 Step-by-Step with Abhiraj**. Indexed description contains `#MathTogetherCanada`, `#MTC`, `#Abhiraj`, `#AMC12B` and `#AMC2025`. Action explicitly says **Watch AMC12B Q1–10**. Exact upload day/month not exposed; no publication date was invented. |
 | Community discussion after the Math Kangaroo Contest, with CMO/CJMO qualifiers — Mar 2025 | https://www.youtube.com/@MathTogetherCanada | Removed at owner request | On 2 Nov 2026 the owner confirmed this content does not exist. The complete session entry was removed, rather than retaining a channel placeholder or pending recording claim. Original source date was `2025-03-23`. |
@@ -22,11 +22,11 @@ YouTube watch-page titles and indexed YouTube descriptions were checked. The off
 
 ## Owner-confirmed COMC and AMC10 recordings
 
-The site owner supplied these ten official recording URLs on 2 Nov 2026. Each URL was opened through the browsing service; the returned YouTube page title independently establishes the contest and nine matching ranges. The first COMC B-section range differs from the owner’s description and is recorded below. Most exact upload dates and full playback were not exposed, so the existing Nov 2025 session labels remain unchanged.
+The site owner supplied these ten official recording URLs on 2 Nov 2026. Each URL was opened through the browsing service; the returned YouTube page titles independently establish the contests and all ten question ranges, including the owner-confirmed **COMC B3 & B4** recording. Most exact upload dates and full playback were not exposed, so the existing Nov 2025 session labels remain unchanged.
 
 | Recording | URL | YouTube title / verification |
 |---|---|---|
-| COMC B problems (range pending clarification) | https://www.youtube.com/watch?v=9343O-spIAI | **2025 COMC B3 & B4 \| Step-by-Step Solutions**. Owner supplied this URL as B1 & B2. Contest matches; range discrepancy awaits owner clarification. Site action uses neutral **Watch COMC B problems**. |
+| COMC B3 & B4 | https://www.youtube.com/watch?v=9343O-spIAI | **2025 COMC B3 & B4 \| Step-by-Step Solutions**; owner confirmed the B3 & B4 range, matching the YouTube title. Site action says **Watch COMC B3 & B4**. |
 | COMC C1 & C2 | https://www.youtube.com/watch?v=24KYT2FrM_Q | **2025 COMC C1 & C2 \| Step-by-Step Solution**; owner and title confirmed. |
 | COMC C3 | https://www.youtube.com/watch?v=WeVz3kbnq4U | **2025 COMC C3 \| Step-by-Step Solution**; owner and title confirmed. |
 | COMC C4 | https://www.youtube.com/watch?v=kObBbe_cfIE | **2025 COMC C4 \| Step-by-Step Solution**; owner and title confirmed. |
@@ -37,7 +37,7 @@ The site owner supplied these ten official recording URLs on 2 Nov 2026. Each UR
 | AMC10B Q11–20 | https://www.youtube.com/watch?v=TiIWCAKGZQg | **2025 AMC 10B \| Q11-20 Step by Step Solutions**; owner and title confirmed. |
 | AMC10B Q21–25 | https://www.youtube.com/watch?v=VqWHUufAXvs | **2025 AMC 10B \| Q21-25 Step by Step Solutions**; owner and title confirmed. |
 
-All nine original session entries are accounted for in the preceding old/new audit. Seven remain on the site after the owner's removal of the two nonexistent sessions. All retained Programs sessions have direct recording links; the first COMC B-section question-range label still awaits clarification.
+All nine original session entries are accounted for in the preceding old/new audit. Seven remain on the site after the owner's removal of the two nonexistent sessions. All retained Programs sessions have direct recording links with confirmed COMC and AMC10 question-range labels.
 
 ## Additional video destinations checked
 
@@ -64,8 +64,6 @@ The indexed official YouTube results identify these as uploaded by **Math Togeth
 Part 1 is used as an explicitly labeled series starting point, rather than silently presenting one part as a complete recording. Other parts are preserved here for reviewer follow-up.
 
 ## 待用户补充或确认
-
-- 请确认首条 COMC 链接 `https://www.youtube.com/watch?v=9343O-spIAI` 的题号：您提供的说明为 **B1 & B2**，YouTube 页面标题为 **B3 & B4**。目前显示中性标签 **Watch COMC B problems**，未擅自选择其中一个题号。
 
 - 请确认 **2024 AMC10A** 条目原有的 **2025 年 6 月** 日期是活动日期还是其他日期。已找到 Prince Zhang 系列第一集，YouTube 公布的上传日期为 **2025-05-27**；页面没有据此擅自更改原有月份。
 - 已找到并明确标注 Fermat Q1–20、AMC12B Q1–10 和 AMC10A Part 1 的部分讲解。如需“完整讲解”，请提供其余集数或完整官方播放列表。
