@@ -1,5 +1,7 @@
 # Video link audit — Round 3
 
+Video actions open in a new tab using `target="_blank"` and `rel="noopener noreferrer"`; accessible labels announce the new tab. This also applies to links cloned into News reading dialogs and the homepage Watch on YouTube action. All destination URLs and question ranges are preserved.
+
 Reviewed on 2 Nov 2026 against `main` at `c0f98861a1978cc51f1f9540e3e53728d5742e93`.
 
 The official channel is [Math Together / @MathTogetherCanada](https://www.youtube.com/@MathTogetherCanada), also identified by YouTube's indexed channel result as [UCOPT02TMkuXp69XkobHyKDA](https://www.youtube.com/channel/UCOPT02TMkuXp69XkobHyKDA). Repository history back to the initial site uses the same original URLs. On 2 Nov 2026 the site owner supplied and confirmed the COMC, AMC10, Fermat, AMC12, Summer Camp Students’ Voices and Yingshan Xiao recording destinations. The owner confirmed the Kangaroo discussion and interactive Q&A content do not exist and requested removal of the 2024 AMC10A entry; all three session entries were removed.
