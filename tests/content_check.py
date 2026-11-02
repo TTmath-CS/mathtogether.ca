@@ -112,29 +112,33 @@ for name, expected in expected_bios.items():
 
 sessions_old = original('programs.html').select('.sessions li')
 sessions_new = pages['programs.html'].select('.sessions > li')
-assert len(sessions_old) == 9 and len(sessions_new) == 6
-# Only the three sessions explicitly removed by the user may be removed.
+assert len(sessions_old) == 9 and len(sessions_new) == 9
+# Only the four sessions explicitly removed by the user may be removed.
 removed_descriptions = [
     'Community discussion after the Math Kangaroo Contest, with CMO/CJMO qualifiers',
     'Interactive Q&A session: your burning questions, answered by math experts',
     'Complete breakdown of the 2024 AMC10A Contest',
+    'Waterloo Pascal & Fermat solutions, before official answers are out',
 ]
 retained_descriptions = []
 for old in sessions_old:
     description = ''.join(str(t) for t in old.find_all(string=True, recursive=False)).strip().rstrip('—').strip()
     if description not in removed_descriptions:
         retained_descriptions.append(description)
-assert len(retained_descriptions) == 6
-for description, session in zip(retained_descriptions, sessions_new):
-    assert description in text(session), description
+assert len(retained_descriptions) == 5
+for description in retained_descriptions:
+    assert any(description in text(session) for session in sessions_new), description
 for removed in removed_descriptions:
     assert removed not in text(pages['programs.html'])
-assert not pages['programs.html'].select('#session-kangaroo-2025, #session-questions-2025, #session-amc10a-2024, .sessions .recording-pending')
+assert not pages['programs.html'].select('#session-kangaroo-2025, #session-questions-2025, #session-amc10a-2024, #session-waterloo-2025, .sessions .recording-pending')
 for session in sessions_new:
     assert session.select_one('time[datetime]')
     assert session.select('a'), session['id']
     for action in session.select('a'):
         assert '@MathTogetherCanada' not in action['href'], session['id']
+        assert action.get('target') == '_blank'
+        assert {'noopener', 'noreferrer'} <= set(action.get('rel', []))
+        assert text(action) in action.get('aria-label', text(action)), session['id']
         u = urlsplit(action['href'])
         assert (u.netloc == 'youtu.be' and u.path.strip('/')) or (u.netloc in {'youtube.com', 'www.youtube.com'} and u.path == '/watch' and 'v=' in u.query), action['href']
 expected_comc = ['9343O-spIAI', '24KYT2FrM_Q', 'WeVz3kbnq4U', 'kObBbe_cfIE']
@@ -142,8 +146,22 @@ expected_amc10 = ['WFVfabjtnb4', 'GCJ6smMF7io', '2AHhJ-EjRn4', 'quRP3FsrB6k', 'T
 assert [a['href'] for a in pages['programs.html'].select('#session-comc-2025 a')] == ['https://www.youtube.com/watch?v='+video for video in expected_comc]
 assert [a['href'] for a in pages['programs.html'].select('#session-amc10-2025 a')] == ['https://www.youtube.com/watch?v='+video for video in expected_amc10]
 expected_fermat = ['a3Yr2WHDnII', 'It0yMNFz8u8']
-for session_id in ['session-fermat-2025', 'session-waterloo-2025']:
+for session_id in ['session-fermat-2025']:
     assert [a['href'] for a in pages['programs.html'].select('#'+session_id+' a')] == ['https://www.youtube.com/watch?v='+video for video in expected_fermat]
+new_sessions = {
+    'session-cayley-2026': ['v-AzSSLHm98', 'UXjvfT29EQA', 'V7MscLlK4pI'],
+    'session-galois-2026': ['3QLrRolXlAw'],
+    'session-fryer-2026': ['waVmtYh56_M'],
+    'session-pascal-2026': ['CUvSTc-RhGc'],
+}
+for session_id, videos in new_sessions.items():
+    session = pages['programs.html'].select_one('#'+session_id)
+    assert session is not None, session_id
+    assert [a['href'] for a in session.select('a')] == ['https://www.youtube.com/watch?v='+video for video in videos]
+    assert session.select_one('time')['datetime'] == '2026', 'Do not invent a month for the new 2026 recordings'
+    assert text(session.select_one('time')) == '2026'
+urls = [a['href'] for session in sessions_new for a in session.select('a')]
+assert len(urls) == len(set(urls)), 'Duplicate recording destinations'
 expected_amc12 = ['nXs682bcsNQ', 'MeyLmhwl-FA', 'PeSHSVGMpNI']
 assert [a['href'] for a in pages['programs.html'].select('#session-amc12-2025 a')] == ['https://www.youtube.com/watch?v='+video for video in expected_amc12]
 assert len(pages['programs.html'].select('#session-comc-2025 a')) == 4
@@ -168,4 +186,4 @@ ordered = sorted(data, key=lambda s:s['sort_name'].casefold())
 assert [s['data-supporter-id'] for s in supporters] == [s['id'] for s in ordered]
 assert len({s['id'] for s in data}) == 6
 subprocess.run(['python3', 'scripts/render_supporters.py', '--check'], cwd=root, check=True)
-print('PASS: local files/anchors, navigation, FAQ preservation, profile text/photos/positions, 17 News records and date precision, six confirmed sessions, six supporters and homepage statistics.')
+print('PASS: local files/anchors, navigation, FAQ preservation, profile text/photos/positions, 17 News records and date precision, nine confirmed sessions, six supporters and homepage statistics.')

@@ -31,6 +31,9 @@ with sync_playwright() as p:
     assert photo.evaluate('(e)=>Math.abs(e.getBoundingClientRect().width/e.getBoundingClientRect().height-e.naturalWidth/e.naturalHeight)<0.001'), (width, 'Who We Are photograph cropped or stretched')
     page.evaluate('scrollTo(0,0)')
     assert page.locator('.stat-icon').count()==4
+    assert page.locator('.stat-copy').evaluate_all('''(es)=>es.every(e=>{const rect=q=>{const r=document.createRange();r.selectNodeContents(e.querySelector(q));return r.getBoundingClientRect();};const n=rect('strong'),l=rect('span');return Math.abs((n.left+n.right)/2-(l.left+l.right)/2)<=1 && n.bottom<=l.top+1;})'''), (width,'Statistic numbers must be centered directly above their labels')
+    assert page.locator('#faq').evaluate('''(e)=>Math.abs(e.getBoundingClientRect().left-document.querySelector('.home-latest .wrap').getBoundingClientRect().left)<=1'''), (width,'FAQ left edge')
+    assert page.locator('#faq h2').evaluate('''(e)=>{const r=document.createRange();r.selectNodeContents(e);const ref=document.createRange();ref.selectNodeContents(document.querySelector('.home-latest-head h2'));return Math.abs(r.getBoundingClientRect().left-ref.getBoundingClientRect().left)<=1 && getComputedStyle(e).textAlign==='left';}'''), (width,'FAQ heading left alignment')
     assert page.locator('.stat-copy').first.inner_text().splitlines()==['850+', 'Students Reached']
     assert page.locator('[data-supporter-count]').inner_text().strip()=='6'
     assert page.locator('#featured-event a[href="news.html#news-charity-2026"]').count()==1
@@ -59,13 +62,17 @@ with sync_playwright() as p:
    if name in ['programs','news','team','get-involved']:
     assert page.locator('.page-hero-lede').evaluate('(e)=>Math.abs(e.getBoundingClientRect().width-e.closest(".page-hero-in").getBoundingClientRect().width)<1')
    if name=='programs':
-    assert page.locator('.sessions > li').count()==6
+    assert page.locator('.sessions > li').count()==9
     assert page.locator('#session-comc-2025 a').count()==4
     assert page.locator('#session-amc10-2025 a').count()==6
     assert page.locator('#session-amc12-2025 a').count()==3
     assert page.locator('#session-fermat-2025 a').count()==2
-    assert page.locator('#session-waterloo-2025 a').count()==2
-    assert not page.locator('#session-kangaroo-2025, #session-questions-2025, #session-amc10a-2024, .sessions .recording-pending').count()
+    assert page.locator('#session-cayley-2026 a').count()==3
+    for session_id in ['session-galois-2026','session-fryer-2026','session-pascal-2026']:
+     assert page.locator('#'+session_id+' a').count()==1
+    assert page.locator('.sessions a').evaluate_all('(es)=>es.every(a=>a.target==="_blank"&&a.rel.includes("noopener")&&a.rel.includes("noreferrer"))')
+    assert page.locator('#session-charity-2026 .session-content').evaluate('''(e)=>{const ranges=Array.from(e.childNodes).filter(n=>n.nodeType===Node.TEXT_NODE&&n.textContent.trim()).flatMap(n=>{const r=document.createRange();r.selectNodeContents(n);return Array.from(r.getClientRects());}).filter(r=>r.width>0&&r.height>0);return ranges.length>0&&e.querySelector('a').getBoundingClientRect().top>=Math.max(...ranges.map(r=>r.bottom));}'''), (width,'Charity recording link must start below its description')
+    assert not page.locator('#session-kangaroo-2025, #session-questions-2025, #session-amc10a-2024, #session-waterloo-2025, .sessions .recording-pending').count()
     assert page.locator('.sessions a').evaluate_all('(es)=>es.every(a=>!a.href.includes("@MathTogetherCanada"))')
     assert page.locator('.session-content a').evaluate_all('(es)=>es.every(e=>{const r=e.getBoundingClientRect();return r.width>0&&r.left>=0&&r.right<=innerWidth;} )')
 

@@ -8,8 +8,8 @@
 - 保留 2026 年精选活动回顾按钮，新增历史回顾入口。按用户确认，只展示已有的 2024、2025 年文章。
 - 保留 TTmath、Citadel，增加四家指定支持机构；依官方英文名称排序，添加不含排名含义的说明。四个新增 logo 已从用户提供的 `logos.zip` 原样接入，未裁剪、重绘或重新编码。桌面四列、手机两列，112px 等高标志容器，图片保持原比例；BLACK BELT WORLD 的白色字样使用深色底以确保清晰。六家机构及两处机构统计共用 `data/supporters.json`，通过 `scripts/render_supporters.py` 生成静态内容。
 - 按原文更新 Perry、Kaylyn、Xuanyi(Prince) 的姓名和两段简介，照片、职位及其余 13 名成员保持不变。较长简介支持键盘滚动。
-- 按最终澄清显示 **850+ Students Reached**；社区伙伴统计核实为 **6**。
-- 审核全部九条原有 Programs/Livestream 记录；按用户确认移除 Math Kangaroo 赛后讨论、Interactive Q&A 和 2024 AMC10A，现保留六条。补齐 COMC、AMC10A/AMC10B、Fermat 两部分、AMC12A Q21–25 和 AMC12B Q1–20 的指定录像，所有链接按核实范围标注。News 夏令营系列新增五条视频并使用各视频原题，Yingshan 访谈新增两集并保留 Part 1 的五秒时间参数；May 2025 标签已获用户确认。完整 [旧/新链接与核实表](video-link-audit.md)记录所有原条目和新增视频。
+- 按最终澄清显示 **850+ Students Reached**；社区伙伴统计核实为 **6**。首页每个数字居中置于说明文字上方，保留装饰图标；FAQ 使用与其他首页区块相同的左边缘和左对齐标题。
+- 审核全部九条原有 Programs/Livestream 记录；按用户确认移除 Math Kangaroo 赛后讨论、Interactive Q&A、2024 AMC10A 及重复的 2025 Waterloo Pascal/Fermat 条目，独立的 2025 Fermat 两部分讲解仍保留。新增 2026 Cayley（三部分）、Galois、Fryer、Pascal，现共九条记录、22 个独立视频链接；未知月份只显示 2026。慈善竞赛 Watch 链接与其他讲解一样另起一行。COMC、AMC10、Fermat 和 AMC12 的链接保持核实范围标签。News 夏令营系列有五条原题视频，Yingshan 访谈有两集并保留 Part 1 的五秒参数；May 2025 标签已获用户确认。完整 [旧/新链接与核实表](video-link-audit.md)记录所有原条目和新增视频。
 - News、Programs、首页新闻日期显示统一为 `Mon YYYY`，保留原有完整日期和排序精度；用户已确认缺少月份或发布日期的内容保留现有信息，不补造。
 - 视频讲解链接（含 News 阅读弹窗）与首页 Watch on YouTube 在新标签页打开，保留当前网站页面；链接包含新标签页的无障碍提示及外链安全属性。
 - 所有九页补齐 production domain 的 SEO、分享元数据；添加 sitemap、robots、favicon 和有用的结构化数据。拟议分享封面尚未发布或用于元数据。
