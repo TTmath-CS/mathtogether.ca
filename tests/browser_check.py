@@ -76,13 +76,14 @@ with sync_playwright() as p:
     assert page.locator('.involved-heart').is_visible()
     grid=page.locator('.supporter-grid')
     assert grid.locator('a').count()==6
+    assert grid.locator('img').count()==grid.locator('a').count(), 'Every supporter has an original logo'
     assert page.get_by_text('Supporters are listed alphabetically, with no ranking implied.',exact=True).count()==1
     assert grid.locator('a').evaluate_all('(es)=>es.every(a=>a.target==="_blank"&&a.rel.includes("noopener")&&a.rel.includes("noreferrer"))')
     assert grid.locator('.supporter-logo').evaluate_all('(es)=>{const rs=es.map(e=>e.getBoundingClientRect());return rs.every(r=>Math.abs(r.width-rs[0].width)<1&&Math.abs(r.height-rs[0].height)<1);}')
     grid.scroll_into_view_if_needed()
     grid.locator('img').evaluate_all('(es)=>es.forEach(e=>e.loading="eager")')
     page.wait_for_function('Array.from(document.querySelectorAll(".supporter-grid img")).every(e=>e.complete&&e.naturalWidth>0)')
-    assert grid.locator('img').evaluate_all('(es)=>es.every(e=>e.complete&&e.naturalWidth>0&&getComputedStyle(e).objectFit==="contain"&&Math.abs(e.clientWidth/e.clientHeight-e.naturalWidth/e.naturalHeight)<0.03))')
+    assert grid.locator('img').evaluate_all('(es)=>es.every(e=>{const r=e.getBoundingClientRect();return e.complete&&e.naturalWidth>0&&getComputedStyle(e).objectFit==="contain"&&Math.abs((r.width/r.height)/(e.naturalWidth/e.naturalHeight)-1)<0.01;})')
     if width in [375,390,1440]:
      columns=grid.locator('a').evaluate_all('(es)=>{const top=es[0].getBoundingClientRect().top;return es.filter(e=>Math.abs(e.getBoundingClientRect().top-top)<1).length;}')
      assert columns==(4 if width==1440 else 2),(width,'supporter columns',columns)

@@ -39,6 +39,11 @@
   max-height: 64px;
   object-fit: contain;
 }
+/* The supplied reverse logo has white lettering; keep its original pixels. */
+.supporter-card[data-supporter-id="black-belt-world"] .supporter-logo {
+  background: var(--navy-ink);
+  border-radius: 9px;
+}
 .supporter-wordmark {
   max-width: 100%;
   font: 600 clamp(15px, 1.4vw, 19px)/1.35 var(--sans);

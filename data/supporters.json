@@ -4,8 +4,8 @@
     "name": "BLACK BELT WORLD",
     "sort_name": "Black Belt World",
     "url": "https://blackbeltworld.ca/",
-    "logo": null,
-    "logo_status": "Original logo file requested"
+    "logo": "assets/img/sponsors/black-belt-world.png",
+    "logo_status": "Original logo supplied by site owner; bytes preserved unchanged"
   },
   {
     "id": "citadel",
@@ -21,16 +21,16 @@
     "name": "志鸿牙医 / Dr Hong Dental",
     "sort_name": "Dr Hong Dental",
     "url": "http://www.hongdental2014.com/",
-    "logo": null,
-    "logo_status": "Original logo file requested"
+    "logo": "assets/img/sponsors/dr-hong-dental.png",
+    "logo_status": "Original logo supplied by site owner; bytes preserved unchanged"
   },
   {
     "id": "jane-street",
     "name": "Jane Street",
     "sort_name": "Jane Street",
     "url": "https://www.janestreet.com/",
-    "logo": null,
-    "logo_status": "Original logo file requested"
+    "logo": "assets/img/sponsors/jane-street.png",
+    "logo_status": "Original logo supplied by site owner; bytes preserved unchanged"
   },
   {
     "id": "ttmath",
@@ -46,7 +46,7 @@
     "name": "小月牙医 / Woodbine-Steeles Dental Clinic",
     "sort_name": "Woodbine-Steeles Dental Clinic",
     "url": "https://wsdental.nextcard.ai/",
-    "logo": null,
-    "logo_status": "Original logo file requested"
+    "logo": "assets/img/sponsors/woodbine-steeles-dental.png",
+    "logo_status": "Original logo supplied by site owner; bytes preserved unchanged"
   }
 ]

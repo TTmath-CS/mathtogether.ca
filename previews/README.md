@@ -2,7 +2,7 @@
 
 Full-page Chromium screenshots of this feature branch at 1440px desktop and 390px mobile widths. These are static review images. No merge or deployment has been performed.
 
-The homepage includes the five original FAQs, the verified six-supporter count, `850+ Students Reached`, and historical recap navigation. News links to the existing 2024 and 2025 recaps. Get Involved displays six equal-size supporter spaces in alphabetical order; four additions use text wordmarks while original artwork is pending.
+The homepage includes the five original FAQs, the verified six-supporter count, `850+ Students Reached`, and historical recap navigation. News links to the existing 2024 and 2025 recaps. Get Involved displays six equal-size supporter spaces in alphabetical order, using the four newly supplied original logos alongside the two existing logos. BLACK BELT WORLD's white lettering uses a dark backing for contrast; all spaces have the same dimensions.
 
 Open an image and use GitHub’s **Raw** or **Download** control to view it at full resolution.
 

@@ -155,6 +155,7 @@ assert len(supporters) == 6
 expected_urls = {'https://ttmath.ca/', 'https://www.citadel.com', 'https://www.janestreet.com/', 'https://wsdental.nextcard.ai/', 'http://www.hongdental2014.com/', 'https://blackbeltworld.ca/'}
 assert {a['href'] for a in supporters} == expected_urls
 for supporter in supporters:
+    assert len(supporter.select('img')) == 1, 'All supplied supporter logos must be displayed'
     assert supporter.get('target') == '_blank'
     assert {'noopener', 'noreferrer'} <= set(supporter.get('rel', []))
     assert text(supporter) or supporter.get('aria-label')
