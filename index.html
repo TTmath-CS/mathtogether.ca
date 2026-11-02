@@ -3,17 +3,81 @@
  <head>
   <meta charset="utf-8"/>
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-  <meta content="Math Together Canada — a student-led community making math fun, accessible and exciting from coast to coast." name="description"/>
-  <title>
-   Math Together Canada
-  </title>
-  <link href="assets/img/logo.png" rel="icon"/>
+  <link href="assets/img/logo-badge.png" rel="icon" type="image/png" sizes="155x155"/>
   <link href="https://fonts.googleapis.com" rel="preconnect"/>
   <link crossorigin href="https://fonts.gstatic.com" rel="preconnect"/>
   <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&amp;family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;family=Caveat:wght@500;600&amp;display=swap" rel="stylesheet"/>
   <link href="style.css" rel="stylesheet"/>
   <link href="home.css" rel="stylesheet"/>
   <script defer src="app.js">
+  </script>
+  <title>Math Together Canada — Discover the Beauty of Math</title>
+  <meta name="description" content="Join a student-led Canadian math community through tutoring, camps, livestreams, competitions, and opportunities to learn and volunteer together."/>
+  <link rel="canonical" href="https://mathtogether.ca/"/>
+  <meta name="theme-color" content="#173f8f"/>
+  <meta property="og:title" content="Math Together Canada — Discover the Beauty of Math"/>
+  <meta property="og:description" content="Join a student-led Canadian math community through tutoring, camps, livestreams, competitions, and opportunities to learn and volunteer together."/>
+  <meta property="og:image" content="https://mathtogether.ca/assets/img/leadership-event.jpg"/>
+  <meta property="og:image:secure_url" content="https://mathtogether.ca/assets/img/leadership-event.jpg"/>
+  <meta property="og:image:type" content="image/jpeg"/>
+  <meta property="og:image:width" content="1706"/>
+  <meta property="og:image:height" content="1279"/>
+  <meta property="og:image:alt" content="Math Together Canada student leaders and members together at a community event"/>
+  <meta property="og:url" content="https://mathtogether.ca/"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:site_name" content="Math Together Canada"/>
+  <meta property="og:locale" content="en_CA"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="Math Together Canada — Discover the Beauty of Math"/>
+  <meta name="twitter:description" content="Join a student-led Canadian math community through tutoring, camps, livestreams, competitions, and opportunities to learn and volunteer together."/>
+  <meta name="twitter:image" content="https://mathtogether.ca/assets/img/leadership-event.jpg"/>
+  <meta name="twitter:image:alt" content="Math Together Canada student leaders and members together at a community event"/>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://mathtogether.ca/#organization",
+      "name": "Math Together Canada",
+      "url": "https://mathtogether.ca/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://mathtogether.ca/assets/img/logo-badge.png",
+        "width": 155,
+        "height": 155
+      },
+      "sameAs": [
+        "https://www.youtube.com/@MathTogetherCanada",
+        "https://www.instagram.com/math_together_canada/"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://mathtogether.ca/#website",
+      "url": "https://mathtogether.ca/",
+      "name": "Math Together Canada",
+      "publisher": {
+        "@id": "https://mathtogether.ca/#organization"
+      },
+      "inLanguage": "en-CA"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://mathtogether.ca/#webpage",
+      "url": "https://mathtogether.ca/",
+      "name": "Math Together Canada — Discover the Beauty of Math",
+      "description": "Join a student-led Canadian math community through tutoring, camps, livestreams, competitions, and opportunities to learn and volunteer together.",
+      "isPartOf": {
+        "@id": "https://mathtogether.ca/#website"
+      },
+      "about": {
+        "@id": "https://mathtogether.ca/#organization"
+      },
+      "inLanguage": "en-CA"
+    }
+  ]
+}
   </script>
  </head>
  <body class="home-page">
@@ -51,9 +115,6 @@
      </a>
      <a href="get-involved.html">
       Get Involved
-     </a>
-     <a href="faq.html">
-      FAQ
      </a>
      <a class="join" href="https://forms.gle/XjoktJdHGPGnzJs17">
       Join Us
@@ -135,10 +196,10 @@
       </svg>
       <div class="stat-copy">
        <strong>
-        500+
+        850+
        </strong>
        <span>
-        students reached
+        Students Reached
        </span>
       </div>
      </div>
@@ -164,9 +225,7 @@
        </path>
       </svg>
       <div class="stat-copy">
-       <strong>
-        6
-       </strong>
+       <strong data-supporter-count>6</strong>
        <span>
         community partners
        </span>
@@ -229,7 +288,7 @@
       Featured Event
      </p>
      <p class="event-date">
-      September 5, 2026 · Markham
+      <time datetime="2026-09-05">Sep 2026</time> · Markham
      </p>
      <h2>
       We Pi(π)oneer Charity Math Contest 2026
@@ -253,6 +312,9 @@
      <a class="btn" href="news.html#news-charity-2026">
       Read the Event Recap →
      </a>
+     <p class="home-past-recaps">
+      <a class="home-text-link" href="news.html#historical-recaps">Explore Past Charity Contest Recaps →</a>
+     </p>
     </div>
    </section>
    <section class="home-programs" id="our-programs">
@@ -370,6 +432,65 @@
       </p>
      </noscript>
     </div>
+   </section>
+   <section class="wrap faq-wrap home-faq" aria-labelledby="faq-heading" id="faq">
+    <div class="section-head">
+     <div>
+      <p class="kicker">
+       FAQ
+      </p>
+      <h2 id="faq-heading">
+       Math queries
+       <span class="ul">
+        unleashed!
+       </span>
+      </h2>
+     </div>
+    </div>
+    <details class="faq">
+     <summary>
+      What is Math Together Canada?
+     </summary>
+     <p>
+      We're a vibrant community dedicated to making math fun and engaging for everyone!
+     </p>
+    </details>
+    <details class="faq">
+     <summary>
+      How can I join the club?
+     </summary>
+     <p>
+      Simply click the
+      <a href="https://forms.gle/XjoktJdHGPGnzJs17">
+       Join Us
+      </a>
+      button and fill out the form!
+     </p>
+    </details>
+    <details class="faq">
+     <summary>
+      What events do you offer?
+     </summary>
+     <p>
+      From math circles to competitions, we have it all!
+     </p>
+    </details>
+    <details class="faq">
+     <summary>
+      Are there volunteer opportunities available?
+     </summary>
+     <p>
+      Absolutely! We love volunteers who share our passion for math!
+     </p>
+    </details>
+    <details class="faq">
+     <summary>
+      How can I support Math Together Canada?
+     </summary>
+     <p>
+      You can donate, volunteer, or spread the word!
+     </p>
+    </details>
    </section>
   </main>
   <footer class="site-foot" id="contact">

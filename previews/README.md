@@ -1,8 +1,8 @@
-# PR #20 screenshots
+# Round 3 review screenshots
 
-Full-page Chromium screenshots updated for the second revision round of PR #20. Desktop viewport width: 1440px. Mobile viewport width: 390px. These are static review images, not a deployed website.
+Full-page Chromium screenshots of this feature branch at 1440px desktop and 390px mobile widths. These are static review images. No merge or deployment has been performed.
 
-The homepage now uses the supplied authentic leadership event photograph at its original aspect ratio, without cropping. Home screenshots have been refreshed after the replacement.
+The homepage includes the five original FAQs, the verified six-supporter count, `850+ Students Reached`, and historical recap navigation. News links to the existing 2024 and 2025 recaps. Get Involved displays six equal-size supporter spaces in alphabetical order; four additions use text wordmarks while original artwork is pending.
 
 Open an image and use GitHub’s **Raw** or **Download** control to view it at full resolution.
 
@@ -16,6 +16,6 @@ Open an image and use GitHub’s **Raw** or **Download** control to view it at f
 
 Home and News screenshots include automatic Latest News: three homepage cards selected from the News source. Exact dates are sorted descending; year-only items retain their source positions within the same year. Four items have no known year and remain outside homepage selection. See [date status](../docs/news-maintenance.md).
 
-Latest refinements: colored and aligned statistics, mobile heading/photo/text order, reduced Programs introductions, three-plus-two desktop member groups, and the Get Involved heart decoration. Home, Programs, Team and Get Involved screenshots refreshed.
+Programs labels partial recordings accurately and marks unresolved recording links as pending. The complete old/new URL table is in [the video audit](../docs/video-link-audit.md). Date labels use abbreviated English month and year while full machine dates and Latest News sorting are preserved.
 
-Home screenshots refreshed after verifying the rendered heading at 375, 390, 768 and 1440px: small red `LATEST NEWS` label above `Our Community in Action.`. The automatic three-card selection remains unchanged.
+The proposed social-sharing cover remains outside the repository pending approval. Metadata uses the existing approved leadership photograph; see [SEO review and testing limits](../docs/seo-review.md).

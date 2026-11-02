@@ -1,24 +1,26 @@
 """Exercise source-order independence, live updates and exact story deep links."""
 from pathlib import Path
 import shutil
+from datetime import datetime
 from playwright.sync_api import sync_playwright
 
 source = (Path(__file__).resolve().parents[1] / 'news.html').read_text()
 base = 'http://127.0.0.1:8000/'
 with sync_playwright() as p:
     browser = p.chromium.launch(executable_path=shutil.which('chromium'), headless=True)
-    page = browser.new_page()
+    page = browser.new_page(reduced_motion='reduce')
     page.goto(base + 'news.html')
     expected = page.locator('.story[data-date]').evaluate_all('(es)=>es.map(e=>({id:e.id,date:e.dataset.date,title:e.querySelector("h3").textContent.trim(),image:e.querySelector("img").getAttribute("src")})).sort((a,b)=>b.date.localeCompare(a.date)||a.id.localeCompare(b.id))')
     assert page.locator('.story[data-date]').evaluate_all('(es)=>es.map(e=>e.dataset.date)') == [s['date'] for s in expected]
-    expected = page.locator('.story[data-date], .story[data-year]').evaluate_all('(es)=>es.map(e=>({id:e.id,date:e.dataset.date||null,year:e.dataset.year,title:e.querySelector("h3").textContent.trim(),image:e.querySelector("img").getAttribute("src")}))')
+    expected = page.locator('.story[data-date], .story[data-year]').evaluate_all('(es)=>es.map(e=>({id:e.id,date:e.dataset.date||null,year:e.dataset.year,month:e.dataset.displayMonth||null,title:e.querySelector("h3").textContent.trim(),image:e.querySelector("img").getAttribute("src")}))')
     page.goto(base)
     page.wait_for_function('document.querySelector("[data-latest-news]").getAttribute("aria-busy")==="false"')
     cards = page.locator('.home-story-card')
     assert cards.count() == 3
+    assert cards.locator('.date').evaluate_all(r'(es)=>es.every(e=>/^(?:[A-Z][a-z]{2} )?\d{4}$/.test(e.textContent.trim()))'), 'Homepage dates must omit days'
     assert cards.locator('h3').all_text_contents() == [s['title'] for s in expected[:3]]
     assert cards.locator('img').evaluate_all('(es)=>es.map(e=>e.getAttribute("src"))') == [s['image'] for s in expected[:3]]
-    assert cards.locator('[data-year]').all_text_contents() == [s['year'] for s in expected[:3] if not s['date']]
+    assert cards.locator('[data-year]').all_text_contents() == [datetime.strptime(s['month'], '%Y-%m').strftime('%b %Y') if s.get('month') else s['year'] for s in expected[:3] if not s['date']]
     assert cards.locator('time').evaluate_all('(es)=>es.map(e=>e.dateTime)') == [s['date'] for s in expected[:3] if s['date']]
     assert cards.evaluate_all('(es)=>es.map(e=>e.getAttribute("href"))') == ['news.html#' + s['id'] for s in expected[:3]]
     for item in expected[:3]:
@@ -33,13 +35,15 @@ with sync_playwright() as p:
     page.evaluate('location.hash="news-picnic-2026"')
     page.wait_for_function('document.querySelector(".story-dialog h3").textContent.includes("Picnic")')
     # Future dated item added only to the News response, not index.html; no explicit ID required.
-    added = '''<article class="story" data-date="2027-01-02"><div class="news-image"><img src="assets/img/news-picnic.jpg" alt="Community event"></div><h3>New regression news</h3><p class="date">January 2, 2027</p><details><summary>Read the story</summary><p>A newly published article.</p></details></article>'''
+    added = '''<article class="story" data-date="2027-01-02"><div class="news-image"><img src="assets/img/news-picnic.jpg" alt="Community event"></div><h3>New regression news</h3><p class="date">Jan 2027</p><details><summary>Read the story</summary><p>A newly published article.</p></details></article>'''
     changed = source.replace('<div class="news-grid">', '<div class="news-grid">' + added)
     page.route('**/news.html', lambda route: route.fulfill(status=200, content_type='text/html', body=changed))
     page.goto(base)
     page.wait_for_selector('.home-story-card')
     assert page.locator('.home-story-card').count() == 3
     assert page.locator('.home-story-card h3').first.inner_text() == 'New regression news'
+    assert page.locator('.home-story-card time').first.inner_text()=='Jan 2027'
+    assert page.locator('.home-story-card time').first.get_attribute('datetime')=='2027-01-02'
     new_link = page.locator('.home-story-card').first.get_attribute('href')
     page.goto(base + new_link)
     assert page.locator('.story-dialog h3').inner_text() == 'New regression news'

@@ -9,10 +9,10 @@ with sync_playwright() as p:
  for width in [375,390,768,1440]:
   ctx=b.new_context(viewport={'width':width,'height':900},reduced_motion='reduce')
   page=ctx.new_page();errors=[];page.on('pageerror',lambda e:errors.append(str(e)))
-  for name in ['index','programs','news','team','get-involved','faq']:
+  for name in ['index','programs','news','team','get-involved']:
    page.goto('http://127.0.0.1:8000/'+name+'.html');page.wait_for_timeout(250)
    assert page.evaluate('document.documentElement.scrollWidth <= innerWidth'),(name,width,'overflow')
-   assert [t.strip() for t in page.locator('header nav a').all_text_contents()]==['Home','Programs','News','Team','Get Involved','FAQ','Join Us']
+   assert [t.strip() for t in page.locator('header nav a').all_text_contents()]==['Home','Programs','News','Team','Get Involved','Join Us']
    if width<1141:
     toggle=page.locator('.nav-toggle');assert toggle.is_visible()
     toggle.click();assert page.locator('#site-links').is_visible();assert toggle.get_attribute('aria-expanded')=='true'
@@ -29,7 +29,16 @@ with sync_playwright() as p:
     assert photo.evaluate('(e)=>Math.abs(e.getBoundingClientRect().width/e.getBoundingClientRect().height-e.naturalWidth/e.naturalHeight)<0.001'), (width, 'Who We Are photograph cropped or stretched')
     page.evaluate('scrollTo(0,0)')
     assert page.locator('.stat-icon').count()==4
-    assert page.locator('main > section').evaluate_all('(es)=>es.map(e=>e.id || e.classList[0]).join(",")') == 'home-hero,home-proof,about,featured-event,our-programs,latest-stories'
+    assert page.locator('.stat-copy').first.inner_text().splitlines()==['850+', 'Students Reached']
+    assert page.locator('[data-supporter-count]').inner_text().strip()=='6'
+    assert page.locator('#featured-event a[href="news.html#news-charity-2026"]').count()==1
+    assert page.locator('#featured-event a[href="news.html#historical-recaps"]').inner_text().strip()=='Explore Past Charity Contest Recaps →'
+    assert page.locator('#faq details').count()==5
+    summary=page.locator('#faq summary').first
+    summary.focus();page.keyboard.press('Enter');assert page.locator('#faq details').first.get_attribute('open') is not None
+    page.keyboard.press('Space');assert page.locator('#faq details').first.get_attribute('open') is None
+    page.evaluate('scrollTo(0,0)')
+    assert page.locator('main > section').evaluate_all('(es)=>es.map(e=>e.id || e.classList[0]).join(",")') == 'home-hero,home-proof,about,featured-event,our-programs,latest-stories,faq'
     assert page.locator('.home-programs .cards > article').count()==3
     page.wait_for_function('document.querySelector("[data-latest-news]").getAttribute("aria-busy")==="false"')
     assert page.locator('.home-story-card').count()==3
@@ -45,7 +54,7 @@ with sync_playwright() as p:
      assert page.locator('.home-story-card').evaluate_all('(es)=>new Set(es.map(e=>Math.round(e.getBoundingClientRect().top))).size')==1
     assert page.locator('.formula-lockup').evaluate('(e)=>e.scrollWidth<=e.clientWidth'),(width,'formula clipping')
     assert page.locator('.home-hero').evaluate('(e)=>getComputedStyle(e).paddingTop')=='0px'
-   if name in ['programs','news','team','get-involved','faq']:
+   if name in ['programs','news','team','get-involved']:
     assert page.locator('.page-hero-lede').evaluate('(e)=>Math.abs(e.getBoundingClientRect().width-e.closest(".page-hero-in").getBoundingClientRect().width)<1')
    if name=='programs':
     assert not page.locator('#programs .section-head > .section-lede, #livestream .section-lede').count()
@@ -53,10 +62,29 @@ with sync_playwright() as p:
     assert page.locator('#livestream .livestream-channel a').get_attribute('href')=='https://www.youtube.com/@MathTogetherCanada'
    if name=='get-involved':
     assert page.locator('.involved-heart').is_visible()
+    grid=page.locator('.supporter-grid')
+    assert grid.locator('a').count()==6
+    assert page.get_by_text('Supporters are listed alphabetically, with no ranking implied.',exact=True).count()==1
+    assert grid.locator('a').evaluate_all('(es)=>es.every(a=>a.target==="_blank"&&a.rel.includes("noopener")&&a.rel.includes("noreferrer"))')
+    assert grid.locator('.supporter-logo').evaluate_all('(es)=>{const rs=es.map(e=>e.getBoundingClientRect());return rs.every(r=>Math.abs(r.width-rs[0].width)<1&&Math.abs(r.height-rs[0].height)<1);}')
+    grid.scroll_into_view_if_needed()
+    grid.locator('img').evaluate_all('(es)=>es.forEach(e=>e.loading="eager")')
+    page.wait_for_function('Array.from(document.querySelectorAll(".supporter-grid img")).every(e=>e.complete&&e.naturalWidth>0)')
+    assert grid.locator('img').evaluate_all('(es)=>es.every(e=>e.complete&&e.naturalWidth>0&&getComputedStyle(e).objectFit==="contain")')
+    if width in [375,390,1440]:
+     columns=grid.locator('a').evaluate_all('(es)=>{const top=es[0].getBoundingClientRect().top;return es.filter(e=>Math.abs(e.getBoundingClientRect().top-top)<1).length;}')
+     assert columns==(4 if width==1440 else 2),(width,'supporter columns',columns)
     assert not page.locator('.sponsor .rank').count()
     assert not page.locator('#involved .kicker, .hero-scribble, blockquote.pull').count()
     assert page.locator('#involved h2').evaluate('(e)=>parseFloat(getComputedStyle(e).fontSize)')>=34
    if name=='news':
+    for year in [2024,2025]:
+     expected_title=page.locator(f'#news-charity-{year} h3').inner_text()
+     page.locator(f'#historical-recaps a[href="#news-charity-{year}"]').click()
+     page.locator('.story-dialog').wait_for(state='visible')
+     assert page.locator('.story-dialog h3').inner_text()==expected_title
+     assert str(year) in page.locator('.story-dialog .date').inner_text()
+     page.keyboard.press('Escape')
     assert page.locator('.story').evaluate_all('(es)=>es.every(e=>e.firstElementChild.classList.contains("news-image"))')
     ratios=page.locator('.news-image').evaluate_all('(es)=>es.map(e=>e.clientWidth/e.clientHeight)')
     assert all(abs(r-16/9)<.02 for r in ratios),ratios
@@ -69,20 +97,36 @@ with sync_playwright() as p:
     if width==1440:
      assert page.locator('.team-grid-five').evaluate_all('''(gs)=>gs.every(g=>{const rs=Array.from(g.children).map(e=>e.getBoundingClientRect());return rs.length===5 && rs[0].top===rs[2].top && rs[3].top===rs[4].top && rs[3].top>rs[0].top && rs.every(r=>Math.abs(r.width-rs[0].width)<1);})''')
     assert page.locator('.team-grid').evaluate_all('(grids)=>grids.every(g=>{const cards=Array.from(g.children);const lastTop=cards[cards.length-1].getBoundingClientRect().top;const last=cards.filter(e=>Math.abs(e.getBoundingClientRect().top-lastTop)<1);const a=last[0].getBoundingClientRect(),z=last[last.length-1].getBoundingClientRect(),r=g.getBoundingClientRect();return Math.abs((a.left+z.right)/2-(r.left+r.right)/2)<2;})')
+    for person in ['Perry Dai','Kaylyn Zhang','Xuanyi(Prince) Zhang']:
+     card=page.locator('.member').filter(has=page.locator('.front h3',has_text=person))
+     card.focus();page.keyboard.press('Enter');assert card.get_attribute('aria-pressed')=='true'
+     assert card.locator('.back p').count()==2
+     assert card.locator('.back').evaluate('(e)=>getComputedStyle(e).overflowY')=='auto'
+     page.keyboard.press('End')
+     assert card.locator('.back').evaluate('(e)=>e.scrollHeight<=e.clientHeight||e.scrollTop>0')
+     page.keyboard.press('Space');assert card.get_attribute('aria-pressed')=='false'
     m=page.locator('.member').first;m.focus();page.keyboard.press('Enter');assert m.get_attribute('aria-pressed')=='true';page.keyboard.press('Space');assert m.get_attribute('aria-pressed')=='false'
-   if name=='faq':page.locator('.faq summary').first.click();assert page.locator('.faq').first.get_attribute('open') is not None
-   if width in [390,1440] and name!='faq':
+   if width in [390,1440]:
     page.locator('img[loading]').evaluate_all('(es)=>es.forEach(e=>e.loading="eager")')
     page.evaluate('document.activeElement.blur()')
     page.wait_for_function('Array.from(document.images).every(i=>i.complete)')
+    page.evaluate('scrollTo(0,0)')
+    page.wait_for_function('scrollY===0')
     page.screenshot(path=str(out/f'{name}-{width}.png'),full_page=True)
    results.append((name,width,'passed'))
   assert not errors,errors
   ctx.close()
+ # FAQ redirects land at the visible section after asynchronous Latest News renders.
+ ctx=b.new_context(viewport={'width':390,'height':900},reduced_motion='reduce');page=ctx.new_page()
+ for url in ['faq.html','faq.html#faq','index.html#faq']:
+  page.goto('http://127.0.0.1:8000/'+url);page.wait_for_url('**/index.html#faq')
+  page.wait_for_function('document.querySelector("[data-latest-news]").getAttribute("aria-busy")==="false"')
+  page.wait_for_function('(()=>{const r=document.querySelector("#faq").getBoundingClientRect();return r.top<innerHeight&&r.bottom>0;})()')
+ ctx.close()
  # Compatibility including deep bookmarks and JS-free fallback.
  page=b.new_page()
- for old,target in [('about.html','index.html#about'),('livestream.html','programs.html#livestream'),('support.html','get-involved.html#support'),('support.html#partners','get-involved.html#partners'),('index.html#news','news.html#news'),('index.html#faq','faq.html#faq')]:
+ for old,target in [('about.html','index.html#about'),('livestream.html','programs.html#livestream'),('support.html','get-involved.html#support'),('support.html#partners','get-involved.html#partners'),('index.html#news','news.html#news'),('faq.html','index.html#faq'),('faq.html#faq','index.html#faq'),('index.html#faq','index.html#faq')]:
   page.goto('http://127.0.0.1:8000/'+old);page.wait_for_url('**/'+target);assert page.locator('#'+target.split('#')[1]).count()==1
- ctx=b.new_context(java_script_enabled=False);page=ctx.new_page();page.goto('http://127.0.0.1:8000/about.html');assert page.locator('main a').get_attribute('href')=='index.html#about';ctx.close()
+ ctx=b.new_context(java_script_enabled=False);page=ctx.new_page();page.goto('http://127.0.0.1:8000/about.html');assert page.locator('main a').get_attribute('href')=='index.html#about';page.goto('http://127.0.0.1:8000/faq.html');page.wait_for_url('**/index.html#faq');assert page.locator('#faq details').count()==5;ctx.close()
  b.close()
-print(json.dumps(results));print('PASS: 24 page/viewport combinations, menu, formula, image ratios, news dialog, team keyboard, FAQ and legacy URLs; 10 screenshots')
+print(json.dumps(results));print('PASS: 20 page/viewport combinations, menu, formula, image ratios, news dialog, team keyboard, FAQ and legacy URLs; 10 screenshots')

@@ -215,3 +215,11 @@ linear-gradient(145deg,#173f8f,#0f2c6b);background-size:28px 28px;color:#fff}
  .who-we-are .about-head h2 { margin-bottom: 0; }
  .home-feature-copy > .btn { justify-self: start; }
 }
+/* Native details keep FAQ content readable and keyboard operable without JS. */
+.home-faq { padding-top: 64px; padding-bottom: 72px; scroll-margin-top: 100px; }
+.home-faq .section-head { margin-bottom: 28px; }
+.home-faq summary:focus-visible { outline: 3px solid var(--navy); outline-offset: 3px; border-radius: 10px; }
+.home-past-recaps { margin-top: 20px; }
+@media (max-width: 600px) {
+  .home-faq { padding-top: 44px; padding-bottom: 48px; }
+}
