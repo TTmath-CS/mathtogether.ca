@@ -1,10 +1,4 @@
 /* Equal-size supporter spaces, with the original artwork fully contained. */
-.supporter-order-note {
-  margin-top: 12px;
-  color: var(--muted);
-  font-size: 14px;
-  line-height: 1.5;
-}
 .supporter-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));

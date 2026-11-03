@@ -23,7 +23,7 @@ with sync_playwright() as p:
     assert cards.locator('img').evaluate_all('(es)=>es.map(e=>e.getAttribute("src"))') == [s['image'] for s in expected[:3]]
     assert cards.locator('[data-year]').all_text_contents() == [datetime.strptime(s['month'], '%Y-%m').strftime('%b %Y') if s.get('month') else s['year'] for s in expected[:3] if not s['date']]
     assert cards.locator('time').evaluate_all('(es)=>es.map(e=>e.dateTime)') == [s['date'] for s in expected[:3] if s['date']]
-    assert cards.evaluate_all('(es)=>es.map(e=>e.getAttribute("href"))') == ['news.html#' + s['id'] for s in expected[:3]]
+    assert cards.evaluate_all('(es)=>es.map(e=>e.getAttribute("href"))') == ['read.html?story=' + s['id'] for s in expected[:3]]
     for item in expected[:3]:
         page.goto(base + 'news.html#' + item['id'])
         if page.locator('#' + item['id'] + ' details').count():
@@ -48,8 +48,10 @@ with sync_playwright() as p:
     assert page.locator('.home-story-card time').first.get_attribute('datetime')=='2027-01-02'
     new_link = page.locator('.home-story-card').first.get_attribute('href')
     page.goto(base + new_link)
-    assert page.locator('.story-dialog h3').inner_text() == 'New regression news'
-    assert page.locator('.story-read-link').count()==page.locator('.story > details').count()
+    page.wait_for_function('document.querySelector("#reader-story").getAttribute("aria-busy")==="false"')
+    assert page.locator('#reader-title').inner_text() == 'New regression news'
+    assert page.locator('.reader-body').inner_text() == 'A newly published article.'
+    assert not page.locator('header, nav, footer, .news-grid').count()
     page.unroute('**/news.html')
     # Reverse dated slots only; year-only slots retain their source order.
     page.goto(base + 'news.html')
@@ -57,7 +59,7 @@ with sync_playwright() as p:
     page.route('**/news.html', lambda route: route.fulfill(status=200, content_type='text/html', body=reversed_source))
     page.goto(base)
     page.wait_for_selector('.home-story-card')
-    assert page.locator('.home-story-card').evaluate_all('(es)=>es.map(e=>e.getAttribute("href"))') == ['news.html#' + s['id'] for s in expected[:3]]
+    assert page.locator('.home-story-card').evaluate_all('(es)=>es.map(e=>e.getAttribute("href"))') == ['read.html?story=' + s['id'] for s in expected[:3]]
     page.unroute('**/news.html')
     page.goto(base + 'news.html')
     assert page.evaluate('''()=>{const root=document.createElement('div');root.innerHTML='<div class="news-grid"><article class="story" id="a" data-year="2025"><h3>A</h3></article><article class="story" id="b" data-year="2026"><h3>B</h3></article><article class="story" id="c" data-year="2026"><h3>C</h3></article><article class="story" id="d"><h3>D</h3></article></div>';return newsStories(root).map(e=>e.id).join(',')==='b,c,a,d';}''')

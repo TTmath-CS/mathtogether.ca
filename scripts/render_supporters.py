@@ -16,7 +16,7 @@ args = parser.parse_args()
 supporters = json.loads((ROOT / 'data/supporters.json').read_text())
 assert len({s['id'] for s in supporters}) == len(supporters), 'Duplicate organization ID'
 assert len({s['url'] for s in supporters}) == len(supporters), 'Duplicate organization URL'
-supporters.sort(key=lambda s: s['sort_name'].casefold())
+supporters.sort(key=lambda s: (s.get('display_order', 1), s['sort_name'].casefold()))
 cards = ['     <div class="supporter-grid" role="group" aria-label="Supporter websites">']
 for supporter in supporters:
     name = escape(supporter['name'])
@@ -52,4 +52,4 @@ for filename in ['get-involved.html', 'index.html']:
             path.write_text(updated)
 if args.check and stale:
     raise SystemExit('Run python3 scripts/render_supporters.py: stale ' + ', '.join(stale))
-print(f'{len(supporters)} distinct supporters; alphabetical grid and counts {"checked" if args.check else "rendered"}.')
+print(f'{len(supporters)} distinct supporters; ordered grid and counts {"checked" if args.check else "rendered"}.')

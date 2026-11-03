@@ -1,5 +1,14 @@
 [
   {
+    "id": "ttmath",
+    "name": "TTmath",
+    "sort_name": "TTmath",
+    "url": "https://ttmath.ca/",
+    "logo": "assets/img/sponsors/ttmath.jpg",
+    "logo_status": "Existing repository asset retained",
+    "display_order": 0
+  },
+  {
     "id": "black-belt-world",
     "name": "BLACK BELT WORLD",
     "sort_name": "Black Belt World",
@@ -30,14 +39,6 @@
     "url": "https://www.janestreet.com/",
     "logo": "assets/img/sponsors/jane-street.png",
     "logo_status": "Original logo supplied by site owner; bytes preserved unchanged"
-  },
-  {
-    "id": "ttmath",
-    "name": "TTmath",
-    "sort_name": "TTmath",
-    "url": "https://ttmath.ca/",
-    "logo": "assets/img/sponsors/ttmath.jpg",
-    "logo_status": "Existing repository asset retained"
   },
   {
     "id": "woodbine-steeles-dental",

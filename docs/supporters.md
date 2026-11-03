@@ -11,7 +11,10 @@ removed at the owner's request; the generator outputs only the supporter grid.
 
 The `sort_name` value uses the official English name, case-insensitively, or
 pinyin when the organization has no confirmed English name. Display names retain
-the Chinese names supplied by the site owner.
+the Chinese names supplied by the site owner. At the owner's request, TTmath has
+`display_order: 0` and appears first; the other five remain alphabetical. The
+visible alphabetical-order note has been removed. This ordering does not add
+sponsorship tiers.
 
 ## Logo sources
 

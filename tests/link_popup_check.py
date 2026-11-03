@@ -1,7 +1,7 @@
 """Exercise real new-tab navigation while preserving the source page."""
 import os
 import shutil
-from urllib.parse import urlsplit
+from urllib.parse import urlsplit, parse_qs
 
 from playwright.sync_api import sync_playwright
 
@@ -37,6 +37,11 @@ def open_link(source, link, label, width):
     assert source.url == before, (width, label, 'source page navigated')
     assert opened.evaluate('window.opener === null'), (width, label, 'opener exposed')
     if urlsplit(expected).netloc == urlsplit(BASE).netloc:
+        if urlsplit(expected).path.endswith('/read.html'):
+            opened.wait_for_function('document.querySelector("#reader-story").getAttribute("aria-busy") === "false"')
+            assert opened.locator('#reader-content > *').count(), (width, label, 'reader failed')
+            assert not opened.locator('header, nav, footer, .news-grid').count(), (width, label, 'News UI present')
+            assert parse_qs(urlsplit(expected).query).get('story'), (width, label, 'missing story')
         story_id = urlsplit(expected).fragment
         story = opened.locator(f'.story[id="{story_id}"]') if story_id else None
         if story is not None and story.count() and story.locator('details').count():
@@ -70,13 +75,13 @@ with sync_playwright() as playwright:
         page.goto(BASE + 'index.html')
         page.wait_for_selector('.home-story-card')
 
-        click_and_close(page, '#featured-event a[href="news.html#news-charity-2026"]', '2026 event recap', width)
+        click_and_close(page, '#featured-event a[href="read.html?story=news-charity-2026"]', '2026 event recap', width)
         before = page.url
         page.locator('.home-past-recaps summary').click()
         assert page.locator('.home-past-recaps').get_attribute('open') is not None
         assert page.url == before and len(context.pages) == 1
         for year in [2025, 2024]:
-            click_and_close(page, f'.home-past-recaps a[href="news.html#news-charity-{year}"]', f'{year} historical recap', width)
+            click_and_close(page, f'.home-past-recaps a[href="read.html?story=news-charity-{year}"]', f'{year} historical recap', width)
         for index in range(3):
             popup = open_link(page, page.locator('.home-programs article a').nth(index), f'homepage program {index + 1}', width)
             popup.close()
