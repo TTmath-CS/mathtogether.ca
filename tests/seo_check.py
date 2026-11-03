@@ -36,4 +36,4 @@ for u in urls:
  s=BeautifulSoup(local.read_text(),'html.parser');assert s.select_one('link[rel=canonical]')['href']==u,u
  assert not s.select_one('meta[name=robots]'),u
 assert 'Sitemap: https://mathtogether.ca/sitemap.xml' in (root/'robots.txt').read_text()
-print('PASS: nine unique titles/descriptions, canonical/OG/Twitter metadata, favicon, JSON-LD, image files/dimensions, five sitemap URLs, robots.')
+print(f'PASS: {len(titles)} unique titles/descriptions, canonical/OG/Twitter metadata, favicon, JSON-LD, image files/dimensions, five sitemap URLs, robots.')

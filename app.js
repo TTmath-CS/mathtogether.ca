@@ -12,6 +12,29 @@ function setNewTabLink(link) {
 }
 document.querySelectorAll('a[href]').forEach(setNewTabLink);
 
+// Homepage stories use a separate, content-only reader. Open it directly in
+// the click handler so the homepage keeps its URL, scroll position and state.
+function bindHomeStory(link, storyId) {
+  link.href = 'read.html?story=' + encodeURIComponent(storyId);
+  setNewTabLink(link);
+  link.setAttribute('aria-description', 'Opens article or video in a new window');
+  link.addEventListener('click', function (event) {
+    // Keep browser-native modified clicks and middle clicks available.
+    if (event.defaultPrevented || event.button !== 0 || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+    event.preventDefault();
+    var width = Math.min(1000, Math.max(320, screen.availWidth - 40));
+    var height = Math.min(850, Math.max(480, screen.availHeight - 60));
+    var left = Math.max(0, Math.round((screen.availWidth - width) / 2));
+    var top = Math.max(0, Math.round((screen.availHeight - height) / 2));
+    // noopener may return null even after opening successfully; do not open a
+    // second fallback window based on that return value.
+    window.open(link.href, '_blank', 'popup=yes,width=' + width + ',height=' + height + ',left=' + left + ',top=' + top + ',noopener,noreferrer');
+  });
+}
+document.querySelectorAll('[data-home-story]').forEach(function (link) {
+  bindHomeStory(link, link.dataset.homeStory);
+});
+
 // Mobile menu: the nav links collapse behind a toggle on narrow screens.
 var toggle = document.querySelector('.nav-toggle');
 var links = document.getElementById('site-links');
@@ -119,8 +142,7 @@ if (latestGrid) {
     stories.forEach(function (story) {
       var card = document.createElement('a');
       card.className = 'home-story-card';
-      card.href = 'news.html#' + encodeURIComponent(story.id);
-      setNewTabLink(card);
+      bindHomeStory(card, story.id);
       var frame = document.createElement('div');
       frame.className = 'news-image';
       var image = story.querySelector('.news-image img').cloneNode(true);

@@ -40,7 +40,7 @@ with sync_playwright() as p:
     assert page.locator('#faq h2').evaluate('''(e)=>{const r=document.createRange();r.selectNodeContents(e);const ref=document.createRange();ref.selectNodeContents(document.querySelector('.home-latest-head h2'));return Math.abs(r.getBoundingClientRect().left-ref.getBoundingClientRect().left)<=1 && getComputedStyle(e).textAlign==='left';}'''), (width,'FAQ heading left alignment')
     assert page.locator('.stat-copy').first.inner_text().splitlines()==['850+', 'Students Reached']
     assert page.locator('[data-supporter-count]').inner_text().strip()=='6'
-    assert page.locator('#featured-event a[href="news.html#news-charity-2026"]').count()==1
+    assert page.locator('#featured-event a[href="read.html?story=news-charity-2026"]').count()==1
     recaps=page.locator('#featured-event .home-past-recaps')
     assert recaps.locator('summary').inner_text().strip()=='Explore Past Charity Contest Recaps →'
     recaps.locator('summary').focus();page.keyboard.press('Enter');assert recaps.get_attribute('open') is not None
@@ -92,7 +92,8 @@ with sync_playwright() as p:
     grid=page.locator('.supporter-grid')
     assert grid.locator('a').count()==6
     assert grid.locator('img').count()==grid.locator('a').count(), 'Every supporter has an original logo'
-    assert page.get_by_text('Supporters are listed alphabetically, with no ranking implied.',exact=True).count()==1
+    assert not page.get_by_text('Supporters are listed alphabetically, with no ranking implied.',exact=True).count()
+    assert grid.locator('a').first.get_attribute('data-supporter-id')=='ttmath'
     assert grid.locator('a').evaluate_all('(es)=>es.every(a=>a.target==="_blank"&&a.rel.includes("noopener")&&a.rel.includes("noreferrer"))')
     assert grid.locator('.supporter-logo').evaluate_all('(es)=>{const rs=es.map(e=>e.getBoundingClientRect());return rs.every(r=>Math.abs(r.width-rs[0].width)<1&&Math.abs(r.height-rs[0].height)<1);}')
     grid.scroll_into_view_if_needed()

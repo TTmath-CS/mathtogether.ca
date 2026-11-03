@@ -12,7 +12,7 @@
 - 保留 `.news-image img`、`h3` 和 `.date`。完整文章使用现有 `details/summary`，视频使用现有链接。
 - 不需要修改 `index.html`。首页自动复用原图和完整标题；显示日期采用 `Mon YYYY` 并以 UTC 格式化，避免时区导致前后差一天。原有完整 `data-date` 不变；对仅按年份排序的条目，可用经核实的 `data-display-month="YYYY-MM"` 显示活动月份，不改变其排序精度。
 
-首页链接采用 `news.html#<story-id>`。有完整文章的条目自动打开对应阅读弹窗；视频条目定位到对应卡片并保留原始视频链接。JavaScript 被禁用或读取失败时，首页保留 News 页面入口。请通过 HTTP 服务或 GitHub Pages 访问，不能通过 `file://` 读取新闻。
+首页文章链接采用 `read.html?story=<story-id>`，点击请求独立浏览器窗口，仅显示所选文章或视频，不显示 News 导航或列表；原主页地址与状态不变。阅读窗口同源读取 News 原文，不重复维护正文。视频使用经验证的单条 YouTube 链接嵌入播放器，保留原始 Watch 链接。窗口内加载失败可重试，不自动跳转 News；JavaScript 被禁用时提供 News 页面入口。News 页原有 `news.html#<story-id>` 书签和阅读弹窗继续有效。请通过 HTTP 服务或 GitHub Pages 访问，不能通过 `file://` 读取新闻。
 
 ## 当前日期精度（用户确认保留）
 
@@ -39,12 +39,13 @@
 
 ```sh
 python3 tests/latest_news_check.py
+python3 tests/reader_check.py
 python3 tests/browser_check.py
 python3 tests/content_check.py
 node --check app.js
 ```
 
-新闻专项测试在浏览器中模拟新增日期更晚的条目、反转源文件顺序、无效日期和请求失败；不修改仓库新闻内容。它验证三条限制、原图/标题/日期、链接、文章弹窗和视频定位。
+新闻专项测试在浏览器中模拟新增日期更晚的条目、反转源文件顺序、无效日期和请求失败；不修改仓库新闻内容。它验证三条限制、原图/标题/日期、链接、新增文章阅读窗口和 News 旧书签。独立阅读窗口测试还核对完整正文、视频、安全属性、关闭与重试行为。
 
 ## 第三轮：日期显示与历史回顾
 
@@ -52,4 +53,4 @@ News、Programs 和首页 Latest News 的可见日期统一为英文缩写月份
 
 仅知道季节与年份的新闻显示 `2025 · summer video series`，不补造月份。Programs 的 2026 Cayley、Galois、Fryer、Pascal 已按用户确认显示 Aug 2026；2025 Waterloo 和 Fermat 讲解条目已移除。已知活动月份但发布日期未确认的三个营地条目保留原有 year-only 排序规则，同时以 `data-display-month="YYYY-MM"` 供首页显示已知月份。
 
-首页精选活动下方的历史回顾入口可展开已有的 2024 与 2025 慈善竞赛回顾链接，直接进入 News 对应原文章。News 不新增历史回顾突出区块，保留原新闻列表布局。没有新建或推测往年回顾文章、日期、统计数据或 URL。
+首页精选活动下方的历史回顾入口可展开已有的 2024 与 2025 慈善竞赛回顾链接，在独立阅读窗口显示对应原文章。News 不新增历史回顾突出区块，保留原新闻列表布局。没有新建或推测往年回顾文章、日期、统计数据或 URL。

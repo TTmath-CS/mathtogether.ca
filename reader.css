@@ -1,0 +1,32 @@
+/* A focused reading surface, without the surrounding News page. */
+.reader-page { background: var(--paper); }
+.reader-shell { width: min(820px, calc(100% - 40px)); margin: 24px auto 64px; }
+.reader-controls { display: flex; justify-content: flex-end; margin-bottom: 24px; }
+.reader-close, .reader-retry { appearance: none; border: 1px solid var(--line); border-radius: 8px; padding: 10px 16px; color: var(--navy-ink); background: #fff; font: 600 14px/1.5 var(--sans); cursor: pointer; }
+.reader-close span { margin-left: 10px; font-size: 20px; line-height: 1; }
+.reader-close:hover, .reader-retry:hover { border-color: var(--navy); background: var(--sky); }
+.reader-page :focus-visible { outline: 3px solid var(--navy); outline-offset: 4px; }
+.reader-article h1 { font-size: clamp(30px, 5vw, 46px); line-height: 1.17; overflow-wrap: anywhere; }
+.reader-article h1:focus { outline: none; }
+.reader-date { margin-top: 16px; color: var(--muted); font-size: 14px; }
+.reader-cover { display: block; width: 100%; height: auto; margin-top: 26px; border-radius: 10px; }
+.reader-body { margin-top: 26px; font-size: 17px; line-height: 1.75; overflow-wrap: anywhere; }
+.reader-body > * + * { margin-top: 20px; }
+.reader-body h2 { font-size: 28px; }
+.reader-body h3 { font-size: 23px; }
+.reader-body p img { display: block; width: 100%; height: auto; border-radius: 8px; }
+.reader-body a { font-weight: 600; text-underline-offset: 3px; }
+.reader-body .story-video-links { margin: 18px 0 0; padding: 0; }
+.reader-body .story-video-link a, .reader-body .story-video-links a { color: var(--navy); }
+.reader-videos { margin-top: 26px; }
+.reader-video { margin: 0; }
+.reader-video + .reader-video { margin-top: 28px; }
+.reader-video iframe { display: block; width: 100%; aspect-ratio: 16 / 9; border: 0; border-radius: 10px; background: #0c2154; }
+.reader-video figcaption { margin-top: 8px; color: var(--muted); font-size: 14px; line-height: 1.5; }
+.reader-status, .reader-close-status { margin-top: 20px; color: var(--muted); }
+.reader-retry { margin-top: 20px; }
+@media (max-width: 600px) {
+ .reader-shell { width: calc(100% - 32px); margin-top: 16px; margin-bottom: 40px; }
+ .reader-controls { margin-bottom: 20px; }
+ .reader-body { font-size: 16px; }
+}

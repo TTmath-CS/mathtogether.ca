@@ -22,7 +22,10 @@ for name, soup in pages.items():
     assert len(ids) == len(set(ids)), (name, 'duplicate ID')
     assert len(soup.select('h1')) == 1, (name, 'h1 count')
     assert not soup.select('header nav a[href="faq.html"], header nav a[href="index.html#faq"]'), (name, 'FAQ navigation')
-    assert [text(a) for a in soup.select('header nav a')] == ['Home', 'Programs', 'News', 'Team', 'Get Involved', 'Join Us'], name
+    if name == 'read.html':
+        assert not soup.select('header, nav, footer, .news-grid'), 'The reader only displays the selected content'
+    else:
+        assert [text(a) for a in soup.select('header nav a')] == ['Home', 'Programs', 'News', 'Team', 'Get Involved', 'Join Us'], name
     for anchor in soup.select('a[href]'):
         if 'skip-link' in anchor.get('class', []):
             assert anchor.get('target') != '_blank', (name, 'Skip link must stay in this page')
@@ -49,7 +52,7 @@ assert text(home.select_one('[data-supporter-count]')) == '6'
 assert len(home.select('.home-programs .cards article')) == 3
 assert not home.select('.home-story-card'), 'Homepage must derive news from news.html'
 assert home.select_one('[data-latest-news]')
-assert home.select_one('#featured-event a[href="news.html#news-charity-2026"]')
+assert home.select_one('#featured-event a[data-home-story="news-charity-2026"][href="read.html?story=news-charity-2026"]')
 assert text(home.select_one('#featured-event .home-past-recaps summary')) == 'Explore Past Charity Contest Recaps →'
 assert [text(p) for p in original('index.html').select('.about-body p')] == [text(p) for p in home.select('.about-body p')]
 faq_old = original('faq.html').select('details.faq')
@@ -88,7 +91,7 @@ for key, story in news_new.items():
     else:
         assert [a['href'] for a in story.select('a')] == [a['href'] for a in old.select('a')], key
 for year in [2024, 2025]:
-    assert home.select_one(f'.home-past-recaps a[href="news.html#news-charity-{year}"]')
+    assert home.select_one(f'.home-past-recaps a[data-home-story="news-charity-{year}"][href="read.html?story=news-charity-{year}"]')
 assert not pages['news.html'].select_one('#historical-recaps'), 'News keeps its original story-list layout'
 assert not home.select_one('.home-past-recaps a[href*="2023"]'), 'No unconfirmed 2023 recap'
 
@@ -186,12 +189,12 @@ for supporter in supporters:
     assert text(supporter) or supporter.get('aria-label')
     for image in supporter.select('img'):
         assert image.get('alt')
-assert 'Supporters are listed alphabetically, with no ranking implied.' in text(pages['get-involved.html'])
+assert 'Supporters are listed alphabetically, with no ranking implied.' not in text(pages['get-involved.html'])
 assert not pages['get-involved.html'].select('.sponsor .rank, .sponsor .role, .supporter-stories')
 assert 'How our supporters help' not in text(pages['get-involved.html'])
 data = json.loads((root / 'data/supporters.json').read_text())
-ordered = sorted(data, key=lambda s:s['sort_name'].casefold())
-assert [s['data-supporter-id'] for s in supporters] == [s['id'] for s in ordered]
+assert [s['data-supporter-id'] for s in supporters] == ['ttmath', 'black-belt-world', 'citadel', 'dr-hong-dental', 'jane-street', 'woodbine-steeles-dental']
+assert [s['id'] for s in data if s.get('display_order') == 0] == ['ttmath'], 'Only the requested supporter is pinned first'
 assert len({s['id'] for s in data}) == 6
 subprocess.run(['python3', 'scripts/render_supporters.py', '--check'], cwd=root, check=True)
 print('PASS: local files/anchors, navigation, FAQ preservation, profile text/photos/positions, 17 News records and date precision, eight confirmed sessions, six supporters and homepage statistics.')
